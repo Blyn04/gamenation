@@ -3,6 +3,7 @@
   margin-bottom: 20px;
   overflow: hidden;
   border-radius: 15px;
+  margin-top: 50px;
 }
 
 .slider-background {
@@ -14,7 +15,7 @@
   background-size: cover;
   background-position: center;
   z-index: 0;
-  filter: brightness(0.7);
+  filter: brightness(0.4);
 }
 
 .slider-content {
@@ -24,8 +25,8 @@
 }
 
 .slider-slide {
-  display: flex !important;   /* force flex, overrides antd default */
-  flex-direction: row;        /* text left, image right */
+  display: flex !important;   
+  flex-direction: row;       
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -47,7 +48,8 @@
   height: auto;
   object-fit: contain;
   border-radius: 12px;
-  margin-left: auto;  /* pushes image to the right side */
+  margin-left: auto; 
+  padding-right: 10px; 
 }
 
 .slider-title {

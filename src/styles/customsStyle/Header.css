@@ -1,4 +1,8 @@
 .header {
+  position: fixed;   
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: #001135;
   display: flex;
   flex-wrap: wrap;
@@ -6,6 +10,8 @@
   padding: 10px 20px;
   color: white;
   justify-content: space-between;
+  z-index: 999;       
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
 .logo {
@@ -43,6 +49,11 @@
 
 .menu-trigger {
   display: none;
+}
+
+/* Push content below header */
+.homepage {
+  padding-top: 70px; /* adjust if header height changes */
 }
 
 /* Mobile Responsive */

@@ -34,7 +34,6 @@ const HomeSlider = () => {
 
   return (
     <div className="slider-wrapper">
-      {/* Background image */}
       <div
         className="slider-background"
         style={{ backgroundImage: `url(${backgroundImage})` }}
@@ -44,14 +43,12 @@ const HomeSlider = () => {
         <Carousel autoplay ref={carouselRef}>
           {banners.map((banner, idx) => (
             <div className="slider-slide" key={idx}>
-              {/* Text Left */}
               <div className="slider-text">
                 <div className="slider-title">{banner.title}</div>
                 <p>{banner.description}</p>
                 <button>Browse Now</button>
               </div>
 
-              {/* Image Right */}
               <img
                 src={banner.image}
                 alt={banner.title}
@@ -61,7 +58,6 @@ const HomeSlider = () => {
           ))}
         </Carousel>
 
-        {/* Navigation buttons */}
         <button className="prev-btn" onClick={handlePrev}>&lt;</button>
         <button className="next-btn" onClick={handleNext}>&gt;</button>
       </div>
