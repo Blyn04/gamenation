@@ -3,21 +3,26 @@ import { Carousel } from 'antd';
 import '../styles/customsStyle/HomeSlider.css';
 import backgroundImage from '../assets/backgroundhomepage.jpg'; 
 
+// Import your local PS5 game images
+import assassinsCreed from '../assets/ps5Games/sinx-shadows.png';
+import astroBot from '../assets/ps5Games/ab.png';
+import avatar from '../assets/ps5Games/afp.png';
+
 const banners = [
   {
     title: "Welcome To GameNation",
     description: "Browse Our Popular Games Here",
-    image: "https://via.placeholder.com/600x300?text=Banner+1"
+    image: assassinsCreed
   },
   {
     title: "Discover New Games",
     description: "Check Out The Latest Releases",
-    image: "https://via.placeholder.com/600x300?text=Banner+2"
+    image: astroBot
   },
   {
     title: "Join The Community",
     description: "Connect With Gamers Worldwide",
-    image: "https://via.placeholder.com/600x300?text=Banner+3"
+    image: avatar
   }
 ];
 
@@ -39,16 +44,24 @@ const HomeSlider = () => {
         <Carousel autoplay ref={carouselRef}>
           {banners.map((banner, idx) => (
             <div className="slider-slide" key={idx}>
-              <img src={banner.image} alt={banner.title} className="carousel-image" />
+              {/* Text Left */}
               <div className="slider-text">
                 <div className="slider-title">{banner.title}</div>
                 <p>{banner.description}</p>
                 <button>Browse Now</button>
               </div>
+
+              {/* Image Right */}
+              <img
+                src={banner.image}
+                alt={banner.title}
+                className="carousel-image"
+              />
             </div>
           ))}
         </Carousel>
 
+        {/* Navigation buttons */}
         <button className="prev-btn" onClick={handlePrev}>&lt;</button>
         <button className="next-btn" onClick={handleNext}>&gt;</button>
       </div>
