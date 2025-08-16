@@ -1,0 +1,133 @@
+.homepage {
+  background-color: #00081a;
+  color: white;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Banner */
+.banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #00245c;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.banner-text h2 {
+  margin: 0;
+}
+
+.banner-image {
+  background-color: lightgray;
+  width: 300px;
+  height: 180px;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+/* Game sections */
+.game-section {
+  background-color: #00245c;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.game-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.game-card {
+  background-color: #00081a;
+  padding: 10px;
+  width: 150px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100px;
+  background-color: gray;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.show-all {
+  margin-top: 10px;
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 10px;
+}
+
+/* Banner Slider */
+.banner-slider {
+  margin-bottom: 20px;
+}
+
+.banner-slide {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #00245c;
+  padding: 20px;
+  border-radius: 15px;
+  flex-wrap: wrap;
+}
+
+.banner-text h2 {
+  margin: 0;
+}
+
+.banner-image {
+  width: 300px;
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .banner-slide {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .banner-image {
+    width: 100%;
+    height: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .banner-image {
+    width: 100%;
+    height: 150px;
+  }
+
+  .game-card {
+    width: 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-card {
+    width: 100%;
+  }
+}
