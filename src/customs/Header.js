@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/customsStyle/Header.css'; 
+import { UserOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 
 const Header = () => {
   return (
@@ -14,7 +15,10 @@ const Header = () => {
         <a href="#">My Library</a>
       </nav>
 
-      <div className="user-icon">👤</div>
+      <div className="header-icons">
+        <UserOutlined className="icon" />
+        <ShoppingCartOutlined className="icon" />
+      </div>
 
       {/* Hamburger menu for mobile */}
       <div className="menu-trigger">
