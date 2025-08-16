@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Carousel } from 'antd';
-import '../styles/customsStyle/HomeSlider.css'; // Your CSS
+import '../styles/customsStyle/HomeSlider.css';
+import backgroundImage from '../assets/backgroundhomepage.jpg'; 
 
 const banners = [
   {
@@ -28,6 +29,12 @@ const HomeSlider = () => {
 
   return (
     <div className="slider-wrapper">
+      {/* Background image */}
+      <div
+        className="slider-background"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      ></div>
+
       <div className="slider-content">
         <Carousel autoplay ref={carouselRef}>
           {banners.map((banner, idx) => (
@@ -42,7 +49,6 @@ const HomeSlider = () => {
           ))}
         </Carousel>
 
-        {/* Custom navigation buttons */}
         <button className="prev-btn" onClick={handlePrev}>&lt;</button>
         <button className="next-btn" onClick={handleNext}>&gt;</button>
       </div>
