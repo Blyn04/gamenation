@@ -65,6 +65,7 @@
   display: flex;
   margin-left: 10px;
   gap: 14px;
+  flex: 0 0 auto;   /* always show icon group */
 }
 
 .header-icons .icon {
@@ -82,11 +83,7 @@
   margin-left: 15px;
 }
 
-/* default mobile state */
-.nav {
-  display: flex;
-}
-
+/* Hide nav on mobile until menu is triggered */
 @media (max-width: 768px) {
   .nav {
     display: none;
@@ -100,13 +97,6 @@
   .nav.active {
     display: flex; /* show when active */
   }
-}
-
-/* Responsive adjustments (like Cyborg) */
-@media (max-width: 768px) {
-  .nav {
-    display: none; /* hide nav links */
-  }
 
   .menu-trigger {
     display: block;
@@ -116,5 +106,10 @@
     flex: 1 1 100%;
     margin-top: 8px;
     margin-bottom: 8px;
+  }
+
+  .header-icons {
+    gap: 10px;
+    margin-left: 0;
   }
 }
