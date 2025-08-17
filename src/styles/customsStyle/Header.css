@@ -1,89 +1,120 @@
-.header {
-  position: fixed;   
+/* Similar structure to Cyborg's header-area + main-nav */
+
+.header-area {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   background-color: #001135;
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  color: white;
-  justify-content: space-between;
-  z-index: 999;       
+  z-index: 999;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  flex-wrap: wrap;
 }
 
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 12px 20px;
+}
+
+/* Logo Styles */
 .logo {
   font-weight: bold;
+  color: white;
   flex: 0 0 auto;
-  margin-right: 20px;
+}
+
+/* Search styling */
+.search-input {
+  flex-grow: 1;
+  max-width: 350px;
+  margin: 0 20px;
 }
 
 .search-bar {
   background-color: #002d5e;
   border: none;
-  border-radius: 10px;
-  padding: 5px 10px;
+  border-radius: 8px;
+  padding: 6px 12px;
+  width: 100%;
   color: white;
-  flex: 1 1 300px;
-  max-width: 400px;
-  margin: 0 20px;
-  height: 36px;
 }
 
-.nav-links {
+/* Nav Links */
+.nav {
+  list-style: none;
   display: flex;
-  justify-content: center;
   flex: 0 0 auto;
+  margin-left: 10px;
 }
 
-.nav-links a {
+.nav li a {
   color: white;
   margin: 0 10px;
   text-decoration: none;
   line-height: 36px;
 }
 
+.nav li a.active {
+  color: #00adb5;
+}
+
+/* Icons (profile + cart) */
 .header-icons {
   display: flex;
-  gap: 15px;
-  flex: 0 0 auto;
   margin-left: 10px;
+  gap: 14px;
 }
 
 .header-icons .icon {
-  font-size: 24px;
   color: white;
+  font-size: 22px;
   cursor: pointer;
-  line-height: 36px;
 }
 
-/* Hamburger menu for mobile */
+/* Hamburger */
 .menu-trigger {
   display: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 15px;
 }
 
-/* Push content below header */
-.homepage {
-  padding-top: 70px;
+/* default mobile state */
+.nav {
+  display: flex;
 }
 
-/* Mobile Responsive */
 @media (max-width: 768px) {
-  .nav-links {
+  .nav {
     display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #001135;
+    margin-top: 10px;
+    padding: 0;
   }
+
+  .nav.active {
+    display: flex; /* show when active */
+  }
+}
+
+/* Responsive adjustments (like Cyborg) */
+@media (max-width: 768px) {
+  .nav {
+    display: none; /* hide nav links */
+  }
+
   .menu-trigger {
     display: block;
-    cursor: pointer;
   }
-  .search-bar {
+
+  .search-input {
     flex: 1 1 100%;
-    margin: 10px 0;
-  }
-  .header-icons {
-    margin-left: 0;
-    gap: 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
   }
 }
