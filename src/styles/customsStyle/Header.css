@@ -39,6 +39,33 @@
   color: white;
 }
 
+/* Search bar with icon */
+.search-input {
+  position: relative;
+  flex-grow: 1;
+  max-width: 350px;
+  margin: 0 20px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #bbb;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.search-bar {
+  background-color: #002d5e;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px 6px 32px; /* add left padding for icon */
+  width: 100%;
+  color: white;
+}
+
 /* Desktop Nav */
 .nav {
   list-style: none;
