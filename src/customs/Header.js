@@ -5,38 +5,40 @@ import { UserOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <header className="header-area header-sticky">
       <nav className="main-nav">
-        {/* LOGO */}
         <a href="#" className="logo">🎮 GameNation</a>
 
-        {/* Search Input */}
-        <div className="search-input">
-          <input className="search-bar" type="text" placeholder="Search here..." />
+        {/* Wrap search and burger in one flex container */}
+        <div className="right-side">
+          <div className="search-input">
+            <input className="search-bar" type="text" placeholder="Search here..." />
+          </div>
+          
+          <div className="menu-trigger" onClick={toggleMenu}>
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </div>
         </div>
 
-        {/* Nav Items */}
+        {/* Navigation Menu */}
         <ul className={`nav ${isMenuOpen ? 'active' : ''}`}>
           <li><a href="#" className="active">Home</a></li>
           <li><a href="#">Browse</a></li>
           <li><a href="#">My Library</a></li>
+          <li className="mobile-text">Profile</li>
+          <li className="mobile-text">Cart</li>
         </ul>
 
-        {/* Icons all the time */}
-        <div className="header-icons">
+        {/* Desktop profile/cart */}
+        <div className="header-icons desktop-only">
           <UserOutlined className="icon" />
           <ShoppingCartOutlined className="icon" />
         </div>
-
-        {/* Menu Trigger (mobile button) */}
-        <a className="menu-trigger" onClick={toggleMenu}>
-          <span>Menu</span>
-        </a>
       </nav>
     </header>
   );

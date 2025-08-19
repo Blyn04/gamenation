@@ -1,5 +1,4 @@
-/* Similar structure to Cyborg's header-area + main-nav */
-
+/* Header layout */
 .header-area {
   position: fixed;
   top: 0;
@@ -7,7 +6,7 @@
   width: 100%;
   background-color: #001135;
   z-index: 999;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .main-nav {
@@ -18,20 +17,19 @@
   padding: 12px 20px;
 }
 
-/* Logo Styles */
+/* Logo */
 .logo {
   font-weight: bold;
   color: white;
-  flex: 0 0 auto;
+  text-decoration: none;
 }
 
-/* Search styling */
+/* Search bar */
 .search-input {
   flex-grow: 1;
   max-width: 350px;
   margin: 0 20px;
 }
-
 .search-bar {
   background-color: #002d5e;
   border: none;
@@ -41,75 +39,99 @@
   color: white;
 }
 
-/* Nav Links */
+/* Desktop Nav */
 .nav {
   list-style: none;
   display: flex;
-  flex: 0 0 auto;
-  margin-left: 10px;
+  gap: 25px;
 }
-
 .nav li a {
   color: white;
-  margin: 0 10px;
   text-decoration: none;
   line-height: 36px;
 }
-
 .nav li a.active {
   color: #00adb5;
 }
 
-/* Icons (profile + cart) */
+/* Desktop Icons */
 .header-icons {
   display: flex;
-  margin-left: 10px;
   gap: 14px;
-  flex: 0 0 auto;   /* always show icon group */
 }
 
-.header-icons .icon {
-  color: white;
-  font-size: 22px;
-  cursor: pointer;
-}
-
-/* Hamburger */
+/* BURGER icon styling */
 .menu-trigger {
   display: none;
-  color: white;
-  font-size: 18px;
   cursor: pointer;
-  margin-left: 15px;
+  flex-direction: column;
+  gap: 4px;
+}
+.menu-trigger .bar {
+  width: 22px;
+  height: 3px;
+  background-color: white;
+  border-radius: 3px;
 }
 
-/* Hide nav on mobile until menu is triggered */
+/* Icons inside dropdown (mobile) */
+.mobile-icons {
+  margin-top: 10px;
+}
+.mobile-icons .icon {
+  margin: 0 10px;
+  font-size: 20px;
+  color: white;
+}
+
+.mobile-text {
+  color: white;
+  font-size: 14px;
+  margin: 8px 0;
+  display: none; /* hide by default */
+}
+
+/* Show in mobile dropdown only */
 @media (max-width: 768px) {
-  .nav {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: #001135;
-    margin-top: 10px;
-    padding: 0;
-  }
-
-  .nav.active {
-    display: flex; /* show when active */
-  }
-
-  .menu-trigger {
+  .mobile-text {
     display: block;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  /* Hide desktop icons */
+  .desktop-only {
+    display: none;
+  }
+  .menu-trigger {
+    display: flex; 
+    padding-left: 250px;
+  }
+  /* Dropdown menu */
+  .nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    overflow: hidden;
+    background: #001135;
+    max-height: 0;
+    opacity: 0;
+    border-top: 1px solid #2c2c2c;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+    margin-top: 10px;
+  }
+  .nav.active {
+    max-height: 250px;
+    opacity: 1;
+  }
+  .nav li {
+    margin: 8px 0;
   }
 
   .search-input {
-    flex: 1 1 100%;
-    margin-top: 8px;
-    margin-bottom: 8px;
-  }
-
-  .header-icons {
-    gap: 10px;
-    margin-left: 0;
+    padding-top: 20px;
+    padding-right: 20px;
   }
 }
