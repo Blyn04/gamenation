@@ -1,41 +1,54 @@
 .profile-container {
   background-color: #0a1a3b;
   color: white;
-  font-family: Arial, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
   min-height: 100vh;
 }
 
+/* ===== HEADER ===== */
 .profile-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
+  padding: 12px 20px;
   background: #081229;
+  flex-wrap: wrap; /* allow wrapping on small screens */
 }
 
 .logo {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
+  flex: 1;
 }
 
 .search-bar {
-  flex: 1;
-  margin: 0 20px;
-  padding: 6px;
+  flex: 2;
+  margin: 10px;
+  padding: 8px;
   border-radius: 6px;
   border: none;
+  max-width: 400px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .nav-links a {
-  margin: 0 10px;
   color: white;
   text-decoration: none;
+  font-weight: 500;
 }
 
 .profile-icon {
   font-size: 20px;
+  margin-left: auto;
 }
 
+/* ===== PROFILE CARD ===== */
 .profile-card {
   display: flex;
   align-items: center;
@@ -44,6 +57,8 @@
   margin: 20px;
   padding: 20px;
   border-radius: 12px;
+  flex-wrap: wrap; /* stacks items on small screens */
+  gap: 15px;
 }
 
 .avatar {
@@ -54,13 +69,17 @@
 }
 
 .user-info {
-  flex: 1;
-  margin-left: 20px;
+  flex: 2;
+  min-width: 150px;
+}
+
+.user-info h2 {
+  margin: 0;
 }
 
 .settings-btn {
   margin-top: 10px;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border: none;
   border-radius: 6px;
   background: #1c3a75;
@@ -72,7 +91,8 @@
   background: #0a1430;
   padding: 10px;
   border-radius: 10px;
-  min-width: 150px;
+  min-width: 160px;
+  flex: 1;
 }
 
 .stats-box p {
@@ -80,6 +100,7 @@
   justify-content: space-between;
 }
 
+/* ===== GAME SECTIONS ===== */
 .games-section {
   margin: 20px;
   background: #07122d;
@@ -91,20 +112,25 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .game-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  justify-content: center; /* center cards when few */
 }
 
 .game-card {
   display: flex;
   align-items: center;
   background: #0d1b3c;
-  padding: 10px;
+  padding: 12px;
   border-radius: 8px;
+  max-width: 300px;   /* ✅ prevents card from stretching too wide */
+  width: 100%;
+  margin: 0 auto;     /* ✅ keeps it centered */
 }
 
 .game-thumb {
@@ -115,14 +141,64 @@
   margin-right: 10px;
 }
 
+/* ===== FOOTER ===== */
 .profile-footer {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   background: #081229;
   padding: 20px;
   margin-top: 20px;
+  text-align: center;
+}
+
+.profile-footer div {
+  margin: 10px;
+  min-width: 150px;
 }
 
 .profile-footer h4 {
   margin-bottom: 10px;
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media (max-width: 992px) {
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .search-bar {
+    width: 100%;
+    margin: 10px 0;
+  }
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  .stats-box {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .game-list {
+    grid-template-columns: repeat(2, 1fr); /* ✅ 2 cards per row on mobile */
+    justify-items: center;
+  }
+  .game-card {
+    max-width: 100%; /* ✅ allow both cards to fit evenly */
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+  .game-thumb {
+    margin: 0 0 10px 0;
+  }
 }
