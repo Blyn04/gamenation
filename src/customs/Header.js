@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/customsStyle/Header.css';
 import { UserOutlined, ShoppingCartOutlined, SearchOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom'; // ✅ Import Link for navigation
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,7 +12,7 @@ const Header = () => {
     <header className="header-area header-sticky">
       <nav className="main-nav">
         {/* Left: Logo */}
-        <a href="#" className="logo">🎮 GameNation</a>
+        <Link to="/" className="logo">🎮 GameNation</Link>
 
         {/* Middle: Search bar */}
         <div className="search-input">
@@ -21,21 +22,27 @@ const Header = () => {
 
         {/* Navigation Menu + Icons */}
         <ul className={`nav ${isMenuOpen ? 'active' : ''}`}>
-          <li><a href="#" className="active">Home</a></li>
-          <li><a href="#">Browse</a></li>
-          <li><a href="#">My Library</a></li>
+          <li><Link to="/" className="active">Home</Link></li>
+          <li><Link to="/browse">Browse</Link></li>
+          <li><Link to="/library">My Library</Link></li>
 
           {/* Desktop icons inside nav */}
           <li className="desktop-only">
             <ShoppingCartOutlined className="icon" />
           </li>
           <li className="desktop-only">
-            <UserOutlined className="icon" />
+            {/* ✅ Profile icon leads to /profile */}
+            <Link to="/profile">
+              <UserOutlined className="icon" />
+            </Link>
           </li>
 
           {/* Mobile fallback text */}
           <li className="mobile-text">Cart</li>
-          <li className="mobile-text">Profile</li>
+          <li className="mobile-text">
+            {/* ✅ Profile text leads to /profile */}
+            <Link to="/profile">Profile</Link>
+          </li>
         </ul>
 
         {/* Burger for mobile */}
