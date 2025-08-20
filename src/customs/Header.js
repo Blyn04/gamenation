@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/customsStyle/Header.css';
 import { UserOutlined, ShoppingCartOutlined, SearchOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom'; // ✅ Import Link for navigation
+import { Link } from 'react-router-dom'; 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

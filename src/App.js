@@ -4,6 +4,7 @@ import Header from './customs/Header';
 import HomePage from './components/HomePage';
 import Profile from './components/Profile'; 
 import './App.css';
+import AllProducts from './components/AllProducts';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/browse" element={<AllProducts/>} />
         </Routes>
       </div>
     </Router>
