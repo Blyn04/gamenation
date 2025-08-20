@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   padding-bottom: 30px;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Featured Section */
@@ -18,6 +19,7 @@
   width: 100%;
   height: 250px;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .featured-overlay {
@@ -39,6 +41,7 @@
   padding: 6px 12px;
   cursor: pointer;
   border-radius: 6px;
+  font-weight: 500;
 }
 
 .featured-video {
@@ -62,11 +65,14 @@
   gap: 10px;
   justify-content: center;
   margin: 20px 0;
+  flex-wrap: wrap;
 }
 
 .filters select {
   padding: 8px;
   border-radius: 6px;
+  border: none;
+  font-size: 14px;
 }
 
 /* Product Grid */
@@ -82,6 +88,11 @@
   padding: 10px;
   text-align: center;
   border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
 }
 
 .product-thumb {
@@ -97,6 +108,8 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .pagination button {
@@ -120,6 +133,9 @@
   justify-content: space-around;
   padding: 30px;
   margin-top: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+  text-align: center;
 }
 
 .footer h4 {
@@ -131,4 +147,56 @@
   font-size: 12px;
   margin: 3px 0;
   cursor: pointer;
+}
+
+/* Responsive Breakpoints */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 20px;
+  }
+
+  .featured-image {
+    height: 200px;
+  }
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .featured-title {
+    font-size: 20px;
+  }
+
+  .see-more-btn {
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    padding: 0 10px;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .featured-overlay {
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .featured-title {
+    font-size: 18px;
+  }
 }

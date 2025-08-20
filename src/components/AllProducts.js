@@ -33,18 +33,10 @@ const AllProducts = () => {
 
       {/* Filters */}
       <div className="filters">
-        <select>
-          <option>Sort</option>
-        </select>
-        <select>
-          <option>Genre</option>
-        </select>
-        <select>
-          <option>Type</option>
-        </select>
-        <select>
-          <option>Price</option>
-        </select>
+        <select><option>Sort</option></select>
+        <select><option>Genre</option></select>
+        <select><option>Type</option></select>
+        <select><option>Price</option></select>
       </div>
 
       {/* Products Grid */}
