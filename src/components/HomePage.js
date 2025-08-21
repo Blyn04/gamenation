@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/componentsStyle/HomePage.css';
 import HomeSlider from '../customs/HomeSlider';
+import { useNavigate } from "react-router-dom";
 
 const dummyGames = Array(8).fill({
   title: "Game Title",
@@ -8,19 +9,28 @@ const dummyGames = Array(8).fill({
   rating: "⭐ 4.5",
 });
 
-const GameCard = ({ title, category, rating }) => (
-  <div className="game-card">
-    <div className="thumbnail"></div>
-    <div className="game-info">
-      <p>{title}</p>
-      <p>{category}</p>
-      <p>{rating}</p>
+const GameCard = ({ title, category, rating }) => {
+  const navigate = useNavigate();
+
+  return (
+    <div 
+      className="game-card" 
+      onClick={() => navigate("/item-details")}
+      style={{ cursor: "pointer" }}
+    >
+      <div className="thumbnail"></div>
+      <div className="game-info">
+        <p>{title}</p>
+        <p>{category}</p>
+        <p>{rating}</p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState("new");
+  const navigate = useNavigate();
 
   return (
     <div className="homepage">
@@ -63,7 +73,12 @@ const HomePage = () => {
         <h3>Trending Now</h3>
         <div className="horizontal-scroll">
           {dummyGames.slice(0, 5).map((game, idx) => (
-            <div className="carousel-card" key={idx}>
+            <div 
+              className="carousel-card" 
+              key={idx}
+              onClick={() => navigate("/item-details")}
+              style={{ cursor: "pointer" }}
+            >
               <div className="thumbnail"></div>
               <p>{game.title}</p>
             </div>
