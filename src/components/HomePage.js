@@ -3,6 +3,7 @@ import '../styles/componentsStyle/HomePage.css';
 import { useNavigate } from "react-router-dom";
 import { PlayCircleOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
 import HomeSlider from '../customs/HomeSlider';
+import Footer from '../customs/Footer';
 
 // Dummy data for games
 const popularGames = [
@@ -229,24 +230,7 @@ const HomePage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="footer">
-        <div className="footer-column">
-          <h4>ABOUT US</h4>
-          <p>Who we are</p>
-          <p>Mission</p>
-          <p>Vision</p>
-        </div>
-        <div className="footer-column">
-          <h4>CUSTOMER CARE</h4>
-          <p>FAQs</p>
-          <p>Feedback & Inquiry</p>
-        </div>
-        <div className="footer-column">
-          <h4>PARTNERSHIPS</h4>
-          <p>NVIDIA</p>
-          <p>PlayStation</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
