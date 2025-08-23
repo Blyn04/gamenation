@@ -7,6 +7,7 @@ import './App.css';
 import AllProducts from './components/AllProducts';
 import ItemDetails from './components/ItemDetails';
 import CartPage from './components/CartPage';
+import AccountSetting from './components/AccountSetting';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/browse" element={<AllProducts/>} />
           <Route path="/item-details" element={<ItemDetails/>} />
           <Route path="/cart" element={<CartPage/>} />
+          <Route path="/account-settings" element={<AccountSetting/>} />
         </Routes>
       </div>
     </Router>

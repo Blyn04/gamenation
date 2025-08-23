@@ -38,7 +38,7 @@ const Header = () => {
             </Link>
           </li>
           <li className="desktop-only">
-            {/* ✅ Profile icon leads to /profile */}
+            {/* ✅ Profile icon leads to Profile page */}
             <Link to="/profile">
               <UserOutlined className="icon" />
             </Link>
@@ -49,7 +49,7 @@ const Header = () => {
             <Link to="/cart">Cart</Link>
           </li>
           <li className="mobile-text">
-            {/* ✅ Profile text leads to /profile */}
+            {/* ✅ Profile text leads to Profile page */}
             <Link to="/profile">Profile</Link>
           </li>
         </ul>

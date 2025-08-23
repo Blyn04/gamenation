@@ -1,204 +1,354 @@
-.profile-container {
-  background-color: #0a1a3b;
+.profile-page {
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #1e40af 100%);
   color: white;
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
+  padding: 80px 40px 40px 40px;
+  position: relative;
 }
 
-/* ===== HEADER ===== */
-.profile-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 20px;
-  background: #081229;
-  flex-wrap: wrap; /* allow wrapping on small screens */
+.profile-page::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(30, 64, 175, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(30, 64, 175, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
 }
 
-.logo {
-  font-weight: bold;
-  font-size: 20px;
-  flex: 1;
+/* Profile Section */
+.profile-section {
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  position: relative;
+  z-index: 1;
 }
 
-.search-bar {
-  flex: 2;
-  margin: 10px;
-  padding: 8px;
-  border-radius: 6px;
-  border: none;
-  max-width: 400px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.profile-icon {
-  font-size: 20px;
-  margin-left: auto;
-}
-
-/* ===== PROFILE CARD ===== */
 .profile-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #0d1b3c;
-  margin: 20px;
-  padding: 20px;
-  border-radius: 12px;
-  flex-wrap: wrap; /* stacks items on small screens */
-  gap: 15px;
+  gap: 32px;
+}
+
+.profile-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
 }
 
 .avatar {
   width: 80px;
   height: 80px;
-  background: gray;
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.avatar-icon {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .user-info {
-  flex: 2;
-  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.user-info h2 {
+.username {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.full-name {
+  font-size: 1rem;
+  color: #cbd5e1;
   margin: 0;
 }
 
 .settings-btn {
-  margin-top: 10px;
-  padding: 6px 14px;
+  background: #1f2937;
   border: none;
-  border-radius: 6px;
-  background: #1c3a75;
   color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  backdrop-filter: blur(10px);
 }
 
+.settings-btn:hover {
+  background: #374151;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Stats Box */
 .stats-box {
-  background: #0a1430;
-  padding: 10px;
-  border-radius: 10px;
-  min-width: 160px;
-  flex: 1;
+  background: rgba(30, 64, 175, 0.3);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  min-width: 200px;
 }
 
-.stats-box p {
+.stat-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ===== GAME SECTIONS ===== */
+.stat-item:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Games Sections */
 .games-section {
-  margin: 20px;
-  background: #07122d;
-  border-radius: 12px;
-  padding: 15px;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  position: relative;
+  z-index: 1;
 }
 
 .section-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
-  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.show-all-link {
+  color: #f59e0b;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.show-all-link:hover {
+  color: #f97316;
 }
 
 .game-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 12px;
-  justify-content: center; /* center cards when few */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .game-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
   display: flex;
   align-items: center;
-  background: #0d1b3c;
-  padding: 12px;
-  border-radius: 8px;
-  max-width: 300px;   /* ✅ prevents card from stretching too wide */
-  width: 100%;
-  margin: 0 auto;     /* ✅ keeps it centered */
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+.game-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(245, 158, 11, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(30, 64, 175, 0.2);
 }
 
 .game-thumb {
-  width: 50px;
-  height: 50px;
-  background: gray;
-  border-radius: 6px;
-  margin-right: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-/* ===== FOOTER ===== */
-.profile-footer {
+.game-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.game-info {
+  flex: 1;
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  background: #081229;
-  padding: 20px;
-  margin-top: 20px;
-  text-align: center;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.profile-footer div {
-  margin: 10px;
-  min-width: 150px;
+.game-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
 }
 
-.profile-footer h4 {
-  margin-bottom: 10px;
+.game-description {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  margin: 0;
 }
 
-/* ===== MEDIA QUERIES ===== */
-@media (max-width: 992px) {
-  .profile-header {
-    flex-direction: column;
-    align-items: flex-start;
+.game-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.game-actions:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.more-icon {
+  font-size: 1.2rem;
+  color: #cbd5e1;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .profile-page {
+    padding: 80px 20px 20px 20px;
   }
-  .search-bar {
-    width: 100%;
-    margin: 10px 0;
-  }
+  
   .profile-card {
     flex-direction: column;
     text-align: center;
+    gap: 24px;
   }
+  
+  .profile-left {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
   .stats-box {
     width: 100%;
-    margin-top: 10px;
+    max-width: 300px;
   }
 }
 
-@media (max-width: 576px) {
-  .nav-links {
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;
-    width: 100%;
+@media (max-width: 768px) {
+  .profile-page {
+    padding: 80px 16px 16px 16px;
   }
-  .game-list {
-    grid-template-columns: repeat(2, 1fr); /* ✅ 2 cards per row on mobile */
-    justify-items: center;
+  
+  .profile-card {
+    padding: 24px;
   }
+  
+  .avatar {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .avatar-icon {
+    font-size: 1.5rem;
+  }
+  
+  .username {
+    font-size: 1.3rem;
+  }
+  
+  .section-title {
+    font-size: 1.3rem;
+  }
+  
   .game-card {
-    max-width: 100%; /* ✅ allow both cards to fit evenly */
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .game-thumb {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .game-title {
+    font-size: 1rem;
+  }
+  
+  .game-description {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-card {
+    padding: 20px;
+  }
+  
+  .stats-box {
+    padding: 20px;
+  }
+  
+  .stat-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .game-card {
     flex-direction: column;
     text-align: center;
-    padding: 15px;
+    gap: 12px;
   }
-  .game-thumb {
-    margin: 0 0 10px 0;
+  
+  .game-actions {
+    align-self: flex-end;
   }
 }
