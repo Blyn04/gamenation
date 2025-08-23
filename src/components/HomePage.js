@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/componentsStyle/HomePage.css';
 import { useNavigate } from "react-router-dom";
-import { PlayCircleOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { PlayCircleOutlined, LeftOutlined, RightOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import HomeSlider from '../customs/HomeSlider';
 import Footer from '../customs/Footer';
 
@@ -60,10 +60,21 @@ const categorizedGames = [
 const GameCard = ({ game, showPlayIcon = false, showRating = false }) => {
   const navigate = useNavigate();
 
+  const handleCardClick = () => {
+    navigate("/item-details");
+  };
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation(); // Prevent card click
+    // Here you would typically add the item to cart
+    // For now, we'll just show an alert
+    alert(`${game.title} added to cart!`);
+  };
+
   return (
     <div 
       className="game-card" 
-      onClick={() => navigate("/item-details")}
+      onClick={handleCardClick}
       style={{ cursor: "pointer" }}
     >
       <div className="thumbnail-container">
@@ -82,6 +93,12 @@ const GameCard = ({ game, showPlayIcon = false, showRating = false }) => {
         {game.genre && <p className="genre">{game.genre}</p>}
         {game.price && <p className="price">{game.price}</p>}
         {showRating && <p className="rating">⭐ 4.5</p>}
+        <button 
+          className="add-to-cart-btn"
+          onClick={handleAddToCart}
+        >
+          <ShoppingCartOutlined /> Add to Cart
+        </button>
       </div>
     </div>
   );

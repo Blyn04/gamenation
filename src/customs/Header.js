@@ -33,7 +33,9 @@ const Header = () => {
 
           {/* Desktop icons inside nav */}
           <li className="desktop-only">
-            <ShoppingCartOutlined className="icon" />
+            <Link to="/cart">
+              <ShoppingCartOutlined className="icon" />
+            </Link>
           </li>
           <li className="desktop-only">
             {/* ✅ Profile icon leads to /profile */}
@@ -43,7 +45,9 @@ const Header = () => {
           </li>
 
           {/* Mobile fallback text */}
-          <li className="mobile-text">Cart</li>
+          <li className="mobile-text">
+            <Link to="/cart">Cart</Link>
+          </li>
           <li className="mobile-text">
             {/* ✅ Profile text leads to /profile */}
             <Link to="/profile">Profile</Link>
