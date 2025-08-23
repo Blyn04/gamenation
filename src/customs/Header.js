@@ -12,12 +12,17 @@ const Header = () => {
     <header className="header-area header-sticky">
       <nav className="main-nav">
         {/* Left: Logo */}
-        <Link to="/" className="logo">🎮 GameNation</Link>
+        <Link to="/" className="logo">
+          <div className="logo-container">
+            <div className="logo-square"></div>
+            <span className="logo-text">GameStation</span>
+          </div>
+        </Link>
 
         {/* Middle: Search bar */}
         <div className="search-input">
           <SearchOutlined className="search-icon" />
-          <input className="search-bar" type="text" placeholder="Search here..." />
+          <input className="search-bar" type="text" placeholder="Search games..." />
         </div>
 
         {/* Navigation Menu + Icons */}
