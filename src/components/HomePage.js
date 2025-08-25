@@ -5,56 +5,136 @@ import { PlayCircleOutlined, LeftOutlined, RightOutlined, ShoppingCartOutlined }
 import HomeSlider from '../customs/HomeSlider';
 import Footer from '../customs/Footer';
 
-// Dummy data for games
+// Updated game data with all the new titles
 const popularGames = [
-  { id: 1, title: "Cyberpunk 2077", genre: "RPG", price: "$59.99", image: "cyberpunk-2077.png" },
-  { id: 2, title: "FIFA 24", genre: "Sports", price: "$69.99", image: "ea-sports-fc.png" },
-  { id: 3, title: "Call of Duty", genre: "FPS", price: "$59.99", image: "codbo6.png" },
-  { id: 4, title: "GTA Online", genre: "Action", price: "Free", image: "gta-online.png" },
-  { id: 5, title: "The Last of Us", genre: "Adventure", price: "$49.99", image: "thelastofus.png" },
-  { id: 6, title: "Monster Hunter", genre: "Action", price: "$39.99", image: "mhw.png" },
-  { id: 7, title: "NBA 2K26", genre: "Sports", price: "$69.99", image: "nba2k26.png" },
-  { id: 8, title: "Battlefield", genre: "FPS", price: "$59.99", image: "battlefield6-standard.png" }
+  { id: 1, title: "FINAL FANTASY VII REBIRTH", genre: "RPG", price: "$69.99", image: "ffvr.png" },
+  { id: 2, title: "Monster Hunter Wilds", genre: "Action", price: "$59.99", image: "mhw.png" },
+  { id: 3, title: "Gran Turismo® 7", genre: "Racing", price: "$69.99", image: "gt7.png" },
+  { id: 4, title: "It Takes Two", genre: "Adventure", price: "$39.99", image: "itt.png" },
+  { id: 5, title: "ELDEN RING", genre: "RPG", price: "$59.99", image: "er.png" },
+  { id: 6, title: "Tony Hawk's™ Pro Skater™", genre: "Sports", price: "$39.99", image: "thps.png" },
+  { id: 7, title: "SILENT HILL 2", genre: "Horror", price: "$49.99", image: "sh2.png" },
+  { id: 8, title: "WWE 2K25 The Bloodline", genre: "Sports", price: "$69.99", image: "wwe.png" }
 ];
 
 const recentlyAdded = [
-  { id: 11, title: "Phasmophobia", genre: "Horror", price: "$19.99", image: "phasmophobia.png" },
-  { id: 12, title: "Street Fighter", genre: "Fighting", price: "$59.99", image: "sf.png" },
-  { id: 13, title: "Silent Hill", genre: "Horror", price: "$49.99", image: "sh2.png" },
-  { id: 14, title: "WWE 2K24", genre: "Sports", price: "$59.99", image: "wwe.png" },
-  { id: 15, title: "Hitman", genre: "Stealth", price: "$39.99", image: "hitman.png" },
-  { id: 16, title: "Doom Eternal", genre: "FPS", price: "$39.99", image: "doom.png" },
-  { id: 17, title: "Gran Turismo", genre: "Racing", price: "$69.99", image: "gt7.png" },
-  { id: 18, title: "Mortal Kombat", genre: "Fighting", price: "$59.99", image: "mk.png" }
+  { id: 11, title: "Black Myth Wukong", genre: "Action", price: "$59.99", image: "badcat.png" },
+  { id: 12, title: "The Last of Us™ Part II Remastered", genre: "Adventure", price: "$49.99", image: "thelastofus.png" },
+  { id: 13, title: "WUCHANG Fallen Feathers", genre: "Action", price: "$59.99", image: "wff.png" },
+  { id: 14, title: "HITMAN World of Assassination", genre: "Stealth", price: "$39.99", image: "hitman.png" },
+  { id: 15, title: "Hogwarts Legacy", genre: "Adventure", price: "$59.99", image: "hl.png" },
+  { id: 16, title: "ASTRO BOT", genre: "Platformer", price: "$39.99", image: "ab.png" },
+  { id: 17, title: "Phasmophobia", genre: "Horror", price: "$19.99", image: "phasmophobia.png" },
+  { id: 18, title: "Indiana Jones and the Great Circle", genre: "Adventure", price: "$59.99", image: "ijgc.png" }
 ];
 
 const discountGames = [
-  { id: 21, title: "Elden Ring", genre: "RPG", price: "$39.99", image: "er.png" },
-  { id: 22, title: "Hogwarts Legacy", genre: "Adventure", price: "$49.99", image: "hl.png" },
-  { id: 23, title: "Avatar", genre: "Action", price: "$44.99", image: "afp.png" },
-  { id: 24, title: "Assassin's Creed", genre: "Action", price: "$34.99", image: "ab.png" },
-  { id: 25, title: "Dead Space", genre: "Horror", price: "$29.99", image: "ds2tb.png" },
-  { id: 26, title: "Forspoken", genre: "RPG", price: "$39.99", image: "fps.png" },
-  { id: 27, title: "Redfall", genre: "FPS", price: "$49.99", image: "rf.png" },
-  { id: 28, title: "Starfield", genre: "RPG", price: "$59.99", image: "sf.png" }
+  { id: 21, title: "DOOM The Dark Ages", genre: "FPS", price: "$49.99", image: "doom.png" },
+  { id: 22, title: "EA SPORTS FC", genre: "Sports", price: "$69.99", image: "ea-sports-fc.png" },
+  { id: 23, title: "Assassins Creed Shadows", genre: "Action", price: "$59.99", image: "ab.png" },
+  { id: 24, title: "DEATH STRANDING 2 ON THE BEACH", genre: "Adventure", price: "$59.99", image: "ds2tb.png" },
+  { id: 25, title: "Mortal Kombat", genre: "Fighting", price: "$59.99", image: "mk.png" },
+  { id: 26, title: "Ghost of Yōtei", genre: "Action", price: "$59.99", image: "gy.png" },
+  { id: 27, title: "Cyberpunk 2077", genre: "RPG", price: "$39.99", image: "cyberpunk-2077.png" },
+  { id: 28, title: "Grand Theft Auto Online", genre: "Action", price: "Free", image: "gta-online.png" }
 ];
 
 const carouselGames = [
-  { id: 31, title: "Metal Gear Solid", image: "mgsse.png" },
-  { id: 32, title: "Demon Slayer", image: "ds-kimetsu.png" },
-  { id: 33, title: "Tekken 8", image: "thps.png" },
-  { id: 34, title: "God of War", image: "gy.png" },
-  { id: 35, title: "Spider-Man", image: "sinx-shadows.png" },
-  { id: 36, title: "Final Fantasy", image: "ffvr.png" }
+  { id: 31, title: "METAL GEAR SOLID Δ SNAKE EATER", image: "mgsse.png" },
+  { id: 32, title: "Call of Duty® Black Ops 6", image: "codbo6.png" },
+  { id: 33, title: "NBA 2K26", image: "nba2k26.png" },
+  { id: 34, title: "Split Fiction", image: "sf.png" },
+  { id: 35, title: "CarX Street", image: "carx-street.png" },
+  { id: 36, title: "Forza Horizon 5", image: "fh5.png" },
+  { id: 37, title: "Borderlands 4", image: "borderlands4.png" },
+  { id: 38, title: "Clair Obscur Expedition 33", image: "coe33.png" }
 ];
 
 const categorizedGames = [
-  { id: 41, title: "Elden Ring", image: "er.png" },
-  { id: 42, title: "Hogwarts Legacy", image: "hl.png" },
-  { id: 43, title: "Avatar", image: "afp.png" },
-  { id: 44, title: "Assassin's Creed", image: "ab.png" },
-  { id: 45, title: "Dead Space", image: "ds2tb.png" },
-  { id: 46, title: "Forspoken", image: "fps.png" }
+  { id: 41, title: "Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles 2", image: "ds-kimetsu.png" },
+  { id: 42, title: "OCTOPATH TRAVELER 0", image: "octapath0.png" },
+  { id: 43, title: "SILENT HILL f", image: "shf.png" },
+  { id: 44, title: "Dying Light: The Beast", image: "dytb.png" },
+  { id: 45, title: "Bad Cat", image: "badcat.png" },
+  { id: 46, title: "Resident Evil 3 Nemesis", image: "re3nemesis.png" },
+  { id: 47, title: "Cats Ritual", image: "catsritual.png" },
+  { id: 48, title: "Sonic Racing: CrossWorlds", image: "srcw.png" }
+];
+
+// Additional game arrays for more variety
+const upcomingGames = [
+  { id: 51, title: "Digimon Story Time Stranger", image: "digimon.png" },
+  { id: 52, title: "The Outer Worlds 2", image: "outerworld.png" },
+  { id: 53, title: "Ready or Not: Digital Deluxe Edition", image: "readyornot.png" },
+  { id: 54, title: "EDENS ZERO", image: "edenzero.png" },
+  { id: 55, title: "HUNTER×HUNTER NEN×IMPACT Deluxe Edition", image: "hxh.png" },
+  { id: 56, title: "TEKKEN 8 Advanced Edition", image: "tekken8.png" }
+];
+
+const featuredGames = [
+  { id: 61, title: "Atelier Yumia: The Alchemist of Memories & the Envisioned Land", image: "atelieryumia.png" },
+  { id: 62, title: "The First Berserker: Khazan Deluxe Edition", image: "firstberserker.png" },
+  { id: 63, title: "LEGO® Horizon Adventures™ Digital Deluxe Edition", image: "lego.png" },
+  { id: 64, title: "Life is Strange: Double Exposure Ultimate Edition", image: "lifestrange.png" },
+  { id: 65, title: "Metaphor: ReFantazio PS4 & PS5", image: "metaphor.png" },
+  { id: 66, title: "SPY×ANYA: Operation Memories Deluxe Edition", image: "spy.png" }
+];
+
+// Additional game arrays using more available images
+const newReleases = [
+  { id: 71, title: "ARMORED CORE™ VI FIRES OF RUBICON™ - Deluxe Edition", image: "armoredcore.png" },
+  { id: 72, title: "Atelier Marie Remake: The Alchemist of Salburg Digital Deluxe Edition", image: "ateliermarie.png" },
+  { id: 73, title: "Atelier Ryza 3: Alchemist of the End & the Secret Key Digital Deluxe Edition", image: "atelierryza.png" },
+  { id: 74, title: "Battlefield 6", image: "battlefield6-standard.png" },
+  { id: 75, title: "BMW", image: "bmw.png" },
+  { id: 76, title: "Code Violet", image: "codeviolet.png" },
+  { id: 77, title: "Dead by Daylight - Gold Edition", image: "dbd.png" },
+  { id: 78, title: "Disney", image: "disney.png" }
+];
+
+const specialEditions = [
+  { id: 81, title: "Disney Dreamlight Valley", image: "disneydreamland.png" },
+  { id: 82, title: "DRAGON BALL Z: KAKAROT DAIMA EDITION", image: "dragonball.png" },
+  { id: 83, title: "DRAGON QUEST I & II HD-2D Remake", image: "dragonquest.png" },
+  { id: 84, title: "F1® 24", image: "f1.png" },
+  { id: 85, title: "Fuga: Melodies of Steel 3 - Deluxe Edition", image: "fuga.png" },
+  { id: 86, title: "Ghostwire: Tokyo Deluxe Edition", image: "ghostwire.png" },
+  { id: 87, title: "Goosebumps: Terror in Little Creek - Frightmare Edition", image: "goosebumps.png" },
+  { id: 88, title: "Granblue Fantasy: Relink Special Edition", image: "granblue.png" }
+];
+
+// Additional game arrays for more variety
+const premiumGames = [
+  { id: 91, title: "Shin Megami Tensei V: Vengeance Digital Deluxe Edition", image: "shin.png" },
+  { id: 92, title: "Persona 3 Reload Digital Deluxe Edition", image: "p3.png" },
+  { id: 93, title: "Suicide Squad: Kill the Justice League", image: "suicide.png" },
+  { id: 94, title: "Persona 5 Tactical Digital Deluxe", image: "p5.png" },
+  { id: 95, title: "Harvest Moon: The Winds of Anthos", image: "harvestmoon.png" },
+  { id: 96, title: "Hogwarts Legacy: Digital Deluxe Edition", image: "hl.png" },
+  { id: 97, title: "VALKYRIE ELYSIUM - Digital Deluxe Edition", image: "valkyrie.png" },
+  { id: 98, title: "HOT WHEELS UNLEASHED", image: "hotwheels.png" }
+];
+
+const actionAdventure = [
+  { id: 101, title: "Watch Dogs: Legion - Deluxe Edition", image: "watchdog.png" },
+  { id: 102, title: "SWORD ART ONLINE Fractured Daydream", image: "swordart.png" },
+  { id: 103, title: "Until Dawn™", image: "untildawn.png" },
+  { id: 104, title: "Disney Epic Mickey: Rebrushed", image: "disney.png" },
+  { id: 105, title: "THE KING OF FIGHTERS XV Ultimate Edition", image: "kingoffighters.png" },
+  { id: 106, title: "KINGDOM HEARTS III", image: "kingdomhearts.png" },
+  { id: 107, title: "tiny Cats", image: "tinycats.png" },
+  { id: 108, title: "Hello Kitty Island Adventure: Deluxe Edition", image: "hellokitty.png" }
+];
+
+const sportsRacing = [
+  { id: 111, title: "Rugby League 26", image: "rugby.png" },
+  { id: 112, title: "Street Fighter™ 6 Years 1-2 Fighters Edition", image: "streetfighter.png" },
+  { id: 113, title: "Fuga: Melodies of Steel 3 - Deluxe Edition", image: "fuga.png" },
+  { id: 114, title: "BMW", image: "bmw.png" },
+  { id: 115, title: "CarX Street", image: "carx-street.png" },
+  { id: 116, title: "Forza Horizon 5", image: "fh5.png" },
+  { id: 117, title: "Gran Turismo® 7", image: "gt7.png" },
+  { id: 118, title: "F1® 24", image: "f1.png" }
 ];
 
 const GameCard = ({ game, showPlayIcon = false, showRating = false }) => {
@@ -81,7 +161,7 @@ const GameCard = ({ game, showPlayIcon = false, showRating = false }) => {
         <div 
           className="thumbnail"
           style={{
-            backgroundImage: `url(/src/assets/ps5Games/${game.image})`,
+            backgroundImage: `url(./src/assets/ps5Games/${game.image})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
@@ -106,7 +186,24 @@ const GameCard = ({ game, showPlayIcon = false, showRating = false }) => {
 
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState("new-trending");
+  const [activeCategory, setActiveCategory] = useState("new-releases");
   const navigate = useNavigate();
+
+  // Function to get games based on active category
+  const getCategoryGames = () => {
+    switch (activeCategory) {
+      case "new-releases":
+        return recentlyAdded;
+      case "trending":
+        return popularGames;
+      case "popular":
+        return featuredGames;
+      case "recommended":
+        return upcomingGames;
+      default:
+        return categorizedGames;
+    }
+  };
 
   return (
     <div className="homepage">
@@ -133,7 +230,7 @@ const HomePage = () => {
             {/* Large hero banner with game scene background */}
             <div 
               className="hero-background"
-              style={{backgroundImage: 'url(/src/assets/ps5Games/er.png)'}}
+              style={{backgroundImage: `url(${process.env.PUBLIC_URL}/src/assets/ps5Games/er.png)`}}
             ></div>
             
             {/* Video player overlay in bottom-left */}
@@ -145,8 +242,8 @@ const HomePage = () => {
                   </div>
                 </div>
                 <div className="video-text-content">
-                  <h3>Game Title</h3>
-                  <p>Description</p>
+                  <h3>ELDEN RING</h3>
+                  <p>Experience the epic adventure in the Lands Between</p>
                   <button className="see-more-btn-small">See more</button>
                 </div>
               </div>
@@ -154,6 +251,8 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+
 
       {/* Discounts and Sales Section */}
       <section className="game-section">
@@ -199,7 +298,7 @@ const HomePage = () => {
               <div key={game.id} className="carousel-card">
                 <div 
                   className="carousel-thumbnail"
-                  style={{backgroundImage: `url(/src/assets/ps5Games/${game.image})`}}
+                  style={{backgroundImage: `url(${process.env.PUBLIC_URL}/src/assets/ps5Games/${game.image})`}}
                 ></div>
                 <h4>{game.title}</h4>
               </div>
@@ -215,32 +314,32 @@ const HomePage = () => {
       <section className="categorized-section">
         <div className="category-tabs">
           <button 
-            className={`tab ${activeTab === "new-releases" ? "active" : ""}`}
-            onClick={() => setActiveTab("new-releases")}
+            className={`tab ${activeCategory === "new-releases" ? "active" : ""}`}
+            onClick={() => setActiveCategory("new-releases")}
           >
             New Game Releases
           </button>
           <button 
-            className={`tab ${activeTab === "trending" ? "active" : ""}`}
-            onClick={() => setActiveTab("trending")}
+            className={`tab ${activeCategory === "trending" ? "active" : ""}`}
+            onClick={() => setActiveCategory("trending")}
           >
             Trending
           </button>
           <button 
-            className={`tab ${activeTab === "popular" ? "active" : ""}`}
-            onClick={() => setActiveTab("popular")}
+            className={`tab ${activeCategory === "popular" ? "active" : ""}`}
+            onClick={() => setActiveCategory("popular")}
           >
             Popular
           </button>
           <button 
-            className={`tab ${activeTab === "recommended" ? "active" : ""}`}
-            onClick={() => setActiveTab("recommended")}
+            className={`tab ${activeCategory === "recommended" ? "active" : ""}`}
+            onClick={() => setActiveCategory("recommended")}
           >
             Recommended for you
           </button>
         </div>
         <div className="game-grid">
-          {categorizedGames.map((game) => (
+          {getCategoryGames().map((game) => (
             <GameCard key={game.id} game={game} />
           ))}
         </div>
