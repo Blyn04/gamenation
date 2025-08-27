@@ -5,16 +5,188 @@ import { PlayCircleOutlined, LeftOutlined, RightOutlined, ShoppingCartOutlined }
 import HomeSlider from '../customs/HomeSlider';
 import Footer from '../customs/Footer';
 
+// Import all PS5 game images
+import ffvr from '../assets/ps5Games/ffvr.png';
+import mhw from '../assets/ps5Games/mhw.png';
+import gt7 from '../assets/ps5Games/gt7.png';
+import itt from '../assets/ps5Games/itt.png';
+import er from '../assets/ps5Games/er.png';
+import thps from '../assets/ps5Games/thps.png';
+import sh2 from '../assets/ps5Games/sh2.png';
+import wwe from '../assets/ps5Games/wwe.png';
+import badcat from '../assets/ps5Games/badcat.png';
+import thelastofus from '../assets/ps5Games/thelastofus.png';
+import wff from '../assets/ps5Games/wff.png';
+import hitman from '../assets/ps5Games/hitman.png';
+import hl from '../assets/ps5Games/hl.png';
+import ab from '../assets/ps5Games/ab.png';
+import phasmophobia from '../assets/ps5Games/phasmophobia.png';
+import ijgc from '../assets/ps5Games/ijgc.png';
+import doom from '../assets/ps5Games/doom.png';
+import eaSportsFc from '../assets/ps5Games/ea-sports-fc.png';
+import ds2tb from '../assets/ps5Games/ds2tb.png';
+import mk from '../assets/ps5Games/mk.png';
+import gy from '../assets/ps5Games/gy.png';
+import cyberpunk2077 from '../assets/ps5Games/cyberpunk-2077.png';
+import gtaOnline from '../assets/ps5Games/gta-online.png';
+import mgsse from '../assets/ps5Games/mgsse.png';
+import codbo6 from '../assets/ps5Games/codbo6.png';
+import nba2k26 from '../assets/ps5Games/nba2k26.png';
+import sf from '../assets/ps5Games/sf.png';
+import carxStreet from '../assets/ps5Games/carx-street.png';
+import fh5 from '../assets/ps5Games/fh5.png';
+import borderlands4 from '../assets/ps5Games/borderlands4.png';
+import coe33 from '../assets/ps5Games/coe33.png';
+import dsKimetsu from '../assets/ps5Games/ds-kimetsu.png';
+import octapath0 from '../assets/ps5Games/octapath0.png';
+import shf from '../assets/ps5Games/shf.png';
+import dytb from '../assets/ps5Games/dytb.png';
+import catsritual from '../assets/ps5Games/catsritual.png';
+import srcw from '../assets/ps5Games/srcw.png';
+import digimon from '../assets/ps5Games/digimon.png';
+import outerworld from '../assets/ps5Games/outerworld.png';
+import readyornot from '../assets/ps5Games/readyornot.png';
+import edenzero from '../assets/ps5Games/edenzero.png';
+import hxh from '../assets/ps5Games/hxh.png';
+import tekken8 from '../assets/ps5Games/tekken8.png';
+import atelieryumia from '../assets/ps5Games/atelieryumia.png';
+import firstberserker from '../assets/ps5Games/firstberserker.png';
+import lego from '../assets/ps5Games/lego.png';
+import lifestrange from '../assets/ps5Games/lifestrange.png';
+import metaphor from '../assets/ps5Games/metaphor.png';
+import spy from '../assets/ps5Games/spy.png';
+import armoredcore from '../assets/ps5Games/armoredcore.png';
+import ateliermarie from '../assets/ps5Games/ateliermarie.png';
+import atelierryza from '../assets/ps5Games/atelierryza.png';
+import battlefield6 from '../assets/ps5Games/battlefield6-standard.png';
+import bmw from '../assets/ps5Games/bmw.png';
+import codeviolet from '../assets/ps5Games/codeviolet.png';
+import dbd from '../assets/ps5Games/dbd.png';
+import disney from '../assets/ps5Games/disney.png';
+import disneydreamland from '../assets/ps5Games/disneydreamland.png';
+import dragonball from '../assets/ps5Games/dragonball.png';
+import dragonquest from '../assets/ps5Games/dragonquest.png';
+import f1 from '../assets/ps5Games/f1.png';
+import fuga from '../assets/ps5Games/fuga.png';
+import ghostwire from '../assets/ps5Games/ghostwire.png';
+import goosebumps from '../assets/ps5Games/goosebumps.png';
+import granblue from '../assets/ps5Games/granblue.png';
+import shin from '../assets/ps5Games/shin.png';
+import p3 from '../assets/ps5Games/p3.png';
+import suicide from '../assets/ps5Games/suicide.png';
+import p5 from '../assets/ps5Games/p5.png';
+import harvestmoon from '../assets/ps5Games/harvestmoon.png';
+import valkyrie from '../assets/ps5Games/valkyrie.png';
+import hotwheels from '../assets/ps5Games/hotwheels.png';
+import watchdog from '../assets/ps5Games/watchdog.png';
+import swordart from '../assets/ps5Games/swordart.png';
+import untildawn from '../assets/ps5Games/untildawn.png';
+import kingoffighters from '../assets/ps5Games/kingoffighters.png';
+import kingdomhearts from '../assets/ps5Games/kingdomhearts.png';
+import tinycats from '../assets/ps5Games/tinycats.png';
+import hellokitty from '../assets/ps5Games/hellokitty.png';
+import rugby from '../assets/ps5Games/rugby.png';
+import streetfighter from '../assets/ps5Games/streetfighter.png';
+import re3nemesis from '../assets/ps5Games/re3nemesis.png';
+
+// Create an image mapping object
+const imageMap = {
+  'ffvr.png': ffvr,
+  'mhw.png': mhw,
+  'gt7.png': gt7,
+  'itt.png': itt,
+  'er.png': er,
+  'thps.png': thps,
+  'sh2.png': sh2,
+  'wwe.png': wwe,
+  'badcat.png': badcat,
+  'thelastofus.png': thelastofus,
+  'wff.png': wff,
+  'hitman.png': hitman,
+  'hl.png': hl,
+  'ab.png': ab,
+  'phasmophobia.png': phasmophobia,
+  'ijgc.png': ijgc,
+  'doom.png': doom,
+  'ea-sports-fc.png': eaSportsFc,
+  'ds2tb.png': ds2tb,
+  'mk.png': mk,
+  'gy.png': gy,
+  'cyberpunk-2077.png': cyberpunk2077,
+  'gta-online.png': gtaOnline,
+  'mgsse.png': mgsse,
+  'codbo6.png': codbo6,
+  'nba2k26.png': nba2k26,
+  'sf.png': sf,
+  'carx-street.png': carxStreet,
+  'fh5.png': fh5,
+  'borderlands4.png': borderlands4,
+  'coe33.png': coe33,
+  'ds-kimetsu.png': dsKimetsu,
+  'octapath0.png': octapath0,
+  'shf.png': shf,
+  'dytb.png': dytb,
+  'catsritual.png': catsritual,
+  'srcw.png': srcw,
+  'digimon.png': digimon,
+  'outerworld.png': outerworld,
+  'readyornot.png': readyornot,
+  'edenzero.png': edenzero,
+  'hxh.png': hxh,
+  'tekken8.png': tekken8,
+  'atelieryumia.png': atelieryumia,
+  'firstberserker.png': firstberserker,
+  'lego.png': lego,
+  'lifestrange.png': lifestrange,
+  'metaphor.png': metaphor,
+  'spy.png': spy,
+  'armoredcore.png': armoredcore,
+  'ateliermarie.png': ateliermarie,
+  'atelierryza.png': atelierryza,
+  'battlefield6-standard.png': battlefield6,
+  'bmw.png': bmw,
+  'codeviolet.png': codeviolet,
+  'dbd.png': dbd,
+  'disney.png': disney,
+  'disneydreamland.png': disneydreamland,
+  'dragonball.png': dragonball,
+  'dragonquest.png': dragonquest,
+  'f1.png': f1,
+  'fuga.png': fuga,
+  'ghostwire.png': ghostwire,
+  'goosebumps.png': goosebumps,
+  'granblue.png': granblue,
+  'shin.png': shin,
+  'p3.png': p3,
+  'suicide.png': suicide,
+  'p5.png': p5,
+  'harvestmoon.png': harvestmoon,
+  'valkyrie.png': valkyrie,
+  'hotwheels.png': hotwheels,
+  'watchdog.png': watchdog,
+  'swordart.png': swordart,
+  'untildawn.png': untildawn,
+  'kingoffighters.png': kingoffighters,
+  'kingdomhearts.png': kingdomhearts,
+  'tinycats.png': tinycats,
+  'hellokitty.png': hellokitty,
+  'rugby.png': rugby,
+  'streetfighter.png': streetfighter,
+  're3nemesis.png': re3nemesis
+};
+
 // Updated game data with all the new titles
 const popularGames = [
-  { id: 1, title: "FINAL FANTASY VII REBIRTH", genre: "RPG", price: "$69.99", image: "ffvr.png" },
-  { id: 2, title: "Monster Hunter Wilds", genre: "Action", price: "$59.99", image: "mhw.png" },
-  { id: 3, title: "Gran Turismo® 7", genre: "Racing", price: "$69.99", image: "gt7.png" },
-  { id: 4, title: "It Takes Two", genre: "Adventure", price: "$39.99", image: "itt.png" },
-  { id: 5, title: "ELDEN RING", genre: "RPG", price: "$59.99", image: "er.png" },
-  { id: 6, title: "Tony Hawk's™ Pro Skater™", genre: "Sports", price: "$39.99", image: "thps.png" },
-  { id: 7, title: "SILENT HILL 2", genre: "Horror", price: "$49.99", image: "sh2.png" },
-  { id: 8, title: "WWE 2K25 The Bloodline", genre: "Sports", price: "$69.99", image: "wwe.png" }
+  { id: 1, title: "Battle Field 6 Standard", subtitle: "Standard Edition", rating: 4.5, image: "battlefield6-standard.png" },
+  { id: 2, title: "Clair Obscur Expedition 33", subtitle: "Deluxe Edition", rating: 4.5, image: "coe33.png" },
+  { id: 3, title: "NBA 2K26", subtitle: "Standard Edition", rating: 4.5, image: "nba2k26.png" },
+  { id: 4, title: "Split Fiction", subtitle: "Digital Edition", rating: 4.5, image: "sf.png" },
+  { id: 5, title: "Car X Street", subtitle: "Racing Edition", rating: 4.5, image: "carx-street.png" },
+  { id: 6, title: "Borderlands 4", subtitle: "Ultimate Edition", rating: 4.5, image: "borderlands4.png" },
+  { id: 7, title: "Forza Horizon 5", subtitle: "Premium Edition", rating: 4.5, image: "fh5.png" },
+  { id: 8, title: "Call of Duty® Black Ops 6", subtitle: "Standard Edition", rating: 4.5, image: "codbo6.png" },
+  { id: 9, title: "METAL GEAR SOLID Δ SNAKE EATER", subtitle: "Digital Deluxe", rating: 4.5, image: "mgsse.png" },
+  { id: 10, title: "Grand Theft Auto Online", subtitle: "Free to Play", rating: 4.5, image: "gta-online.png" }
 ];
 
 const recentlyAdded = [
@@ -137,7 +309,7 @@ const sportsRacing = [
   { id: 118, title: "F1® 24", image: "f1.png" }
 ];
 
-const GameCard = ({ game, showPlayIcon = false, showRating = false }) => {
+const GameCard = ({ game, showPlayIcon = false, showRating = false, showAddToCart = true }) => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -158,27 +330,43 @@ const GameCard = ({ game, showPlayIcon = false, showRating = false }) => {
       style={{ cursor: "pointer" }}
     >
       <div className="thumbnail-container">
-        <div 
-          className="thumbnail"
-          style={{
-            backgroundImage: `url(./src/assets/ps5Games/${game.image})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}
-        ></div>
+        <div className="thumbnail">
+          <img 
+            src={imageMap[game.image]} 
+            alt={game.title}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              borderRadius: '12px'
+            }}
+          />
+        </div>
         {showPlayIcon && <PlayCircleOutlined className="play-icon" />}
       </div>
       <div className="game-info">
-        <h4>{game.title}</h4>
+        <div className="game-title-section">
+          <div className="game-text">
+            <h4>{game.title}</h4>
+            {game.subtitle && <p className="subtitle">{game.subtitle}</p>}
+          </div>
+          {showRating && (
+            <div className="rating-container">
+              <span className="star">★</span>
+              <span className="rating-number">{game.rating}</span>
+            </div>
+          )}
+        </div>
         {game.genre && <p className="genre">{game.genre}</p>}
         {game.price && <p className="price">{game.price}</p>}
-        {showRating && <p className="rating">⭐ 4.5</p>}
-        <button 
-          className="add-to-cart-btn"
-          onClick={handleAddToCart}
-        >
-          <ShoppingCartOutlined /> Add to Cart
-        </button>
+        {showAddToCart && (
+          <button 
+            className="add-to-cart-btn"
+            onClick={handleAddToCart}
+          >
+            <ShoppingCartOutlined /> Add to Cart
+          </button>
+        )}
       </div>
     </div>
   );
@@ -211,11 +399,11 @@ const HomePage = () => {
       <HomeSlider />
 
       {/* Most Popular Section */}
-      <section className="game-section">
-        <h2 className="section-title">Most Popular</h2>
-        <div className="game-grid">
+      <section className="game-section popular-games-section">
+        <h2 className="section-title">Popular Games</h2>
+        <div className="game-grid popular-games-grid">
           {popularGames.map((game) => (
-            <GameCard key={game.id} game={game} showPlayIcon={true} showRating={true} />
+            <GameCard key={game.id} game={game} showPlayIcon={true} showRating={true} showAddToCart={false} />
           ))}
         </div>
         <div className="show-all-container">
@@ -228,10 +416,17 @@ const HomePage = () => {
         <div className="featured-hero-banner">
           <div className="hero-game-scene">
             {/* Large hero banner with game scene background */}
-            <div 
-              className="hero-background"
-              style={{backgroundImage: `url(${process.env.PUBLIC_URL}/src/assets/ps5Games/er.png)`}}
-            ></div>
+            <div className="hero-background">
+              <img 
+                src={imageMap['er.png']} 
+                alt="ELDEN RING"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+              />
+            </div>
             
             {/* Video player overlay in bottom-left */}
             <div className="video-overlay">
@@ -296,10 +491,18 @@ const HomePage = () => {
           <div className="carousel-content">
             {carouselGames.map((game) => (
               <div key={game.id} className="carousel-card">
-                <div 
-                  className="carousel-thumbnail"
-                  style={{backgroundImage: `url(${process.env.PUBLIC_URL}/src/assets/ps5Games/${game.image})`}}
-                ></div>
+                <div className="carousel-thumbnail">
+                  <img 
+                    src={imageMap[game.image]} 
+                    alt={game.title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      borderRadius: '12px'
+                    }}
+                  />
+                </div>
                 <h4>{game.title}</h4>
               </div>
             ))}

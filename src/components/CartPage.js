@@ -66,10 +66,10 @@ const CartPage = () => {
                 <div key={item.id} className="cart-item">
                   <div className="item-image">
                     <img 
-                      src={`/src/assets/ps5Games/${item.image}`} 
+                      src={`${process.env.PUBLIC_URL}/assets/ps5Games/${item.image}`} 
                       alt={item.title}
                       onError={(e) => {
-                        e.target.src = '/src/assets/ps5Games/cyberpunk-2077.png';
+                        e.target.src = `${process.env.PUBLIC_URL}/assets/ps5Games/cyberpunk-2077.png`;
                       }}
                     />
                   </div>

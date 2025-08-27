@@ -69,10 +69,10 @@ const Profile = () => {
             <div key={game.id} className="game-card">
               <div className="game-thumb">
                 <img 
-                  src={`/src/assets/ps5Games/${game.image}`} 
+                  src={`${process.env.PUBLIC_URL}/assets/ps5Games/${game.image}`} 
                   alt={game.title}
                   onError={(e) => {
-                    e.target.src = '/src/assets/ps5Games/cyberpunk-2077.png';
+                    e.target.src = `${process.env.PUBLIC_URL}/assets/ps5Games/cyberpunk-2077.png`;
                   }}
                 />
               </div>
@@ -99,10 +99,10 @@ const Profile = () => {
             <div key={game.id} className="game-card">
               <div className="game-thumb">
                 <img 
-                  src={`/src/assets/ps5Games/${game.image}`} 
+                  src={`${process.env.PUBLIC_URL}/assets/ps5Games/${game.image}`} 
                   alt={game.title}
                   onError={(e) => {
-                    e.target.src = '/src/assets/ps5Games/cyberpunk-2077.png';
+                    e.target.src = `${process.env.PUBLIC_URL}/assets/ps5Games/cyberpunk-2077.png`;
                   }}
                 />
               </div>
