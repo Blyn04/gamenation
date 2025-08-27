@@ -558,7 +558,7 @@ const HomePage = () => {
         </div>
         <div className="game-grid">
           {getCategoryGames().map((game) => (
-            <GameCard key={game.id} game={game} />
+            <GameCard key={game.id} game={game} showPlayIcon={true} />
           ))}
         </div>
       </section>
