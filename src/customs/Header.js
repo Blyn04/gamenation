@@ -54,11 +54,9 @@ const Header = () => {
           </li>
         </ul>
 
-        {/* Burger for mobile */}
+        {/* Menu trigger for mobile */}
         <div className="menu-trigger" onClick={toggleMenu}>
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
+          <span>Menu</span>
         </div>
       </nav>
     </header>
