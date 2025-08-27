@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import '../styles/componentsStyle/HomePage.css';
 import { useNavigate } from "react-router-dom";
 import { PlayCircleOutlined, LeftOutlined, RightOutlined, ShoppingCartOutlined } from '@ant-design/icons';
@@ -375,7 +375,21 @@ const GameCard = ({ game, showPlayIcon = false, showRating = false, showAddToCar
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState("new-trending");
   const [activeCategory, setActiveCategory] = useState("new-releases");
+  const carouselRef = useRef(null);
   const navigate = useNavigate();
+
+  // Carousel navigation functions
+  const handleCarouselNext = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+    }
+  };
+
+  const handleCarouselPrev = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+    }
+  };
 
   // Function to get games based on active category
   const getCategoryGames = () => {
@@ -485,10 +499,10 @@ const HomePage = () => {
           </button>
         </div>
         <div className="carousel-container">
-          <button className="carousel-nav left">
+          <button className="carousel-nav left" onClick={handleCarouselPrev}>
             <LeftOutlined />
           </button>
-          <div className="carousel-content">
+          <div className="carousel-content" ref={carouselRef}>
             {carouselGames.map((game) => (
               <div key={game.id} className="carousel-card">
                 <div className="carousel-thumbnail">
@@ -502,12 +516,13 @@ const HomePage = () => {
                       borderRadius: '12px'
                     }}
                   />
+                  <div className="carousel-video-icon">▶</div>
                 </div>
                 <h4>{game.title}</h4>
               </div>
             ))}
           </div>
-          <button className="carousel-nav right">
+          <button className="carousel-nav right" onClick={handleCarouselNext}>
             <RightOutlined />
           </button>
         </div>

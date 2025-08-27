@@ -547,6 +547,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   overflow: hidden;
+  position: relative;
 }
 
 .carousel-thumbnail img {
@@ -558,6 +559,25 @@
 
 .carousel-card:hover .carousel-thumbnail {
   box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+}
+
+/* Video icon for carousel cards */
+.carousel-video-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: white;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.carousel-card:hover .carousel-video-icon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
 .carousel-card h4 {
@@ -734,22 +754,28 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, auto);
-    gap: 18px;
+    gap: 16px;
+    width: 95%;
+    padding: 15px 0;
   }
   
   .popular-games-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, auto);
-    gap: 18px;
+    gap: 16px;
+    width: 95%;
+    padding: 15px 0;
   }
   
   .game-card {
-    padding: 12px;
+    padding: 8px;
+    min-height: 180px;
+    max-width: none;
   }
   
   .thumbnail {
-    height: 140px;
+    height: 100px;
   }
 
   .cart-container {
@@ -805,14 +831,29 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(5, auto);
-    gap: 16px;
+    gap: 14px;
+    width: 98%;
+    padding: 10px 0;
   }
   
   .popular-games-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(5, auto);
-    gap: 16px;
+    gap: 14px;
+    width: 98%;
+    padding: 10px 0;
+  }
+  
+  .game-card {
+    padding: 8px;
+    min-height: 170px;
+    max-width: none;
+    margin: 2px;
+  }
+  
+  .thumbnail {
+    height: 90px;
   }
   
   .category-tabs,
@@ -879,14 +920,18 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(5, auto);
-    gap: 14px;
+    gap: 12px;
+    width: 100%;
+    padding: 8px 0;
   }
   
   .popular-games-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(5, auto);
-    gap: 14px;
+    gap: 12px;
+    width: 100%;
+    padding: 8px 0;
   }
   
   .carousel-content {
@@ -928,5 +973,24 @@
   .add-to-cart-btn {
     font-size: 0.75rem;
     padding: 5px 10px;
+  }
+  
+  .game-card {
+    padding: 6px;
+    min-height: 160px;
+    max-width: none;
+    margin: 1px;
+  }
+  
+  .thumbnail {
+    height: 80px;
+  }
+  
+  .game-text h4 {
+    font-size: 0.85rem;
+  }
+  
+  .subtitle {
+    font-size: 0.75rem;
   }
 }
