@@ -488,12 +488,14 @@ const HomePage = () => {
           >
             New and Trending
           </button>
+
           <button 
             className={`carousel-tab ${activeTab === "top-seller" ? "active" : ""}`}
             onClick={() => setActiveTab("top-seller")}
           >
             Top Seller
           </button>
+
           <button 
             className={`carousel-tab ${activeTab === "popular-upcoming" ? "active" : ""}`}
             onClick={() => setActiveTab("popular-upcoming")}
@@ -501,10 +503,12 @@ const HomePage = () => {
             Popular Upcoming
           </button>
         </div>
+
         <div className="carousel-container">
           <button className="carousel-nav left" onClick={handleCarouselPrev}>
             <LeftOutlined />
           </button>
+          
           <div className="carousel-content" ref={carouselRef}>
             {carouselGames.map((game) => (
               <div key={game.id} className="carousel-card">
