@@ -443,28 +443,31 @@ const HomePage = () => {
             </div>
             
             {/* Video player overlay in bottom-left */}
-            <div className="video-overlay">
+          
+          </div>
+        </div>
+
+           <div className="video-overlay">
               <div className="video-player">
                 <div className="video-thumbnail-small">
                   <div className="video-placeholder-small">
                     <PlayCircleOutlined className="small-play-icon" />
                   </div>
                 </div>
-                <div className="video-text-content">
-                  <h3>ELDEN RING</h3>
-                  <p>Experience the epic adventure in the Lands Between</p>
-                  <button className="see-more-btn-small">See more</button>
-                </div>
               </div>
             </div>
-          </div>
-        </div>
+
+            <div className="video-overlay1">
+              <div className="video-text-content">
+                <h3>ELDEN RING</h3>
+                <p>Experience the epic adventure in the Lands Between</p>
+                <button className="see-more-btn-small">See more</button>
+              </div>
+            </div>
       </section>
 
-
-
       {/* Discounts and Sales Section */}
-      <section className="game-section">
+      <section className="game-section1">
         <h2 className="section-title">Discounts and Sales</h2>
         <div className="game-grid">
           {discountGames.map((game) => (
