@@ -31,26 +31,16 @@ const Header = () => {
           <li><Link to="/browse">Browse</Link></li>
           <li><Link to="/library">My Library</Link></li>
 
-          {/* Desktop icons inside nav */}
-          <li className="desktop-only">
+          {/* Icons - visible on both desktop and mobile */}
+          <li>
             <Link to="/cart">
               <ShoppingCartOutlined className="icon" />
             </Link>
           </li>
-          <li className="desktop-only">
-            {/* ✅ Profile icon leads to Profile page */}
+          <li>
             <Link to="/profile">
               <UserOutlined className="icon" />
             </Link>
-          </li>
-
-          {/* Mobile fallback text */}
-          <li className="mobile-text">
-            <Link to="/cart">Cart</Link>
-          </li>
-          <li className="mobile-text">
-            {/* ✅ Profile text leads to Profile page */}
-            <Link to="/profile">Profile</Link>
           </li>
         </ul>
 
