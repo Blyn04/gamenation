@@ -143,9 +143,9 @@
   backdrop-filter: blur(10px);
 }
 
-.menu-trigger span {
+.burger-icon {
   color: white;
-  font-size: 0.9rem;
+  font-size: 1.25rem;
   font-weight: 500;
 }
 
@@ -184,6 +184,8 @@
   .main-nav {
     padding: 12px 20px;
     position: relative;
+    flex-wrap: wrap;
+    gap: 12px;
   }
   
   /* Hide desktop icons */
@@ -191,16 +193,27 @@
     display: none;
   }
   
+  /* Create a flex container for logo and menu trigger */
+  .logo {
+    flex: 1;
+  }
+  
   .menu-trigger {
     display: flex;
+    flex-shrink: 0;
+    margin-left: 12px;
   }
   
   .search-input {
-    order: 3;
+    order: 2;
     margin: 0;
     max-width: none;
-    width: 100%;
-    padding-top: 16px;
+    width: calc(100% - 150px);
+    padding-top: 0;
+  }
+  
+  .menu-trigger {
+    order: 3;
   }
   
   /* Dropdown menu */
@@ -295,8 +308,20 @@
     height: 28px;
   }
   
+  .menu-trigger {
+    margin-left: 40px;
+  }
+  
+  .burger-icon {
+    font-size: 1.1rem;
+  }
+  
+  .search-input {
+    width: calc(100% - 150px);
+  }
+  
   .search-bar {
-    padding: 10px 16px 10px 44px;
+    padding: 10px 0px 10px 44px;
     font-size: 0.85rem;
   }
   

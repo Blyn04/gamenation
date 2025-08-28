@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/customsStyle/Header.css';
-import { UserOutlined, ShoppingCartOutlined, SearchOutlined } from '@ant-design/icons';
+import { UserOutlined, ShoppingCartOutlined, SearchOutlined, MenuOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom'; 
 
 const Header = () => {
@@ -56,7 +56,7 @@ const Header = () => {
 
         {/* Menu trigger for mobile */}
         <div className="menu-trigger" onClick={toggleMenu}>
-          <span>Menu</span>
+          <MenuOutlined className="burger-icon" />
         </div>
       </nav>
     </header>
