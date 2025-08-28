@@ -481,7 +481,7 @@ const HomePage = () => {
 
       {/* Horizontal Carousel Section */}
       <section className="carousel-section">
-        <div className="carousel-tabs">
+        {/* <div className="carousel-tabs">
           <button 
             className={`carousel-tab ${activeTab === "new-trending" ? "active" : ""}`}
             onClick={() => setActiveTab("new-trending")}
@@ -502,7 +502,7 @@ const HomePage = () => {
           >
             Popular Upcoming
           </button>
-        </div>
+        </div> */}
 
         <div className="carousel-container">
           <button className="carousel-nav left" onClick={handleCarouselPrev}>
