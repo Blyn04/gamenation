@@ -446,8 +446,9 @@ const HomePage = () => {
             <GameCard key={game.id} game={game} showPlayIcon={true} showRating={true} showAddToCart={false} />
           ))}
         </div>
+
         <div className="show-all-container">
-          <button className="show-all-btn" onClick={handleShowAllPopular}>
+           <button className="show-all-btn" onClick={handleShowAllPopular}>
             {isPopularExpanded ? 'Show Less' : 'Show All'}
           </button>
         </div>
