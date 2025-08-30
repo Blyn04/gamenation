@@ -375,8 +375,25 @@ const GameCard = ({ game, showPlayIcon = false, showRating = false, showAddToCar
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState("new-trending");
   const [activeCategory, setActiveCategory] = useState("new-releases");
+  const [isPopularExpanded, setIsPopularExpanded] = useState(false);
+  const [isDiscountExpanded, setIsDiscountExpanded] = useState(false);
   const carouselRef = useRef(null);
   const navigate = useNavigate();
+
+  // Create expanded game arrays that combine multiple collections
+  const expandedPopularGames = [
+    ...popularGames,
+    ...recentlyAdded,
+    ...newReleases,
+    ...premiumGames
+  ];
+
+  const expandedDiscountGames = [
+    ...discountGames,
+    ...specialEditions,
+    ...actionAdventure,
+    ...sportsRacing
+  ];
 
   // Carousel navigation functions
   const handleCarouselNext = () => {
@@ -389,6 +406,15 @@ const HomePage = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: -200, behavior: 'smooth' });
     }
+  };
+
+  // Handle show all button clicks
+  const handleShowAllPopular = () => {
+    setIsPopularExpanded(!isPopularExpanded);
+  };
+
+  const handleShowAllDiscount = () => {
+    setIsDiscountExpanded(!isDiscountExpanded);
   };
 
   // Function to get games based on active category
@@ -415,13 +441,15 @@ const HomePage = () => {
       {/* Most Popular Section */}
       <section className="game-section popular-games-section">
         <h2 className="section-title">Popular Games</h2>
-        <div className="game-grid popular-games-grid">
-          {popularGames.map((game) => (
+        <div className={`game-grid popular-games-grid ${isPopularExpanded ? 'expanded' : ''}`}>
+          {(isPopularExpanded ? expandedPopularGames : popularGames).map((game) => (
             <GameCard key={game.id} game={game} showPlayIcon={true} showRating={true} showAddToCart={false} />
           ))}
         </div>
         <div className="show-all-container">
-          <button className="show-all-btn">Show All</button>
+          <button className="show-all-btn" onClick={handleShowAllPopular}>
+            {isPopularExpanded ? 'Show Less' : 'Show All'}
+          </button>
         </div>
       </section>
 
@@ -469,13 +497,15 @@ const HomePage = () => {
       {/* Discounts and Sales Section */}
       <section className="game-section1">
         <h2 className="section-title">Discounts and Sales</h2>
-        <div className="game-grid">
-          {discountGames.map((game) => (
+        <div className={`game-grid ${isDiscountExpanded ? 'expanded' : ''}`}>
+          {(isDiscountExpanded ? expandedDiscountGames : discountGames).map((game) => (
             <GameCard key={game.id} game={game} showPlayIcon={true} />
           ))}
         </div>
         <div className="show-all-container">
-          <button className="show-all-btn">Show All</button>
+          <button className="show-all-btn" onClick={handleShowAllDiscount}>
+            {isDiscountExpanded ? 'Show Less' : 'Show All'}
+          </button>
         </div>
       </section>
 
