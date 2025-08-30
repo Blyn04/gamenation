@@ -52,26 +52,44 @@
   height: 700px;
 }
 
-/* Popular Games Section - Special styling to match the image */
+/* Popular Games Section - Matching discount section styling */
 .popular-games-section {
-  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3730a3 100%);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-  border: none;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
   margin-bottom: 0;
-  padding: 40px 50px;
+  padding: 40px;
+  transition: height 0.5s ease-in-out;
 }
 
 .popular-games-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.03) 50%, transparent 70%);
-  border-radius: 20px;
-  pointer-events: none;
+  display: none;
+}
+
+/* Expanded state for game sections */
+.game-section.expanded,
+.game-section1.expanded,
+.popular-games-section.expanded {
+  height: auto;
+  min-height: 700px;
+  transition: height 0.5s ease-in-out;
+  overflow: visible;
+}
+
+.game-section1.expanded {
+  top: 130px;
+  padding-bottom: 60px;
+}
+
+.popular-games-section.expanded {
+  padding-bottom: 60px;
+}
+
+/* Ensure proper spacing for expanded sections */
+.game-section1.expanded .game-grid.expanded,
+.popular-games-section.expanded .game-grid.expanded {
+  margin-bottom: 60px;
 }
 
 .popular-games-grid {
@@ -367,7 +385,7 @@
 /* Show All Button */
 .show-all-container {
   text-align: center;
-  margin-top: 0;
+  margin-top: 30px;
   padding-bottom: 20px;
 }
 

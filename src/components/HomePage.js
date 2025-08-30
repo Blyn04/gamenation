@@ -439,7 +439,7 @@ const HomePage = () => {
       <HomeSlider />
 
       {/* Most Popular Section */}
-      <section className="game-section popular-games-section">
+      <section className={`game-section popular-games-section ${isPopularExpanded ? 'expanded' : ''}`}>
         <h2 className="section-title">Popular Games</h2>
         <div className={`game-grid popular-games-grid ${isPopularExpanded ? 'expanded' : ''}`}>
           {(isPopularExpanded ? expandedPopularGames : popularGames).map((game) => (
@@ -495,7 +495,7 @@ const HomePage = () => {
       </section>
 
       {/* Discounts and Sales Section */}
-      <section className="game-section1">
+      <section className={`game-section1 ${isDiscountExpanded ? 'expanded' : ''}`}>
         <h2 className="section-title">Discounts and Sales</h2>
         <div className={`game-grid ${isDiscountExpanded ? 'expanded' : ''}`}>
           {(isDiscountExpanded ? expandedDiscountGames : discountGames).map((game) => (
