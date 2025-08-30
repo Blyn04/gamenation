@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/componentsStyle/AllProducts.css";
 import Header from "../customs/Header";
 import Footer from "../customs/Footer";
-import { PlayCircleOutlined } from '@ant-design/icons';
+import { PlayCircleOutlined, SearchOutlined } from '@ant-design/icons';
 
 // Import game images
 import watchdog from '../assets/ps5Games/watchdog.png';
@@ -93,7 +93,13 @@ const products = [
 
 const AllProducts = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
   const totalPages = 20;
+
+  // Filter products based on search term
+  const filteredProducts = products.filter(product =>
+    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="allproducts-container">
@@ -139,8 +145,18 @@ const AllProducts = () => {
         </div>
       </section>
 
-      {/* Filters */}
+      {/* Filters and Search */}
       <div className="allproducts-filters">
+        <div className="allproducts-search-container">
+          <SearchOutlined className="allproducts-search-icon" />
+          <input
+            type="text"
+            placeholder="Search games..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="allproducts-search-input"
+          />
+        </div>
         <select className="allproducts-filter-select">
           <option>Sort</option>
           <option>Price: Low to High</option>
@@ -174,7 +190,7 @@ const AllProducts = () => {
 
       {/* Products Grid */}
       <div className="allproducts-product-grid">
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <div key={product.id} className="allproducts-product-card">
             <div className="allproducts-product-thumb">
               <img 
@@ -193,6 +209,13 @@ const AllProducts = () => {
           </div>
         ))}
       </div>
+
+      {/* No results message */}
+      {filteredProducts.length === 0 && searchTerm && (
+        <div className="allproducts-no-results">
+          <p>No games found matching "{searchTerm}"</p>
+        </div>
+      )}
 
       {/* Pagination */}
       <div className="allproducts-pagination">
