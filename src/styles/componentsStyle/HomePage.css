@@ -920,7 +920,7 @@
 }
 
 /* Footer */
-.footer {
+/* .footer {
   background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #1e40af 100%);
   padding: 60px 40px;
   margin-top: 80px;
@@ -932,7 +932,7 @@
   margin-right: auto;
   position: relative;
   overflow: hidden;
-}
+} */
 
 .footer::before {
   content: '';
