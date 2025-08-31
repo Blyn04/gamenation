@@ -1,0 +1,329 @@
+.library-container {
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #1e40af 100%);
+  color: white;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  padding: 0;
+  padding-top: 80px; /* Account for fixed header */
+  position: relative;
+}
+
+.library-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(30, 64, 175, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(30, 64, 175, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Library Section */
+.library-section {
+  position: relative;
+  z-index: 1;
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.library-content {
+  width: 100%;
+}
+
+.library-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: left;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Filters */
+.library-filters {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.library-search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  min-width: 250px;
+}
+
+.library-search-container:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.library-search-container:focus-within {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+}
+
+.library-search-icon {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  margin-left: 12px;
+  margin-right: 8px;
+  pointer-events: none;
+}
+
+.library-search-input {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 14px;
+  padding: 10px 15px;
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+}
+
+.library-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.library-filter-select {
+  padding: 10px 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  min-width: 120px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.library-filter-select:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.library-filter-select option {
+  background: rgba(15, 23, 42, 0.95);
+  color: white;
+}
+
+/* Games Grid */
+.library-games-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.library-game-card {
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-align: left;
+  border-radius: 16px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.library-game-card:hover {
+  transform: translateY(-4px);
+}
+
+.library-game-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  background-color: #334155;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.library-game-card:hover .library-game-image {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.library-game-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.library-game-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+  color: #ffffff;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  flex: 1;
+}
+
+.library-game-options {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.library-game-options:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* No results message */
+.library-no-results {
+  text-align: center;
+  padding: 40px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+}
+
+.library-no-results p {
+  margin: 0;
+  font-style: italic;
+}
+
+/* Pagination */
+.library-pagination {
+  margin: 30px auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.library-pagination-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  min-width: 40px;
+  backdrop-filter: blur(10px);
+}
+
+.library-pagination-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.library-pagination-btn.active {
+  background: white;
+  color: #1e293b;
+  border-color: white;
+}
+
+.library-pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.library-pagination-dots {
+  color: white;
+  font-size: 14px;
+  padding: 0 4px;
+}
+
+/* Responsive Breakpoints */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .library-games-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .library-title {
+    font-size: 2rem;
+  }
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) {
+  .library-games-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .library-filters {
+    gap: 10px;
+  }
+
+  .library-filter-select {
+    min-width: 100px;
+    padding: 8px 12px;
+  }
+
+  .library-search-container {
+    min-width: 200px;
+  }
+
+  .library-title {
+    font-size: 1.8rem;
+  }
+
+  .library-section {
+    padding: 20px;
+  }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+  .library-games-grid {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0 15px;
+    gap: 12px;
+  }
+
+  .library-filters {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .library-filter-select {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .library-search-container {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .library-title {
+    font-size: 1.5rem;
+  }
+
+  .library-section {
+    padding: 15px;
+  }
+}
