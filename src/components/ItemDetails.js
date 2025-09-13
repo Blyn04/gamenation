@@ -262,27 +262,135 @@ const ItemDetails = () => {
       <div className="discover-section">
         <h2 className="discover-title">DISCOVER MORE GAMES</h2>
         <div className="games-grid">
-          <div className="game-item">
+          <div 
+            className="game-item"
+            onClick={() => {
+              const gameData = {
+                title: "FINAL FANTASY VII REBIRTH",
+                subtitle: "",
+                image: "ffvr.png",
+                price: "₱2,500",
+                rating: "4.8",
+                downloads: 1500000,
+                size: "35GB",
+                company: "Square Enix",
+                release: "2024",
+                genre: "RPG",
+                description: "Experience the next chapter in the legendary Final Fantasy VII saga. Join Cloud and his allies in an epic adventure through stunning landscapes and intense battles."
+              };
+              navigate("/item-details", { state: { gameData } });
+            }}
+          >
             <img src={imageMap['ffvr.png']} alt="Final Fantasy VII Rebirth" />
             <p>FINAL FANTASY VII REBIRTH</p>
           </div>
-          <div className="game-item">
+          <div 
+            className="game-item"
+            onClick={() => {
+              const gameData = {
+                title: "OCTOPATH TRAVELER II",
+                subtitle: "",
+                image: "octapath0.png",
+                price: "₱1,800",
+                rating: "4.6",
+                downloads: 800000,
+                size: "28GB",
+                company: "Square Enix",
+                release: "2024",
+                genre: "RPG",
+                description: "Embark on eight unique journeys in this beautifully crafted HD-2D RPG. Each character has their own story to tell and abilities to master."
+              };
+              navigate("/item-details", { state: { gameData } });
+            }}
+          >
             <img src={imageMap['octapath0.png']} alt="Octopath Traveler II" />
             <p>OCTOPATH TRAVELER II</p>
           </div>
-          <div className="game-item">
+          <div 
+            className="game-item"
+            onClick={() => {
+              const gameData = {
+                title: "Atelier Ryza: The alchemist of Mimio Key & the enchanted Land",
+                subtitle: "",
+                image: "atelierryza.png",
+                price: "₱2,200",
+                rating: "4.4",
+                downloads: 600000,
+                size: "25GB",
+                company: "Koei Tecmo",
+                release: "2024",
+                genre: "RPG",
+                description: "Join Ryza and her friends in a magical adventure filled with alchemy, exploration, and heartwarming stories in this enchanting RPG."
+              };
+              navigate("/item-details", { state: { gameData } });
+            }}
+          >
             <img src={imageMap['atelierryza.png']} alt="Atelier Ryza" />
             <p>Atelier Ryza: The alchemist of Mimio Key & the enchanted Land</p>
           </div>
-          <div className="game-item">
+          <div 
+            className="game-item"
+            onClick={() => {
+              const gameData = {
+                title: "CYBERPUNK 2077",
+                subtitle: "",
+                image: "cyberpunk-2077.png",
+                price: "₱2,100",
+                rating: "4.5",
+                downloads: 2000000,
+                size: "45GB",
+                company: "CD Projekt Red",
+                release: "2024",
+                genre: "Action RPG",
+                description: "Enter the dark future of Night City in this immersive open-world RPG. Customize your character and make choices that shape your destiny."
+              };
+              navigate("/item-details", { state: { gameData } });
+            }}
+          >
             <img src={imageMap['cyberpunk-2077.png']} alt="Cyberpunk 2077" />
             <p>CYBERPUNK 2077</p>
           </div>
-          <div className="game-item">
+          <div 
+            className="game-item"
+            onClick={() => {
+              const gameData = {
+                title: "ELDEN RING",
+                subtitle: "",
+                image: "er.png",
+                price: "₱2,800",
+                rating: "4.9",
+                downloads: 3000000,
+                size: "50GB",
+                company: "FromSoftware",
+                release: "2024",
+                genre: "Action RPG",
+                description: "From the creators of Dark Souls comes an epic fantasy adventure. Explore the vast Lands Between and become the Elden Lord."
+              };
+              navigate("/item-details", { state: { gameData } });
+            }}
+          >
             <img src={imageMap['er.png']} alt="Elden Ring" />
             <p>ELDEN RING</p>
           </div>
-          <div className="game-item">
+          <div 
+            className="game-item"
+            onClick={() => {
+              const gameData = {
+                title: "TEKKEN 8",
+                subtitle: "",
+                image: "tekken8.png",
+                price: "₱2,400",
+                rating: "4.7",
+                downloads: 1200000,
+                size: "40GB",
+                company: "Bandai Namco",
+                release: "2024",
+                genre: "Fighting",
+                description: "The King of Iron Fist Tournament returns! Experience the most intense fighting game with stunning graphics and deep combat mechanics."
+              };
+              navigate("/item-details", { state: { gameData } });
+            }}
+          >
             <img src={imageMap['tekken8.png']} alt="Tekken 8" />
             <p>TEKKEN 8</p>
           </div>
