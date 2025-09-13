@@ -308,7 +308,12 @@ const AllProducts = () => {
             key={product.id} 
             className="allproducts-product-card"
             onClick={() => handleProductClick(product)}
-            style={{ cursor: "pointer" }}
+            style={{ 
+              cursor: "pointer",
+              pointerEvents: "auto",
+              position: "relative",
+              zIndex: 10
+            }}
           >
             <div className="allproducts-product-thumb">
               <img 
@@ -318,7 +323,8 @@ const AllProducts = () => {
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
-                  borderRadius: '8px'
+                  borderRadius: '8px',
+                  pointerEvents: "none"
                 }}
               />
             </div>

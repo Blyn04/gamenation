@@ -339,8 +339,7 @@ const GameCard = ({ game, showPlayIcon = false, showRating = false, showAddToCar
   const handleAddToCart = (e) => {
     e.stopPropagation(); // Prevent card click
     // Here you would typically add the item to cart
-    // For now, we'll just show an alert
-    alert(`${game.title} added to cart!`);
+    console.log(`${game.title} added to cart!`);
   };
 
   return (

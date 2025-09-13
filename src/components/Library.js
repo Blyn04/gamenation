@@ -3,6 +3,7 @@ import "../styles/componentsStyle/Library.css";
 import Header from "../customs/Header";
 import Footer from "../customs/Footer";
 import { SearchOutlined, MoreOutlined } from '@ant-design/icons';
+import { useNavigate } from "react-router-dom";
 
 // Import game images for library games
 import ittakes2 from '../assets/ps5Games/itt.png';
@@ -90,6 +91,7 @@ const libraryGames = [
 const Library = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
   const gamesPerPage = 16; // Show 16 games per page (4x4 grid)
   const totalPages = Math.ceil(libraryGames.length / gamesPerPage);
 
@@ -129,6 +131,31 @@ const Library = () => {
   React.useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm]);
+
+  // Handle game card click
+  const handleGameClick = (game) => {
+    // Generate random details for the game
+    const randomPrice = Math.floor(Math.random() * 2000) + 1000; // Price between 1000-3000
+    const randomRating = (Math.random() * 2 + 3).toFixed(1); // Rating between 3.0-5.0
+    const randomDownloads = Math.floor(Math.random() * 2000000) + 100000; // Downloads between 100k-2M
+    const randomSize = Math.floor(Math.random() * 50) + 10; // Size between 10-60GB
+    
+    const gameData = {
+      title: game.title,
+      subtitle: "",
+      image: game.image,
+      price: `₱${randomPrice.toLocaleString()}`,
+      rating: randomRating,
+      downloads: randomDownloads,
+      size: `${randomSize}GB`,
+      company: "GameNation Studios",
+      release: "2024",
+      genre: "Action",
+      description: `Experience the ultimate gaming adventure with ${game.title}. This incredible game offers stunning graphics, immersive gameplay, and hours of entertainment. Perfect for gamers of all skill levels, ${game.title} delivers an unforgettable experience that will keep you coming back for more.`
+    };
+    
+    navigate("/item-details", { state: { gameData } });
+  };
 
   // Generate page numbers to display
   const getPageNumbers = () => {
@@ -196,7 +223,12 @@ const Library = () => {
           {/* Games Grid */}
           <div className="library-games-grid">
             {currentGames.map((game) => (
-              <div key={game.id} className="library-game-card">
+              <div 
+                key={game.id} 
+                className="library-game-card"
+                onClick={() => handleGameClick(game)}
+                style={{ cursor: "pointer" }}
+              >
                 <div className="library-game-image">
                   <img 
                     src={libraryImageMap[game.image] || libraryImageMap['er.png']} 
