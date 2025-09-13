@@ -11,6 +11,14 @@ const Profile = () => {
     navigate('/account-settings');
   };
 
+  const handleLibraryShowAll = () => {
+    navigate('/library');
+  };
+
+  const handleWishlistShowAll = () => {
+    navigate('/wishlist');
+  };
+
   // Dummy data for games
   const libraryGames = [
     { id: 1, title: "Cyberpunk 2077", description: "Open-world action-adventure RPG", image: "cyberpunk-2077.png" },
@@ -60,7 +68,7 @@ const Profile = () => {
       <section className="games-section">
         <div className="section-header">
           <h3 className="section-title">Library</h3>
-          <a href="#" className="show-all-link">Show All</a>
+          <button onClick={handleLibraryShowAll} className="show-all-link">Show All</button>
         </div>
         <div className="game-grid">
           {libraryGames.map((game) => (
@@ -90,7 +98,7 @@ const Profile = () => {
       <section className="games-section">
         <div className="section-header">
           <h3 className="section-title">Wish list</h3>
-          <a href="#" className="show-all-link">Show All</a>
+          <button onClick={handleWishlistShowAll} className="show-all-link">Show All</button>
         </div>
         <div className="game-grid">
           {wishlistGames.map((game) => (
