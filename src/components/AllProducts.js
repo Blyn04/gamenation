@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/componentsStyle/AllProducts.css";
 import Header from "../customs/Header";
 import Footer from "../customs/Footer";
@@ -122,8 +123,33 @@ const allProducts = [
 const AllProducts = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
   const productsPerPage = 25; // Show 25 products per page (5x5 grid)
   const totalPages = Math.ceil(allProducts.length / productsPerPage);
+
+  // Handle product card click
+  const handleProductClick = (product) => {
+    // Generate random details for the product
+    const randomRating = (Math.random() * 2 + 3).toFixed(1); // Rating between 3.0-5.0
+    const randomDownloads = Math.floor(Math.random() * 2000000) + 100000; // Downloads between 100k-2M
+    const randomSize = Math.floor(Math.random() * 50) + 10; // Size between 10-60GB
+    
+    const gameData = {
+      title: product.title,
+      subtitle: "",
+      image: product.image,
+      price: product.price,
+      rating: randomRating,
+      downloads: randomDownloads,
+      size: `${randomSize}GB`,
+      company: "GameNation Studios",
+      release: "2024",
+      genre: "Action",
+      description: `Experience the ultimate gaming adventure with ${product.title}. This incredible game offers stunning graphics, immersive gameplay, and hours of entertainment. Perfect for gamers of all skill levels, ${product.title} delivers an unforgettable experience that will keep you coming back for more.`
+    };
+    
+    navigate("/item-details", { state: { gameData } });
+  };
 
   // Filter products based on search term
   const filteredProducts = allProducts.filter(product =>
@@ -278,7 +304,12 @@ const AllProducts = () => {
       {/* Products Grid */}
       <div className="allproducts-product-grid">
         {currentProducts.map((product) => (
-          <div key={product.id} className="allproducts-product-card">
+          <div 
+            key={product.id} 
+            className="allproducts-product-card"
+            onClick={() => handleProductClick(product)}
+            style={{ cursor: "pointer" }}
+          >
             <div className="allproducts-product-thumb">
               <img 
                 src={imageMap[product.image] || imageMap['mhw.png']} 

@@ -313,7 +313,27 @@ const GameCard = ({ game, showPlayIcon = false, showRating = false, showAddToCar
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate("/item-details");
+    // Generate random price and details for the game
+    const randomPrice = Math.floor(Math.random() * 2000) + 1000; // Price between 1000-3000
+    const randomRating = (Math.random() * 2 + 3).toFixed(1); // Rating between 3.0-5.0
+    const randomDownloads = Math.floor(Math.random() * 2000000) + 100000; // Downloads between 100k-2M
+    const randomSize = Math.floor(Math.random() * 50) + 10; // Size between 10-60GB
+    
+    const gameData = {
+      title: game.title,
+      subtitle: game.subtitle || "",
+      image: game.image,
+      price: `₱${randomPrice.toLocaleString()}`,
+      rating: randomRating,
+      downloads: randomDownloads,
+      size: `${randomSize}GB`,
+      company: "GameNation Studios",
+      release: "2024",
+      genre: game.genre || "Action",
+      description: `Experience the ultimate gaming adventure with ${game.title}. This incredible game offers stunning graphics, immersive gameplay, and hours of entertainment. Perfect for gamers of all skill levels, ${game.title} delivers an unforgettable experience that will keep you coming back for more.`
+    };
+    
+    navigate("/item-details", { state: { gameData } });
   };
 
   const handleAddToCart = (e) => {
