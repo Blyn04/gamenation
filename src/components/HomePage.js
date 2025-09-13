@@ -309,7 +309,7 @@ const sportsRacing = [
   { id: 118, title: "F1® 24", image: "f1.png" }
 ];
 
-const GameCard = ({ game, showPlayIcon = false, showRating = false, showAddToCart = true }) => {
+const GameCard = ({ game, showPlayIcon = false, showRating = false, showAddToCart = true, hideDetails = false }) => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -357,9 +357,9 @@ const GameCard = ({ game, showPlayIcon = false, showRating = false, showAddToCar
             </div>
           )}
         </div>
-        {game.genre && <p className="genre">{game.genre}</p>}
-        {game.price && <p className="price">{game.price}</p>}
-        {showAddToCart && (
+        {!hideDetails && game.genre && <p className="genre">{game.genre}</p>}
+        {!hideDetails && game.price && <p className="price">{game.price}</p>}
+        {!hideDetails && showAddToCart && (
           <button 
             className="add-to-cart-btn"
             onClick={handleAddToCart}
@@ -498,9 +498,9 @@ const HomePage = () => {
       {/* Discounts and Sales Section */}
       <section className={`game-section1 ${isDiscountExpanded ? 'expanded' : ''}`}>
         <h2 className="section-title">Discounts and Sales</h2>
-        <div className={`game-grid ${isDiscountExpanded ? 'expanded' : ''}`}>
+        <div className={`game-grid discount-games-grid ${isDiscountExpanded ? 'expanded' : ''}`}>
           {(isDiscountExpanded ? expandedDiscountGames : discountGames).map((game) => (
-            <GameCard key={game.id} game={game} showPlayIcon={true} />
+            <GameCard key={game.id} game={game} showPlayIcon={true} hideDetails={true} />
           ))}
         </div>
         <div className="show-all-container">

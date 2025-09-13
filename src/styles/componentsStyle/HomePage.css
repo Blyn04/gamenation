@@ -49,7 +49,7 @@
   z-index: 1;
   overflow: visible;
   top: 150px;
-  height: 750px;
+  height: 650px;
 }
 
 /* Popular Games Section - Matching discount section styling */
@@ -98,11 +98,11 @@
 
 /* Ensure proper spacing for expanded sections */
 .game-section1.expanded .game-grid.expanded,
-.popular-games-section.expanded .game-grid.expanded {
+.discount-games-section.expanded .game-grid.expanded {
   margin-bottom: 60px;
 }
 
-.popular-games-grid {
+.discount-games-gridid {
   display: grid !important;
   grid-template-columns: repeat(5, 1fr) !important;
   grid-template-rows: repeat(2, auto) !important;
@@ -119,7 +119,7 @@
 }
 
 /* Expanded state for popular games grid */
-.popular-games-grid.expanded {
+.discount-games-grid.expanded {
   grid-template-columns: repeat(5, 1fr) !important;
   grid-template-rows: repeat(8, auto) !important;
   gap: 20px;
@@ -186,7 +186,7 @@
   gap: 14px;
   min-width: 0;
   width: 100%;
-  min-height: 220px;
+  min-height: 200px;
   margin: 2px;
   max-width: 200px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
