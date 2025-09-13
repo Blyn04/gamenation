@@ -48,8 +48,8 @@
   position: relative;
   z-index: 1;
   overflow: visible;
-  top: 130px;
-  height: 700px;
+  top: 150px;
+  height: 750px;
 }
 
 /* Popular Games Section - Matching discount section styling */
@@ -441,6 +441,7 @@
   padding: 0 40px;
   position: relative;
   z-index: 1;
+  top: 50px;
 }
 
 .featured-hero-banner {
