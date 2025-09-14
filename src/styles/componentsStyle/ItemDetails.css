@@ -143,6 +143,14 @@
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.game-details.expanded {
+  transform: scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .game-metadata {
@@ -270,6 +278,7 @@
   object-fit: cover;
   margin-bottom: 12px;
   transition: all 0.3s ease;
+  border-radius: 15px;
 }
 
 .game-item p {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/componentsStyle/ItemDetails.css";
 import Footer from "../customs/Footer";
@@ -176,6 +176,7 @@ const imageMap = {
 const ItemDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [isExpanded, setIsExpanded] = useState(false);
   
   // Get game data from navigation state, or use default data
   const gameData = location.state?.gameData || {
@@ -212,7 +213,7 @@ const ItemDetails = () => {
       </div>
 
       {/* Game Details Section */}
-      <div className="game-details">
+      <div className={`game-details ${isExpanded ? 'expanded' : ''}`}>
         <div className="game-metadata">
           <div className="metadata-left">
             <p>Company Name: {gameData.company}</p>
@@ -254,7 +255,12 @@ const ItemDetails = () => {
             the ultimate gaming experience. Discover hidden secrets, forge powerful alliances, and 
             become the legendary player you were destined to be in this masterpiece.
           </p>
-          <button className="show-more-btn">Show More</button>
+          <button 
+            className="show-more-btn" 
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            {isExpanded ? 'Show Less' : 'Show More'}
+          </button>
         </div>
       </div>
 
