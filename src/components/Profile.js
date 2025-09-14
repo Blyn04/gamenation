@@ -4,6 +4,24 @@ import { useNavigate } from 'react-router-dom';
 import "../styles/componentsStyle/Profile.css";
 import Footer from '../customs/Footer';
 
+// Import game images
+import armoredcore from '../assets/ps5Games/armoredcore.png';
+import harvestmoon from '../assets/ps5Games/harvestmoon.png';
+import p5 from '../assets/ps5Games/p5.png';
+import dbd from '../assets/ps5Games/dbd.png';
+import granblue from '../assets/ps5Games/granblue.png';
+import suicide from '../assets/ps5Games/suicide.png';
+
+// Create image mapping object
+const imageMap = {
+  'armoredcore.png': armoredcore,
+  'harvestmoon.png': harvestmoon,
+  'p5.png': p5,
+  'dbd.png': dbd,
+  'granblue.png': granblue,
+  'suicide.png': suicide
+};
+
 const Profile = () => {
   const navigate = useNavigate();
 
@@ -75,10 +93,13 @@ const Profile = () => {
             <div key={game.id} className="game-item">
               <div className="game-thumbnail">
                 <img 
-                  src={`${process.env.PUBLIC_URL}/assets/ps5Games/${game.image}`} 
+                  src={imageMap[game.image]} 
                   alt={game.title}
-                  onError={(e) => {
-                    e.target.src = `${process.env.PUBLIC_URL}/assets/ps5Games/cyberpunk-2077.png`;
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    borderRadius: '8px'
                   }}
                 />
               </div>
@@ -104,10 +125,13 @@ const Profile = () => {
             <div key={game.id} className="game-item">
               <div className="game-thumbnail">
                 <img 
-                  src={`${process.env.PUBLIC_URL}/assets/ps5Games/${game.image}`} 
+                  src={imageMap[game.image]} 
                   alt={game.title}
-                  onError={(e) => {
-                    e.target.src = `${process.env.PUBLIC_URL}/assets/ps5Games/cyberpunk-2077.png`;
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    borderRadius: '8px'
                   }}
                 />
               </div>
