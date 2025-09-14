@@ -74,7 +74,7 @@ const CartPage = () => {
                     />
                   </div>
                   
-                  <div className="item-details">
+                  <div className="item-detailss">
                     <h3 className="item-title">{item.title}</h3>
                     <p className="item-description">{item.description}</p>
                     <div className="item-price">P ${item.price.toFixed(2)}</div>
