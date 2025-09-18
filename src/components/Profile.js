@@ -109,11 +109,11 @@ const Profile = () => {
 
       {/* Library Section */}
       <section className="games-section">
-        <div className="section-header">
-          <h3 className="section-title">Library</h3>
-          <button onClick={handleLibraryShowAll} className="show-all-link">Show All</button>
-        </div>
         <div className="game-list">
+          <div className="section-header">
+            <h3 className="section-title">Library</h3>
+            <button onClick={handleLibraryShowAll} className="show-all-link">Show All</button>
+          </div>
           {libraryGames.map((game) => (
             <div key={game.id} className="game-item" onClick={() => handleGameClick(game)}>
               <div className="game-thumbnail">
@@ -141,11 +141,11 @@ const Profile = () => {
 
       {/* Wishlist Section */}
       <section className="games-section">
-        <div className="section-header">
-          <h3 className="section-title">Wish list</h3>
-          <button onClick={handleWishlistShowAll} className="show-all-link">Show All</button>
-        </div>
         <div className="game-list">
+          <div className="section-header">
+            <h3 className="section-title">Wish list</h3>
+            <button onClick={handleWishlistShowAll} className="show-all-link">Show All</button>
+          </div>
           {wishlistGames.map((game) => (
             <div key={game.id} className="game-item" onClick={() => handleGameClick(game)}>
               <div className="game-thumbnail">
