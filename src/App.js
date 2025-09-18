@@ -10,11 +10,13 @@ import CartPage from './components/CartPage';
 import AccountSetting from './components/AccountSetting';
 import Library from './components/Library';
 import LikePage from './components/LikePage';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <ScrollToTop />
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
