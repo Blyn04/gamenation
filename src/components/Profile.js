@@ -37,6 +37,31 @@ const Profile = () => {
     navigate('/wishlist');
   };
 
+  // Handle game click to navigate to item details
+  const handleGameClick = (game) => {
+    // Generate random details for the game (similar to other components)
+    const randomPrice = Math.floor(Math.random() * 2000) + 1000; // Price between 1000-3000
+    const randomRating = (Math.random() * 2 + 3).toFixed(1); // Rating between 3.0-5.0
+    const randomDownloads = Math.floor(Math.random() * 2000000) + 100000; // Downloads between 100k-2M
+    const randomSize = Math.floor(Math.random() * 50) + 10; // Size between 10-60GB
+    
+    const gameData = {
+      title: game.title,
+      subtitle: "",
+      image: game.image,
+      price: `₱${randomPrice.toLocaleString()}`,
+      rating: randomRating,
+      downloads: randomDownloads,
+      size: `${randomSize}GB`,
+      company: "GameNation Studios",
+      release: "2024",
+      genre: "Action",
+      description: `Experience the ultimate gaming adventure with ${game.title}. This incredible game offers stunning graphics, immersive gameplay, and hours of entertainment. Perfect for gamers of all skill levels, ${game.title} delivers an unforgettable experience that will keep you coming back for more.`
+    };
+    
+    navigate("/item-details", { state: { gameData } });
+  };
+
   // Dummy data for games
   const libraryGames = [
     { id: 1, title: "ARMORED CORE™ VI FIRES OF RUBICON™ - Deluxe Edition", image: "armoredcore.png" },
@@ -90,7 +115,7 @@ const Profile = () => {
         </div>
         <div className="game-list">
           {libraryGames.map((game) => (
-            <div key={game.id} className="game-item">
+            <div key={game.id} className="game-item" onClick={() => handleGameClick(game)}>
               <div className="game-thumbnail">
                 <img 
                   src={imageMap[game.image]} 
@@ -122,7 +147,7 @@ const Profile = () => {
         </div>
         <div className="game-list">
           {wishlistGames.map((game) => (
-            <div key={game.id} className="game-item">
+            <div key={game.id} className="game-item" onClick={() => handleGameClick(game)}>
               <div className="game-thumbnail">
                 <img 
                   src={imageMap[game.image]} 

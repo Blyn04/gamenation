@@ -269,7 +269,7 @@ const ItemDetails = () => {
         <h2 className="discover-title">DISCOVER MORE GAMES</h2>
         <div className="games-grid">
           <div 
-            className="game-item"
+            className="game-items"
             onClick={() => {
               const gameData = {
                 title: "FINAL FANTASY VII REBIRTH",
@@ -291,7 +291,7 @@ const ItemDetails = () => {
             <p>FINAL FANTASY VII REBIRTH</p>
           </div>
           <div 
-            className="game-item"
+            className="game-items"
             onClick={() => {
               const gameData = {
                 title: "OCTOPATH TRAVELER II",
@@ -313,7 +313,7 @@ const ItemDetails = () => {
             <p>OCTOPATH TRAVELER II</p>
           </div>
           <div 
-            className="game-item"
+            className="game-items"
             onClick={() => {
               const gameData = {
                 title: "Atelier Ryza: The alchemist of Mimio Key & the enchanted Land",
@@ -335,7 +335,7 @@ const ItemDetails = () => {
             <p>Atelier Ryza: The alchemist of Mimio Key & the enchanted Land</p>
           </div>
           <div 
-            className="game-item"
+            className="game-items"
             onClick={() => {
               const gameData = {
                 title: "CYBERPUNK 2077",
@@ -357,7 +357,7 @@ const ItemDetails = () => {
             <p>CYBERPUNK 2077</p>
           </div>
           <div 
-            className="game-item"
+            className="game-items"
             onClick={() => {
               const gameData = {
                 title: "ELDEN RING",
@@ -379,7 +379,7 @@ const ItemDetails = () => {
             <p>ELDEN RING</p>
           </div>
           <div 
-            className="game-item"
+            className="game-items"
             onClick={() => {
               const gameData = {
                 title: "TEKKEN 8",
