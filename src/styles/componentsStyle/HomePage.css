@@ -190,8 +190,55 @@
   margin: 2px;
   max-width: 200px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  animation: fadeInUp 0.5s ease-out;
+  animation: cardLoadIn 0.6s ease-out;
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  animation-fill-mode: forwards;
 }
+
+/* Enhanced card loading animation */
+@keyframes cardLoadIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Staggered loading for cards */
+.game-card:nth-child(1) { animation-delay: 0.1s; }
+.game-card:nth-child(2) { animation-delay: 0.15s; }
+.game-card:nth-child(3) { animation-delay: 0.2s; }
+.game-card:nth-child(4) { animation-delay: 0.25s; }
+.game-card:nth-child(5) { animation-delay: 0.3s; }
+.game-card:nth-child(6) { animation-delay: 0.35s; }
+.game-card:nth-child(7) { animation-delay: 0.4s; }
+.game-card:nth-child(8) { animation-delay: 0.45s; }
+.game-card:nth-child(9) { animation-delay: 0.5s; }
+.game-card:nth-child(10) { animation-delay: 0.55s; }
+
+/* Enhanced hover effects */
+.game-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.game-card:hover .thumbnail img {
+  transform: scale(1.1);
+}
+
+.thumbnail img {
+  transition: transform 0.3s ease;
+}
+
 
 /* Animation for expanded cards */
 @keyframes fadeInUp {

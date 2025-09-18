@@ -213,6 +213,26 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;
+  animation: slideInFromLeft 0.5s ease-out;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation-fill-mode: forwards;
+}
+
+/* Staggered animation for profile game items */
+.game-item:nth-child(2) { animation-delay: 0.1s; }
+.game-item:nth-child(3) { animation-delay: 0.2s; }
+.game-item:nth-child(4) { animation-delay: 0.3s; }
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .game-item:last-child {
@@ -224,6 +244,12 @@
   border-radius: 8px;
   padding: 12px 8px;
   margin: 0 -8px;
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.game-item:hover .game-thumbnail {
+  transform: scale(1.1);
 }
 
 .game-thumbnail {
@@ -233,6 +259,7 @@
   overflow: hidden;
   flex-shrink: 0;
   background: rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
 }
 
 .game-thumbnail img {
