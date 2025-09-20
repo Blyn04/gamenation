@@ -1107,7 +1107,8 @@
 
 /* Force 2 columns on mobile devices */
 @media (max-width: 768px) {
-  .popular-games-grid {
+  .popular-games-grid,
+  .discount-games-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
@@ -1213,44 +1214,53 @@
   }
   
   /* Force 2 columns on mobile */
-  .popular-games-grid {
+  .popular-games-grid,
+  .discount-games-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
   
   /* Smaller cards on mobile */
-  .popular-games-grid .game-card {
+  .popular-games-grid .game-card,
+  .discount-games-grid .game-card {
     padding: 8px;
     min-height: 160px;
     max-width: 180px;
   }
   
-  .popular-games-grid .thumbnail {
+  .popular-games-grid .thumbnail,
+  .discount-games-grid .thumbnail {
     height: 100px;
   }
   
   /* Smaller text on mobile */
-  .popular-games-grid .game-card h4 {
+  .popular-games-grid .game-card h4,
+  .discount-games-grid .game-card h4 {
     font-size: 0.8rem;
     line-height: 1.2;
   }
   
-  .popular-games-grid .game-card .subtitle {
+  .popular-games-grid .game-card .subtitle,
+  .discount-games-grid .game-card .subtitle {
     font-size: 0.7rem;
   }
   
-  .popular-games-grid .game-card .genre {
+  .popular-games-grid .game-card .genre,
+  .discount-games-grid .game-card .genre {
     font-size: 0.7rem;
   }
   
-  .popular-games-grid .game-card .price {
+  .popular-games-grid .game-card .price,
+  .discount-games-grid .game-card .price {
     font-size: 0.7rem;
   }
   
-  .popular-games-grid .game-card .rating-number {
+  .popular-games-grid .game-card .rating-number,
+  .discount-games-grid .game-card .rating-number {
     font-size: 0.7rem;
   }
   
-  .popular-games-grid .game-card .star {
+  .popular-games-grid .game-card .star,
+  .discount-games-grid .game-card .star {
     font-size: 0.7rem;
   }
   
@@ -1342,44 +1352,53 @@
   }
   
   /* Force 2 columns on very small mobile too */
-  .popular-games-grid {
+  .popular-games-grid,
+  .discount-games-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
   
   /* Even smaller cards on very small mobile */
-  .popular-games-grid .game-card {
+  .popular-games-grid .game-card,
+  .discount-games-grid .game-card {
     padding: 6px;
     min-height: 140px;
     max-width: 160px;
   }
   
-  .popular-games-grid .thumbnail {
+  .popular-games-grid .thumbnail,
+  .discount-games-grid .thumbnail {
     height: 80px;
   }
   
   /* Even smaller text on very small mobile */
-  .popular-games-grid .game-card h4 {
+  .popular-games-grid .game-card h4,
+  .discount-games-grid .game-card h4 {
     font-size: 0.7rem;
     line-height: 1.1;
   }
   
-  .popular-games-grid .game-card .subtitle {
+  .popular-games-grid .game-card .subtitle,
+  .discount-games-grid .game-card .subtitle {
     font-size: 0.6rem;
   }
   
-  .popular-games-grid .game-card .genre {
+  .popular-games-grid .game-card .genre,
+  .discount-games-grid .game-card .genre {
     font-size: 0.6rem;
   }
   
-  .popular-games-grid .game-card .price {
+  .popular-games-grid .game-card .price,
+  .discount-games-grid .game-card .price {
     font-size: 0.6rem;
   }
   
-  .popular-games-grid .game-card .rating-number {
+  .popular-games-grid .game-card .rating-number,
+  .discount-games-grid .game-card .rating-number {
     font-size: 0.6rem;
   }
   
-  .popular-games-grid .game-card .star {
+  .popular-games-grid .game-card .star,
+  .discount-games-grid .game-card .star {
     font-size: 0.6rem;
   }
   
