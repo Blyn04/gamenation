@@ -555,7 +555,6 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  backdrop-filter: blur(10px);
   border-radius: 16px;
   max-width: 400px;
 }
@@ -1331,7 +1330,22 @@
   }
   
   .video-overlay1 {
-    left: 120px;
+    left: 210px;
+  }
+
+  .video-placeholder-small {
+    width: 150px;
+    height: 90px;
+    bottom: 40px;
+    right: 80px;
+  }
+  
+  .video-text-content h3 {
+    font-size: 1rem;
+  }
+  
+  .video-text-content p {
+    font-size: 0.5rem;
   }
   
   .popular-games-grid.expanded {
