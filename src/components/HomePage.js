@@ -455,7 +455,7 @@ const HomePage = () => {
       {/* Most Popular Section */}
       <section className={`game-section popular-games-section ${isPopularExpanded ? 'expanded' : ''} sm:px-4 md:px-6 lg:px-8`}>
         <h2 className="section-title text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">Popular Games</h2>
-        <div className={`game-grid popular-games-grid ${isPopularExpanded ? 'expanded' : ''} sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-3 md:gap-4 lg:gap-5`}>
+        <div className={`game-grid popular-games-grid ${isPopularExpanded ? 'expanded' : ''} !grid-cols-2 sm:!grid-cols-3 md:!grid-cols-4 lg:!grid-cols-5 !gap-2 sm:!gap-3 md:!gap-4 lg:!gap-5`}>
           {(isPopularExpanded ? expandedPopularGames : popularGames).map((game) => (
             <GameCard key={game.id} game={game} showPlayIcon={true} showRating={true} showAddToCart={false} />
           ))}
@@ -599,7 +599,7 @@ const HomePage = () => {
             Recommended for you
           </button>
         </div>
-        <div className="game-grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-3 md:gap-4 lg:gap-5">
+        <div className="game-grid !grid-cols-2 sm:!grid-cols-3 md:!grid-cols-4 lg:!grid-cols-5 !gap-3 sm:!gap-4 md:!gap-5">
           {getCategoryGames().map((game) => (
             <GameCard key={game.id} game={game} showPlayIcon={true} />
           ))}

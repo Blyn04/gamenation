@@ -103,15 +103,14 @@
 }
 
 .discount-games-gridid {
-  display: grid !important;
-  grid-template-columns: repeat(5, 1fr) !important;
-  grid-template-rows: repeat(2, auto) !important;
+  display: grid;
+  grid-template-rows: repeat(2, auto);
   gap: 20px;
   margin-bottom: 40px;
   width: 90%;
   max-width: 1200px;
-  overflow: visible !important;
-  flex-wrap: unset !important;
+  overflow: visible;
+  flex-wrap: unset;
   padding: 20px 0;
   margin-left: auto;
   margin-right: auto;
@@ -120,8 +119,7 @@
 
 /* Expanded state for popular games grid */
 .discount-games-grid.expanded {
-  grid-template-columns: repeat(5, 1fr) !important;
-  grid-template-rows: repeat(8, auto) !important;
+  grid-template-rows: repeat(8, auto);
   gap: 20px;
   margin-bottom: 40px;
   transition: all 0.5s ease-in-out;
@@ -129,8 +127,7 @@
 
 /* Expanded state for discount games grid */
 .game-section1 .game-grid.expanded {
-  grid-template-columns: repeat(5, 1fr) !important;
-  grid-template-rows: repeat(8, auto) !important;
+  grid-template-rows: repeat(8, auto);
   gap: 20px;
   margin-bottom: 40px;
   transition: all 0.5s ease-in-out;
@@ -147,26 +144,25 @@
 }
 
 .game-grid {
-  display: grid !important;
-  grid-template-columns: repeat(5, 1fr) !important;
-  grid-template-rows: repeat(2, auto) !important;
+  display: grid;
   gap: 20px;
   margin-bottom: 40px;
   width: 100%;
   max-width: 2000px;
-  overflow: visible !important;
-  flex-wrap: unset !important;
+  overflow: visible;
+  flex-wrap: unset;
   padding: 20px 0;
   margin-left: auto;
   margin-right: auto;
   padding-left: 20px;
   transition: all 0.5s ease-in-out;
+  /* Let Tailwind handle responsive columns */
+  grid-template-rows: repeat(2, auto);
 }
 
 /* Expanded state for regular game grid */
 .game-grid.expanded {
-  grid-template-columns: repeat(5, 1fr) !important;
-  grid-template-rows: repeat(8, auto) !important;
+  grid-template-rows: repeat(8, auto);
   gap: 20px;
   margin-bottom: 40px;
   transition: all 0.5s ease-in-out;
@@ -283,6 +279,32 @@
   animation: fadeInUp 0.5s ease-out 0.6s both;
 }
 
+/* Popular games grid - inherits from game-grid but with specific styling */
+.popular-games-grid {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 2000px;
+  overflow: visible;
+  flex-wrap: unset;
+  padding: 20px 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  transition: all 0.5s ease-in-out;
+  /* Let Tailwind handle responsive columns */
+  grid-template-rows: repeat(2, auto);
+}
+
+/* Expanded state for popular games grid */
+.popular-games-grid.expanded {
+  grid-template-rows: repeat(8, auto);
+  gap: 20px;
+  margin-bottom: 40px;
+  transition: all 0.5s ease-in-out;
+}
+
 /* Popular games cards - darker styling */
 .popular-games-grid .game-card {
   background: rgba(15, 23, 42, 0.95);
@@ -300,6 +322,7 @@
   border-color: rgba(245, 158, 11, 0.3);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
+
 
 .game-card::before {
   content: '';
@@ -832,15 +855,14 @@
 
 /* Categorized Games Grid - Clean Design */
 .categorized-section .game-grid {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  grid-template-rows: repeat(2, auto) !important;
+  display: grid;
+  grid-template-rows: repeat(2, auto);
   gap: 24px;
   margin-bottom: 40px;
   width: 100%;
   max-width: 1200px;
-  overflow: visible !important;
-  flex-wrap: unset !important;
+  overflow: visible;
+  flex-wrap: unset;
   padding: 20px 0;
   margin-left: auto;
   margin-right: auto;
@@ -1071,7 +1093,26 @@
   display: none !important;
 }
 
-/* Responsive Design */
+/* Default desktop layout when Tailwind classes aren't applied */
+@media (min-width: 1024px) {
+  .game-grid,
+  .popular-games-grid {
+    grid-template-columns: repeat(5, 1fr) !important;
+  }
+  
+  .categorized-section .game-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+/* Force 2 columns on mobile devices */
+@media (max-width: 768px) {
+  .popular-games-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Responsive Design - Let Tailwind handle grid columns, only adjust other properties */
 @media (max-width: 1024px) {
   .game-section {
     padding: 30px;
@@ -1091,41 +1132,8 @@
     height: 70px;
   }
   
-  .game-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, auto);
-    gap: 16px;
-    width: 95%;
-    padding: 15px 0;
-  }
-  
+  .game-grid,
   .popular-games-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, auto);
-    gap: 16px;
-    width: 95%;
-    padding: 15px 0;
-  }
-  
-  .popular-games-grid.expanded {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(12, auto);
-    gap: 16px;
-  }
-  
-  .game-grid.expanded {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(12, auto);
-    gap: 16px;
-  }
-  
-  .categorized-section .game-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    grid-template-rows: repeat(3, auto) !important;
-    gap: 20px;
     width: 95%;
     padding: 15px 0;
   }
@@ -1197,41 +1205,56 @@
     font-size: 1.5rem;
   }
   
-  .game-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, auto);
-    gap: 14px;
-    width: 98%;
-    padding: 10px 0;
-  }
-  
+  .game-grid,
   .popular-games-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, auto);
-    gap: 14px;
     width: 98%;
     padding: 10px 0;
+    /* Let Tailwind handle grid columns */
   }
   
-  .popular-games-grid.expanded {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(16, auto);
-    gap: 14px;
+  /* Force 2 columns on mobile */
+  .popular-games-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
   
-  .game-grid.expanded {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(16, auto);
-    gap: 14px;
+  /* Smaller cards on mobile */
+  .popular-games-grid .game-card {
+    padding: 8px;
+    min-height: 160px;
+    max-width: 180px;
+  }
+  
+  .popular-games-grid .thumbnail {
+    height: 100px;
+  }
+  
+  /* Smaller text on mobile */
+  .popular-games-grid .game-card h4 {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+  
+  .popular-games-grid .game-card .subtitle {
+    font-size: 0.7rem;
+  }
+  
+  .popular-games-grid .game-card .genre {
+    font-size: 0.7rem;
+  }
+  
+  .popular-games-grid .game-card .price {
+    font-size: 0.7rem;
+  }
+  
+  .popular-games-grid .game-card .rating-number {
+    font-size: 0.7rem;
+  }
+  
+  .popular-games-grid .game-card .star {
+    font-size: 0.7rem;
   }
   
   .categorized-section .game-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    grid-template-rows: repeat(4, auto) !important;
-    gap: 16px;
     width: 98%;
     padding: 10px 0;
   }
@@ -1311,22 +1334,53 @@
 }
 
 @media (max-width: 480px) {
-  .game-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, auto);
-    gap: 12px;
+  .game-grid,
+  .popular-games-grid {
     width: 100%;
     padding: 8px 0;
+    /* Let Tailwind handle grid columns */
   }
   
+  /* Force 2 columns on very small mobile too */
   .popular-games-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, auto);
-    gap: 12px;
-    width: 100%;
-    padding: 8px 0;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  /* Even smaller cards on very small mobile */
+  .popular-games-grid .game-card {
+    padding: 6px;
+    min-height: 140px;
+    max-width: 160px;
+  }
+  
+  .popular-games-grid .thumbnail {
+    height: 80px;
+  }
+  
+  /* Even smaller text on very small mobile */
+  .popular-games-grid .game-card h4 {
+    font-size: 0.7rem;
+    line-height: 1.1;
+  }
+  
+  .popular-games-grid .game-card .subtitle {
+    font-size: 0.6rem;
+  }
+  
+  .popular-games-grid .game-card .genre {
+    font-size: 0.6rem;
+  }
+  
+  .popular-games-grid .game-card .price {
+    font-size: 0.6rem;
+  }
+  
+  .popular-games-grid .game-card .rating-number {
+    font-size: 0.6rem;
+  }
+  
+  .popular-games-grid .game-card .star {
+    font-size: 0.6rem;
   }
   
   .video-overlay1 {
@@ -1348,23 +1402,7 @@
     font-size: 0.5rem;
   }
   
-  .popular-games-grid.expanded {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(20, auto);
-    gap: 12px;
-  }
-  
-  .game-grid.expanded {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(20, auto);
-    gap: 12px;
-  }
-  
   .categorized-section .game-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    grid-template-rows: repeat(4, auto) !important;
-    gap: 12px;
     width: 100%;
     padding: 8px 0;
   }
