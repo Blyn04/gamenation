@@ -293,14 +293,13 @@
   width: 32px;
   height: 32px;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.1);
   cursor: pointer;
   transition: all 0.3s ease;
   flex-shrink: 0;
 }
 
 .game-actions:hover {
-  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
 }
 
 .more-icon {
