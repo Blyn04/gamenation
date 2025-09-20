@@ -121,12 +121,14 @@
 .allproducts-video-overlay1 {
   position: absolute;
   bottom: -100px;
-  left: 300px;
+  left: 200px;
   z-index: 10;
+  text-align: left;
 }
 
 .allproducts-video-text-content {
   flex: 1;
+  text-align: left;
 }
 
 .allproducts-video-text-content h3 {

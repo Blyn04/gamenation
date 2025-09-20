@@ -546,8 +546,9 @@
 .video-overlay1 {
   position: absolute;
   bottom: -100px;
-  left: 700px;
+  left: 200px;
   z-index: 10;
+  text-align: left;
 }
 
 .video-player {
@@ -559,7 +560,6 @@
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   max-width: 400px;
-  justify-content: flex-start;
 }
 
 .video-thumbnail-small {
@@ -596,7 +596,6 @@
   font-weight: 600;
   margin: 0 0 8px 0;
   color: #ffffff;
-  text-align: left;
 }
 
 .video-text-content p {
@@ -604,7 +603,6 @@
   margin: 0 0 12px 0;
   font-size: 0.9rem;
   line-height: 1.4;
-  text-align: left;
 }
 
 .see-more-btn-small {
@@ -1194,6 +1192,10 @@
     font-size: 0.8rem;
   }
   
+  .video-overlay1 {
+    left: 150px;
+  }
+  
   .section-title {
     font-size: 1.5rem;
   }
@@ -1328,6 +1330,10 @@
     gap: 12px;
     width: 100%;
     padding: 8px 0;
+  }
+  
+  .video-overlay1 {
+    left: 120px;
   }
   
   .popular-games-grid.expanded {
