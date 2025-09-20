@@ -349,38 +349,33 @@ const GameCard = ({ game, showPlayIcon = false, showRating = false, showAddToCar
       style={{ cursor: "pointer" }}
     >
       <div className="thumbnail-container">
-        <div className="thumbnail">
+        <div className="thumbnail h-16 sm:h-20 md:h-24 lg:h-28">
           <img 
             src={imageMap[game.image]} 
             alt={game.title}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              borderRadius: '12px'
-            }}
+            className="w-full h-full object-cover rounded-xl"
           />
         </div>
         {showPlayIcon && <PlayCircleOutlined className="play-icon" />}
       </div>
-      <div className="game-info">
+      <div className="game-info p-1 sm:p-2 md:p-3">
         <div className="game-title-section">
           <div className="game-text">
-            <h4>{game.title}</h4>
-            {game.subtitle && <p className="subtitle">{game.subtitle}</p>}
+            <h4 className="text-xs sm:text-sm md:text-base font-semibold line-clamp-2">{game.title}</h4>
+            {game.subtitle && <p className="subtitle text-xs sm:text-sm text-gray-400 line-clamp-1">{game.subtitle}</p>}
           </div>
           {showRating && (
             <div className="rating-container">
-              <span className="star">★</span>
-              <span className="rating-number">{game.rating}</span>
+              <span className="star text-xs sm:text-sm">★</span>
+              <span className="rating-number text-xs sm:text-sm">{game.rating}</span>
             </div>
           )}
         </div>
-        {!hideDetails && game.genre && <p className="genre">{game.genre}</p>}
-        {!hideDetails && game.price && <p className="price">{game.price}</p>}
+        {!hideDetails && game.genre && <p className="genre text-xs sm:text-sm text-gray-300">{game.genre}</p>}
+        {!hideDetails && game.price && <p className="price text-xs sm:text-sm font-semibold text-green-400">{game.price}</p>}
         {!hideDetails && showAddToCart && (
           <button 
-            className="add-to-cart-btn"
+            className="add-to-cart-btn text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2 mt-1 sm:mt-2"
             onClick={handleAddToCart}
           >
             <ShoppingCartOutlined /> Add to Cart
@@ -458,35 +453,31 @@ const HomePage = () => {
       <HomeSlider />
 
       {/* Most Popular Section */}
-      <section className={`game-section popular-games-section ${isPopularExpanded ? 'expanded' : ''}`}>
-        <h2 className="section-title">Popular Games</h2>
-        <div className={`game-grid popular-games-grid ${isPopularExpanded ? 'expanded' : ''}`}>
+      <section className={`game-section popular-games-section ${isPopularExpanded ? 'expanded' : ''} sm:px-4 md:px-6 lg:px-8`}>
+        <h2 className="section-title text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">Popular Games</h2>
+        <div className={`game-grid popular-games-grid ${isPopularExpanded ? 'expanded' : ''} sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-3 md:gap-4 lg:gap-5`}>
           {(isPopularExpanded ? expandedPopularGames : popularGames).map((game) => (
             <GameCard key={game.id} game={game} showPlayIcon={true} showRating={true} showAddToCart={false} />
           ))}
         </div>
 
         <div className="show-all-container">
-           <button className="show-all-btn" onClick={handleShowAllPopular}>
+           <button className="show-all-btn text-sm sm:text-base px-3 sm:px-4 py-2 sm:py-3" onClick={handleShowAllPopular}>
             {isPopularExpanded ? 'Show Less' : 'Show All'}
           </button>
         </div>
       </section>
 
       {/* Featured Video Section */}
-      <section className="featured-section">
-        <div className="featured-hero-banner">
+      <section className="featured-section sm:px-4 md:px-6 lg:px-8">
+        <div className="featured-hero-banner h-48 sm:h-64 md:h-80 lg:h-96 xl:h-[500px]">
           <div className="hero-game-scene">
             {/* Large hero banner with game scene background */}
             <div className="hero-background">
               <img 
                 src={imageMap['er.png']} 
                 alt="ELDEN RING"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover'
-                }}
+                className="w-full h-full object-cover"
               />
             </div>
             
@@ -495,7 +486,7 @@ const HomePage = () => {
           </div>
         </div>
 
-           <div className="video-overlay">
+           <div className="video-overlay hidden sm:block">
               <div className="video-player">
                 <div className="video-thumbnail-small">
                   <div className="video-placeholder-small">
@@ -505,32 +496,32 @@ const HomePage = () => {
               </div>
             </div>
 
-            <div className="video-overlay1">
+            <div className="video-overlay1 hidden sm:block">
               <div className="video-text-content">
-                <h3>ELDEN RING</h3>
-                <p>Experience the epic adventure in the Lands Between</p>
-                <button className="see-more-btn-small">See more</button>
+                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl">ELDEN RING</h3>
+                <p className="text-xs sm:text-sm md:text-base">Experience the epic adventure in the Lands Between</p>
+                <button className="see-more-btn-small text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2">See more</button>
               </div>
             </div>
       </section>
 
       {/* Discounts and Sales Section */}
-      <section className={`game-section1 ${isDiscountExpanded ? 'expanded' : ''}`}>
-        <h2 className="section-title">Discounts and Sales</h2>
-        <div className={`game-grid discount-games-grid ${isDiscountExpanded ? 'expanded' : ''}`}>
+      <section className={`game-section1 ${isDiscountExpanded ? 'expanded' : ''} sm:px-4 md:px-6 lg:px-8`}>
+        <h2 className="section-title text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">Discounts and Sales</h2>
+        <div className={`game-grid discount-games-grid ${isDiscountExpanded ? 'expanded' : ''} sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-3 md:gap-4 lg:gap-5`}>
           {(isDiscountExpanded ? expandedDiscountGames : discountGames).map((game) => (
             <GameCard key={game.id} game={game} showPlayIcon={true} hideDetails={true} />
           ))}
         </div>
         <div className="show-all-container">
-          <button className="show-all-btn" onClick={handleShowAllDiscount}>
+          <button className="show-all-btn text-sm sm:text-base px-3 sm:px-4 py-2 sm:py-3" onClick={handleShowAllDiscount}>
             {isDiscountExpanded ? 'Show Less' : 'Show All'}
           </button>
         </div>
       </section>
 
       {/* Horizontal Carousel Section */}
-      <section className="carousel-section">
+      <section className="carousel-section sm:px-4 md:px-6 lg:px-8">
         {/* <div className="carousel-tabs">
           <button 
             className={`carousel-tab ${activeTab === "new-trending" ? "active" : ""}`}
@@ -555,65 +546,60 @@ const HomePage = () => {
         </div> */}
 
         <div className="carousel-container">
-          <button className="carousel-nav left" onClick={handleCarouselPrev}>
+          <button className="carousel-nav left hidden sm:flex" onClick={handleCarouselPrev}>
             <LeftOutlined />
           </button>
           
-          <div className="carousel-content" ref={carouselRef}>
+          <div className="carousel-content overflow-x-auto scrollbar-hide" ref={carouselRef}>
             {carouselGames.map((game) => (
-              <div key={game.id} className="carousel-card">
-                <div className="carousel-thumbnail">
+              <div key={game.id} className="carousel-card min-w-[120px] sm:min-w-[140px] md:min-w-[160px]">
+                <div className="carousel-thumbnail h-20 sm:h-24 md:h-28 lg:h-32">
                   <img 
                     src={imageMap[game.image]} 
                     alt={game.title}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      borderRadius: '12px'
-                    }}
+                    className="w-full h-full object-cover rounded-xl"
                   />
                   <div className="carousel-video-icon">▶</div>
                 </div>
-                <h4>{game.title}</h4>
+                <h4 className="text-xs sm:text-sm font-medium mt-2 line-clamp-2">{game.title}</h4>
               </div>
             ))}
           </div>
-          <button className="carousel-nav right" onClick={handleCarouselNext}>
+          <button className="carousel-nav right hidden sm:flex" onClick={handleCarouselNext}>
             <RightOutlined />
           </button>
         </div>
       </section>
 
       {/* Categorized Games Section */}
-      <section className="categorized-section">
-        <div className="category-tabs">
+      <section className="categorized-section sm:px-4 md:px-6 lg:px-8">
+        <div className="category-tabs flex flex-col sm:flex-row gap-2 sm:gap-4">
           <button 
-            className={`tab ${activeCategory === "new-releases" ? "active" : ""}`}
+            className={`tab ${activeCategory === "new-releases" ? "active" : ""} text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2`}
             onClick={() => setActiveCategory("new-releases")}
           >
             New Game Releases
           </button>
           <button 
-            className={`tab ${activeCategory === "trending" ? "active" : ""}`}
+            className={`tab ${activeCategory === "trending" ? "active" : ""} text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2`}
             onClick={() => setActiveCategory("trending")}
           >
             Trending
           </button>
           <button 
-            className={`tab ${activeCategory === "popular" ? "active" : ""}`}
+            className={`tab ${activeCategory === "popular" ? "active" : ""} text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2`}
             onClick={() => setActiveCategory("popular")}
           >
             Popular
           </button>
           <button 
-            className={`tab ${activeCategory === "recommended" ? "active" : ""}`}
+            className={`tab ${activeCategory === "recommended" ? "active" : ""} text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2`}
             onClick={() => setActiveCategory("recommended")}
           >
             Recommended for you
           </button>
         </div>
-        <div className="game-grid">
+        <div className="game-grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-3 md:gap-4 lg:gap-5">
           {getCategoryGames().map((game) => (
             <GameCard key={game.id} game={game} showPlayIcon={true} />
           ))}
