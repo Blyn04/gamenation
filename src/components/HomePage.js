@@ -594,7 +594,7 @@ const HomePage = () => {
             Popular
           </button>
         </div>
-        <div className="game-grid !grid-cols-2 sm:!grid-cols-3 md:!grid-cols-4 lg:!grid-cols-5 !gap-3 sm:!gap-4 md:!gap-5">
+        <div className={`game-grid ${activeCategory === "new-releases" ? "recently-added-grid" : "!grid-cols-2 sm:!grid-cols-3 md:!grid-cols-4 lg:!grid-cols-5 !gap-3 sm:!gap-4 md:!gap-5"}`}>
           {getCategoryGames().map((game) => (
             <GameCard key={game.id} game={game} showPlayIcon={true} />
           ))}
