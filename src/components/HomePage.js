@@ -573,30 +573,25 @@ const HomePage = () => {
 
       {/* Categorized Games Section */}
       <section className="categorized-section sm:px-4 md:px-6 lg:px-8">
-        <div className="category-tabs flex flex-col sm:flex-row gap-2 sm:gap-4">
+        <div className="category-tabs flex flex-row gap-2 sm:gap-4">
           <button 
-            className={`tab ${activeCategory === "new-releases" ? "active" : ""} text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2`}
+            className={`tab ${activeCategory === "new-releases" ? "active" : ""} px-2 sm:px-3 py-1 sm:py-2`}
+            data-category="new-releases"
             onClick={() => setActiveCategory("new-releases")}
           >
             New Game Releases
           </button>
           <button 
-            className={`tab ${activeCategory === "trending" ? "active" : ""} text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2`}
+            className={`tab ${activeCategory === "trending" ? "active" : ""} px-2 sm:px-3 py-1 sm:py-2`}
             onClick={() => setActiveCategory("trending")}
           >
             Trending
           </button>
           <button 
-            className={`tab ${activeCategory === "popular" ? "active" : ""} text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2`}
+            className={`tab ${activeCategory === "popular" ? "active" : ""} px-2 sm:px-3 py-1 sm:py-2`}
             onClick={() => setActiveCategory("popular")}
           >
             Popular
-          </button>
-          <button 
-            className={`tab ${activeCategory === "recommended" ? "active" : ""} text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2`}
-            onClick={() => setActiveCategory("recommended")}
-          >
-            Recommended for you
           </button>
         </div>
         <div className="game-grid !grid-cols-2 sm:!grid-cols-3 md:!grid-cols-4 lg:!grid-cols-5 !gap-3 sm:!gap-4 md:!gap-5">
@@ -613,3 +608,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
