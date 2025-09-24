@@ -259,8 +259,8 @@ const AllProducts = () => {
       </section>
 
       {/* Filters and Search */}
-      <div className="allproducts-filters">
-        <div className="allproducts-search-container">
+      <div className="allproducts-filters flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4 sm:px-10 max-w-7xl mx-auto z-10 mt-48 sm:mt-48">
+        <div className="allproducts-search-container w-full sm:w-auto sm:min-w-64">
           <SearchOutlined className="allproducts-search-icon" />
           <input
             type="text"
@@ -270,14 +270,14 @@ const AllProducts = () => {
             className="allproducts-search-input"
           />
         </div>
-        <select className="allproducts-filter-select">
+        <select className="allproducts-filter-select w-full sm:w-auto sm:min-w-32">
           <option>Sort</option>
           <option>Price: Low to High</option>
           <option>Price: High to Low</option>
           <option>Name: A-Z</option>
           <option>Name: Z-A</option>
         </select>
-        <select className="allproducts-filter-select">
+        <select className="allproducts-filter-select w-full sm:w-auto sm:min-w-32">
           <option>Genre</option>
           <option>Action</option>
           <option>Adventure</option>
@@ -285,14 +285,14 @@ const AllProducts = () => {
           <option>Sports</option>
           <option>Racing</option>
         </select>
-        <select className="allproducts-filter-select">
+        <select className="allproducts-filter-select w-full sm:w-auto sm:min-w-32">
           <option>Type</option>
           <option>Digital</option>
           <option>Physical</option>
           <option>Deluxe</option>
           <option>Standard</option>
         </select>
-        <select className="allproducts-filter-select">
+        <select className="allproducts-filter-select w-full sm:w-auto sm:min-w-32">
           <option>Price</option>
           <option>Under ₱1,000</option>
           <option>₱1,000 - ₱2,000</option>
@@ -302,7 +302,7 @@ const AllProducts = () => {
       </div>
 
       {/* Products Grid */}
-      <div className="allproducts-product-grid">
+      <div className="allproducts-product-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5 px-4 sm:px-10 max-w-7xl mx-auto z-10 mb-8">
         {currentProducts.map((product) => (
           <div 
             key={product.id} 
@@ -336,14 +336,14 @@ const AllProducts = () => {
 
       {/* No results message */}
       {filteredProducts.length === 0 && searchTerm && (
-        <div className="allproducts-no-results">
+        <div className="allproducts-no-results text-center py-10 text-white/70 text-base max-w-7xl mx-auto z-10">
           <p>No games found matching "{searchTerm}"</p>
         </div>
       )}
 
       {/* Pagination */}
       {filteredProducts.length > 0 && (
-        <div className="allproducts-pagination">
+        <div className="allproducts-pagination flex flex-wrap justify-center items-center gap-2 mx-auto z-10 my-8">
           <button 
             className="allproducts-pagination-btn" 
             onClick={handlePreviousPage}

@@ -179,6 +179,16 @@
   margin-top: 200px;
 }
 
+/* Override Tailwind classes for better mobile experience */
+@media (max-width: 640px) {
+  .allproducts-filters {
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 16px;
+    margin-top: 180px;
+  }
+}
+
 .allproducts-search-container {
   position: relative;
   display: flex;
@@ -275,6 +285,30 @@
   margin-left: auto;
   margin-right: auto;
   z-index: 1;
+}
+
+/* Override Tailwind grid for better mobile experience */
+@media (max-width: 640px) {
+  .allproducts-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 0 16px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .allproducts-product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 0 20px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .allproducts-product-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
 }
 
 .allproducts-product-card {
@@ -520,5 +554,90 @@
 
   .allproducts-small-play-icon {
     font-size: 1.5rem;
+  }
+}
+
+/* Enhanced mobile responsiveness for hero section */
+@media (max-width: 768px) {
+  .allproducts-featured-section {
+    padding: 0 16px;
+    margin-top: 30px;
+  }
+
+  .allproducts-featured-hero-banner {
+    height: 250px;
+    border-radius: 12px;
+  }
+
+  .allproducts-video-overlay1 {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  .allproducts-video-overlay {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .allproducts-video-player {
+    max-width: 100%;
+  }
+
+  .allproducts-video-thumbnail-small {
+    width: 100%;
+    max-width: 300px;
+    height: 150px;
+  }
+
+  .allproducts-video-placeholder-small {
+    width: 100%;
+    max-width: 300px;
+    height: 150px;
+  }
+}
+
+/* Additional mobile improvements */
+@media (max-width: 640px) {
+  .allproducts-product-card {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .allproducts-product-thumb {
+    height: 120px;
+    margin-bottom: 8px;
+  }
+
+  .allproducts-product-title {
+    font-size: 12px;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .allproducts-product-price {
+    font-size: 14px;
+  }
+
+  .allproducts-pagination-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    min-width: 36px;
+  }
+
+  .allproducts-filter-select {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .allproducts-search-input {
+    font-size: 13px;
+    padding: 8px 12px;
   }
 }
