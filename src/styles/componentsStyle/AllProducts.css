@@ -91,7 +91,6 @@
   background: transparent;
   backdrop-filter: blur(10px);
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
   max-width: 400px;
 }
 
