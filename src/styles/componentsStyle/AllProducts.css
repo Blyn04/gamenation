@@ -78,8 +78,9 @@
 
 .allproducts-video-overlay {
   position: absolute;
-  bottom: -110px;
-  left: 900px;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
   z-index: 10;
 }
 
@@ -99,8 +100,8 @@
 }
 
 .allproducts-video-placeholder-small {
-  width: 500px;
-  height: 220px;
+  width: 200px;
+  height: 80px;
   background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
   border-radius: 12px;
   display: flex;
@@ -112,7 +113,7 @@
 }
 
 .allproducts-small-play-icon {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: white;
   z-index: 2;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -120,8 +121,9 @@
 
 .allproducts-video-overlay1 {
   position: absolute;
-  bottom: -100px;
-  left: 300px;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
   z-index: 10;
   text-align: left;
 }
@@ -600,16 +602,18 @@
 
   .allproducts-video-overlay1 {
     position: relative;
-    bottom: auto;
+    top: auto;
     left: auto;
+    transform: none;
     margin-top: 16px;
     text-align: center;
   }
 
   .allproducts-video-overlay {
     position: relative;
-    bottom: auto;
+    top: auto;
     right: auto;
+    transform: none;
     margin-top: 16px;
     display: flex;
     justify-content: center;
@@ -621,14 +625,14 @@
 
   .allproducts-video-thumbnail-small {
     width: 100%;
-    max-width: 300px;
-    height: 150px;
+    max-width: 200px;
+    height: 100px;
   }
 
   .allproducts-video-placeholder-small {
     width: 100%;
-    max-width: 300px;
-    height: 150px;
+    max-width: 200px;
+    height: 100px;
   }
 }
 
@@ -668,5 +672,15 @@
   .allproducts-search-input {
     font-size: 13px;
     padding: 8px 12px;
+  }
+
+  /* Orange button mobile adjustments */
+  .allproducts-video-placeholder-small {
+    width: 150px;
+    height: 60px;
+  }
+
+  .allproducts-small-play-icon {
+    font-size: 1.2rem;
   }
 }
