@@ -78,9 +78,8 @@
 
 .allproducts-video-overlay {
   position: absolute;
-  top: 50%;
+  bottom: -110px;
   right: 20px;
-  transform: translateY(-50%);
   z-index: 10;
 }
 
@@ -91,6 +90,7 @@
   background: transparent;
   backdrop-filter: blur(10px);
   border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   max-width: 400px;
 }
 
@@ -99,8 +99,8 @@
 }
 
 .allproducts-video-placeholder-small {
-  width: 200px;
-  height: 80px;
+  width: 500px;
+  height: 220px;
   background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
   border-radius: 12px;
   display: flex;
@@ -112,7 +112,7 @@
 }
 
 .allproducts-small-play-icon {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: white;
   z-index: 2;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -120,9 +120,8 @@
 
 .allproducts-video-overlay1 {
   position: absolute;
-  top: 50%;
-  left: 20px;
-  transform: translateY(-50%);
+  bottom: -100px;
+  left: 300px;
   z-index: 10;
   text-align: left;
 }
