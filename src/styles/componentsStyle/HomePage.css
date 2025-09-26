@@ -1354,8 +1354,7 @@
     padding: 10px 20px;
     font-size: 0.7rem;
   }
-  
-  /* New Game Releases tab - longer on mobile too */
+
   .tab[data-category="new-releases"] {
     padding: 10px 28px;
     min-width: 160px;
