@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../styles/componentsStyle/Library.css";
 import Header from "../customs/Header";
 import Footer from "../customs/Footer";
 import { SearchOutlined, MoreOutlined } from '@ant-design/icons';
@@ -182,68 +181,77 @@ const Library = () => {
   };
 
   return (
-    <div className="library-container">
+    <div className="min-h-screen bg-gradient-to-br from-blue-800 via-blue-600 to-blue-800 text-white font-sans pt-20 relative">
+      {/* Background overlay */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-800/15 via-transparent to-blue-600/15"></div>
+        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-blue-600/15 via-transparent to-blue-800/15"></div>
+        <div className="absolute top-1/2 left-1/2 w-full h-full bg-gradient-to-r from-blue-800/10 via-transparent to-blue-600/10 transform -translate-x-1/2 -translate-y-1/2"></div>
+      </div>
+
       {/* Header */}
       <Header />
 
       {/* Library Section */}
-      <section className="library-section">
-        <div className="library-content">
-          <h1 className="library-title">Library</h1>
+      <section className="relative z-10 px-4 sm:px-6 lg:px-8 xl:px-10 max-w-7xl mx-auto py-10">
+        <div className="w-full">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-white text-left drop-shadow-lg">
+            Library
+          </h1>
           
           {/* Search and Filter Bar */}
-          <div className="library-filters">
-            <div className="library-search-container">
-              <SearchOutlined className="library-search-icon" />
+          <div className="flex flex-col sm:flex-row gap-4 mb-8 items-start sm:items-center">
+            <div className="relative flex items-center bg-white/10 border border-white/20 rounded-xl backdrop-blur-sm transition-all duration-300 hover:bg-white/15 focus-within:bg-white/15 focus-within:border-amber-500/50 focus-within:shadow-lg focus-within:shadow-amber-500/20 min-w-64">
+              <SearchOutlined className="text-white/70 text-base ml-3 mr-2 pointer-events-none" />
               <input
                 type="text"
                 placeholder="Search Here..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="library-search-input"
+                className="bg-transparent border-none text-white text-sm py-3 px-4 w-full outline-none font-inherit placeholder-white/60"
               />
             </div>
-            <select className="library-filter-select">
-              <option>Sort</option>
-              <option>Name: A-Z</option>
-              <option>Name: Z-A</option>
-              <option>Recently Added</option>
-              <option>Most Played</option>
+            <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-32 backdrop-blur-sm transition-all duration-300 hover:bg-white/15">
+              <option className="bg-slate-900 text-white">Sort</option>
+              <option className="bg-slate-900 text-white">Name: A-Z</option>
+              <option className="bg-slate-900 text-white">Name: Z-A</option>
+              <option className="bg-slate-900 text-white">Recently Added</option>
+              <option className="bg-slate-900 text-white">Most Played</option>
             </select>
-            <select className="library-filter-select">
-              <option>Genre</option>
-              <option>Action</option>
-              <option>Adventure</option>
-              <option>RPG</option>
-              <option>Sports</option>
-              <option>Racing</option>
+            <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-32 backdrop-blur-sm transition-all duration-300 hover:bg-white/15">
+              <option className="bg-slate-900 text-white">Genre</option>
+              <option className="bg-slate-900 text-white">Action</option>
+              <option className="bg-slate-900 text-white">Adventure</option>
+              <option className="bg-slate-900 text-white">RPG</option>
+              <option className="bg-slate-900 text-white">Sports</option>
+              <option className="bg-slate-900 text-white">Racing</option>
             </select>
           </div>
 
-          {/* Games Grid */}
-          <div className="library-games-grid">
-            {currentGames.map((game) => (
+          {/* Games Grid - 2 cards per row on mobile, 3 on tablet, 4 on desktop */}
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 mb-8">
+            {currentGames.map((game, index) => (
               <div 
                 key={game.id} 
-                className="library-game-card"
+                className="bg-transparent border-none p-0 text-left rounded-2xl transition-transform duration-200 cursor-pointer relative overflow-hidden animate-fade-in-up"
+                style={{ 
+                  animationDelay: `${index * 0.1}s`,
+                  animationFillMode: 'forwards'
+                }}
                 onClick={() => handleGameClick(game)}
-                style={{ cursor: "pointer" }}
               >
-                <div className="library-game-image">
+                <div className="w-full h-48 sm:h-52 lg:h-56 rounded-xl mb-3 overflow-hidden bg-slate-700 shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-black/40">
                   <img 
                     src={libraryImageMap[game.image] || libraryImageMap['er.png']} 
                     alt={game.title}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      borderRadius: '12px'
-                    }}
+                    className="w-full h-full object-cover rounded-xl"
                   />
                 </div>
-                <div className="library-game-info">
-                  <h4 className="library-game-title">{game.title}</h4>
-                  <MoreOutlined className="library-game-options" />
+                <div className="flex justify-between items-start gap-2">
+                  <h4 className="text-sm font-semibold m-0 leading-tight text-white break-words flex-1">
+                    {game.title}
+                  </h4>
+                  <MoreOutlined className="text-white/70 text-base cursor-pointer p-1 rounded transition-all duration-200 hover:text-white hover:bg-white/10 flex-shrink-0" />
                 </div>
               </div>
             ))}
@@ -251,16 +259,16 @@ const Library = () => {
 
           {/* No results message */}
           {filteredGames.length === 0 && searchTerm && (
-            <div className="library-no-results">
-              <p>No games found matching "{searchTerm}"</p>
+            <div className="text-center py-10 text-white/70 text-base">
+              <p className="m-0 italic">No games found matching "{searchTerm}"</p>
             </div>
           )}
 
           {/* Pagination */}
           {filteredGames.length > 0 && (
-            <div className="library-pagination">
+            <div className="mt-8 flex items-center gap-2 flex-wrap justify-center">
               <button 
-                className="library-pagination-btn" 
+                className="bg-white/10 border border-white/20 text-white px-3 py-2 rounded-xl cursor-pointer text-sm transition-all duration-300 min-w-10 backdrop-blur-sm hover:bg-white/15 hover:border-white/30 disabled:opacity-50 disabled:cursor-not-allowed" 
                 onClick={handlePreviousPage}
                 disabled={currentPage === 1}
               >
@@ -270,7 +278,11 @@ const Library = () => {
               {getPageNumbers().map((num) => (
                 <button
                   key={num}
-                  className={`library-pagination-btn ${currentPage === num ? "active" : ""}`}
+                  className={`px-3 py-2 rounded-xl cursor-pointer text-sm transition-all duration-300 min-w-10 backdrop-blur-sm ${
+                    currentPage === num 
+                      ? "bg-white text-slate-900 border-white" 
+                      : "bg-white/10 border border-white/20 text-white hover:bg-white/15 hover:border-white/30"
+                  }`}
                   onClick={() => handlePageChange(num)}
                 >
                   {num}
@@ -278,12 +290,12 @@ const Library = () => {
               ))}
               
               {totalFilteredPages > 4 && currentPage < totalFilteredPages - 2 && (
-                <span className="library-pagination-dots">...</span>
+                <span className="text-white text-sm px-1">...</span>
               )}
               
               {totalFilteredPages > 4 && currentPage < totalFilteredPages - 2 && (
                 <button 
-                  className="library-pagination-btn"
+                  className="bg-white/10 border border-white/20 text-white px-3 py-2 rounded-xl cursor-pointer text-sm transition-all duration-300 min-w-10 backdrop-blur-sm hover:bg-white/15 hover:border-white/30"
                   onClick={() => handlePageChange(totalFilteredPages)}
                 >
                   {totalFilteredPages}
@@ -291,7 +303,7 @@ const Library = () => {
               )}
               
               <button 
-                className="library-pagination-btn" 
+                className="bg-white/10 border border-white/20 text-white px-3 py-2 rounded-xl cursor-pointer text-sm transition-all duration-300 min-w-10 backdrop-blur-sm hover:bg-white/15 hover:border-white/30 disabled:opacity-50 disabled:cursor-not-allowed" 
                 onClick={handleNextPage}
                 disabled={currentPage === totalFilteredPages}
               >
