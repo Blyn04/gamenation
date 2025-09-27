@@ -78,8 +78,8 @@
 
 .allproducts-video-overlay {
   position: absolute;
-  bottom: -110px;
-  right: 20px;
+  bottom: -140px;
+  right: 300px;
   z-index: 10;
 }
 
@@ -554,12 +554,12 @@
   }
 
   .allproducts-video-overlay1 {
-    bottom: -80px;
+    bottom: 100px;
     left: 20px;
   }
 
   .allproducts-video-overlay {
-    bottom: -80px;
+    bottom: 40px;
     right: 20px;
   }
 
@@ -674,8 +674,8 @@
 
   /* Orange button mobile adjustments */
   .allproducts-video-placeholder-small {
-    width: 150px;
-    height: 60px;
+    width: 200px;
+    height: 90px;
   }
 
   .allproducts-small-play-icon {
