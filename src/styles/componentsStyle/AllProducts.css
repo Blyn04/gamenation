@@ -78,8 +78,8 @@
 
 .allproducts-video-overlay {
   position: absolute;
-  bottom: -140px;
-  right: 300px;
+  bottom: -110px;
+  left: 120px;
   z-index: 10;
 }
 
@@ -121,7 +121,7 @@
 .allproducts-video-overlay1 {
   position: absolute;
   bottom: -100px;
-  left: 300px;
+  left: 700px;
   z-index: 10;
   text-align: left;
 }
@@ -550,39 +550,41 @@
   }
 
   .allproducts-featured-hero-banner {
-    height: 300px;
-  }
-
-  .allproducts-video-overlay1 {
-    bottom: 100px;
-    left: 30px;
+    height: 200px;
   }
 
   .allproducts-video-overlay {
-    bottom: 70px;
-    right: 20px;
+    bottom: -110px;
   }
 
-  .allproducts-video-text-content h3 {
-    font-size: 0.9rem;
-  }
-
-  .allproducts-video-text-content p {
-    font-size: 0.8rem;
-  }
-
-  .allproducts-video-thumbnail-small {
-    width: 180px;
-    height: 150px;
+  .allproducts-video-overlay1 {
+    left: 300px;
+    bottom: -90px;
+    top: auto;
   }
 
   .allproducts-video-placeholder-small {
-    width: 180px;
-    height: 150px;
+    width: 150px;
+    height: 100px;
+    bottom: -20px;
+    right: 80px;
+  }
+
+  .allproducts-video-text-content h3 {
+    font-size: 1rem;
+  }
+
+  .allproducts-video-text-content p {
+    font-size: 0.5rem;
+  }
+
+  .allproducts-video-thumbnail-small {
+    width: 150px;
+    height: 100px;
   }
 
   .allproducts-small-play-icon {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
 
@@ -596,41 +598,34 @@
   .allproducts-featured-hero-banner {
     height: 250px;
     border-radius: 12px;
+    position: relative;
+    overflow: hidden;
   }
 
   .allproducts-video-overlay1 {
-    position: relative;
+    left: 220px;
+    bottom: -110px;
     top: auto;
-    left: auto;
-    transform: none;
-    margin-top: 16px;
-    text-align: center;
   }
 
   .allproducts-video-overlay {
-    position: relative;
-    top: auto;
-    right: auto;
-    transform: none;
-    margin-top: 16px;
-    display: flex;
-    justify-content: center;
+    bottom: -20px;
   }
 
   .allproducts-video-player {
-    max-width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    gap: 15px;
   }
 
   .allproducts-video-thumbnail-small {
-    width: 100%;
-    max-width: 180px;
-    height: 100px;
+    width: 80px;
+    height: 60px;
   }
 
   .allproducts-video-placeholder-small {
-    width: 100%;
-    max-width: 180px;
-    height: 100px;
+    width: 80px;
+    height: 60px;
   }
 }
 
@@ -674,12 +669,11 @@
 
   /* Orange button mobile adjustments */
   .allproducts-video-placeholder-small {
-    width: 200px;
-    height: 90px;
-    left: 60px;
+    width: 150px;
+    height: 100px;
   }
 
   .allproducts-small-play-icon {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 }
