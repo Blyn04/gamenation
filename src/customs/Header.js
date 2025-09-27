@@ -1,14 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/customsStyle/Header.css';
 import { UserOutlined, ShoppingCartOutlined, SearchOutlined, MenuOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom'; 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   
   const closeMenu = () => setIsMenuOpen(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   return (
     <header className="header-area header-sticky">
@@ -33,15 +45,23 @@ const Header = () => {
           <li><Link to="/browse" onClick={closeMenu}>Browse</Link></li>
           <li><Link to="/library" onClick={closeMenu}>My Library</Link></li>
 
-          {/* Icons - visible on both desktop and mobile */}
+          {/* Icons/Text - responsive based on screen size */}
           <li>
             <Link to="/cart" onClick={closeMenu}>
-              <ShoppingCartOutlined className="icon" />
+              {isMobile ? (
+                <span className="mobile-text">Cart</span>
+              ) : (
+                <ShoppingCartOutlined className="icon" />
+              )}
             </Link>
           </li>
           <li>
             <Link to="/profile" onClick={closeMenu}>
-              <UserOutlined className="icon" />
+              {isMobile ? (
+                <span className="mobile-text">Profile</span>
+              ) : (
+                <UserOutlined className="icon" />
+              )}
             </Link>
           </li>
         </ul>

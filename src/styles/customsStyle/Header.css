@@ -160,8 +160,14 @@
 .mobile-text {
   color: #e2e8f0;
   font-size: 0.9rem;
-  margin: 8px 0;
-  display: none;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-block;
+}
+
+.mobile-text:hover {
+  color: white;
 }
 
 /* Responsive Design */
@@ -299,6 +305,20 @@
   }
   
   .nav li .icon:hover {
+    color: white;
+  }
+
+  /* Mobile text styling */
+  .nav li .mobile-text {
+    font-size: 1rem;
+    color: #e2e8f0;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+  }
+  
+  .nav li .mobile-text:hover {
     color: white;
   }
 }
