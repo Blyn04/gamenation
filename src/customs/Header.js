@@ -7,12 +7,14 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <header className="header-area header-sticky">
       <nav className="main-nav">
         {/* Left: Logo */}
-        <Link to="/" className="logo">
+        <Link to="/" className="logo" onClick={closeMenu}>
           <div className="logo-container">
             <div className="logo-square"></div>
             <span className="logo-text">GameStation</span>
@@ -27,18 +29,18 @@ const Header = () => {
 
         {/* Navigation Menu + Icons */}
         <ul className={`nav ${isMenuOpen ? 'active' : ''}`}>
-          <li><Link to="/" className="active">Home</Link></li>
-          <li><Link to="/browse">Browse</Link></li>
-          <li><Link to="/library">My Library</Link></li>
+          <li><Link to="/" className="active" onClick={closeMenu}>Home</Link></li>
+          <li><Link to="/browse" onClick={closeMenu}>Browse</Link></li>
+          <li><Link to="/library" onClick={closeMenu}>My Library</Link></li>
 
           {/* Icons - visible on both desktop and mobile */}
           <li>
-            <Link to="/cart">
+            <Link to="/cart" onClick={closeMenu}>
               <ShoppingCartOutlined className="icon" />
             </Link>
           </li>
           <li>
-            <Link to="/profile">
+            <Link to="/profile" onClick={closeMenu}>
               <UserOutlined className="icon" />
             </Link>
           </li>

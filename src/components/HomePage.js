@@ -486,7 +486,7 @@ const HomePage = () => {
           </div>
         </div>
 
-           <div className="video-overlay hidden sm:block">
+           <div className="video-overlay">
               <div className="video-player">
                 <div className="video-thumbnail-small">
                   <div className="video-placeholder-small">
@@ -496,7 +496,7 @@ const HomePage = () => {
               </div>
             </div>
 
-            <div className="video-overlay1 hidden sm:block">
+            <div className="video-overlay1">
               <div className="video-text-content">
                 <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl">ELDEN RING</h3>
                 <p className="text-xs sm:text-sm md:text-base">Experience the epic adventure in the Lands Between</p>

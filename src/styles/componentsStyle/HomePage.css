@@ -1258,8 +1258,14 @@
     font-size: 0.8rem;
   }
   
+  .video-overlay {
+    bottom: 5px;
+  }
+  
   .video-overlay1 {
     left: 150px;
+    bottom: 5px;
+    top: auto;
   }
   
   .section-title {
@@ -1472,13 +1478,19 @@
     font-size: 0.6rem;
   }
   
+  .video-overlay {
+    bottom:-110px;
+  }
+  
   .video-overlay1 {
     left: 210px;
+    bottom: -100px;
+    top: auto;
   }
 
   .video-placeholder-small {
     width: 150px;
-    height: 90px;
+    height: 100px;
     bottom: 40px;
     right: 80px;
   }
