@@ -211,21 +211,23 @@ const Library = () => {
                 className="bg-transparent border-none text-white text-sm py-3 px-4 w-full outline-none font-inherit placeholder-white/60"
               />
             </div>
-            <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-32 backdrop-blur-sm transition-all duration-300 hover:bg-white/15">
-              <option className="bg-slate-900 text-white">Sort</option>
-              <option className="bg-slate-900 text-white">Name: A-Z</option>
-              <option className="bg-slate-900 text-white">Name: Z-A</option>
-              <option className="bg-slate-900 text-white">Recently Added</option>
-              <option className="bg-slate-900 text-white">Most Played</option>
-            </select>
-            <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-32 backdrop-blur-sm transition-all duration-300 hover:bg-white/15">
-              <option className="bg-slate-900 text-white">Genre</option>
-              <option className="bg-slate-900 text-white">Action</option>
-              <option className="bg-slate-900 text-white">Adventure</option>
-              <option className="bg-slate-900 text-white">RPG</option>
-              <option className="bg-slate-900 text-white">Sports</option>
-              <option className="bg-slate-900 text-white">Racing</option>
-            </select>
+            <div className="flex gap-3">
+              <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-32 backdrop-blur-sm transition-all duration-300 hover:bg-white/15">
+                <option className="bg-slate-900 text-white">Sort</option>
+                <option className="bg-slate-900 text-white">Name: A-Z</option>
+                <option className="bg-slate-900 text-white">Name: Z-A</option>
+                <option className="bg-slate-900 text-white">Recently Added</option>
+                <option className="bg-slate-900 text-white">Most Played</option>
+              </select>
+              <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-32 backdrop-blur-sm transition-all duration-300 hover:bg-white/15">
+                <option className="bg-slate-900 text-white">Genre</option>
+                <option className="bg-slate-900 text-white">Action</option>
+                <option className="bg-slate-900 text-white">Adventure</option>
+                <option className="bg-slate-900 text-white">RPG</option>
+                <option className="bg-slate-900 text-white">Sports</option>
+                <option className="bg-slate-900 text-white">Racing</option>
+              </select>
+            </div>
           </div>
 
           {/* Games Grid - 2 cards per row on mobile, 3 on tablet, 4 on desktop */}
