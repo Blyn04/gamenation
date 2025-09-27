@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { DeleteOutlined, MinusOutlined, PlusOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import Footer from '../customs/Footer';
 import '../styles/componentsStyle/CartPage.css';
 
 // Import all PS5 game images from Library and HomePage
@@ -345,6 +346,9 @@ const CartPage = () => {
           </button>
         </div>
       </div>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
