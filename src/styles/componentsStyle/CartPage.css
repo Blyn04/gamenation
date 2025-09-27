@@ -399,7 +399,8 @@
   }
   
   .cart-actions {
-    flex-direction: column;
+    flex-direction: row;
+    gap: 12px;
   }
   
   .order-summary {
