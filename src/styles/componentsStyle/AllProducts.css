@@ -572,12 +572,12 @@
   }
 
   .allproducts-video-thumbnail-small {
-    width: 200px;
+    width: 180px;
     height: 150px;
   }
 
   .allproducts-video-placeholder-small {
-    width: 200px;
+    width: 180px;
     height: 150px;
   }
 
@@ -623,13 +623,13 @@
 
   .allproducts-video-thumbnail-small {
     width: 100%;
-    max-width: 200px;
+    max-width: 180px;
     height: 100px;
   }
 
   .allproducts-video-placeholder-small {
     width: 100%;
-    max-width: 200px;
+    max-width: 180px;
     height: 100px;
   }
 }
