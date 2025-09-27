@@ -88,9 +88,9 @@
   align-items: center;
   gap: 20px;
   background: transparent;
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* backdrop-filter: blur(10px); */
+  /* border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2); */
   max-width: 400px;
 }
 
@@ -555,11 +555,11 @@
 
   .allproducts-video-overlay1 {
     bottom: 100px;
-    left: 20px;
+    left: 30px;
   }
 
   .allproducts-video-overlay {
-    bottom: 40px;
+    bottom: 70px;
     right: 20px;
   }
 
@@ -573,12 +573,12 @@
 
   .allproducts-video-thumbnail-small {
     width: 200px;
-    height: 100px;
+    height: 150px;
   }
 
   .allproducts-video-placeholder-small {
     width: 200px;
-    height: 100px;
+    height: 150px;
   }
 
   .allproducts-small-play-icon {
