@@ -114,34 +114,38 @@
 
 /* Stats Box */
 .stats-box {
-  background: rgba(30, 64, 175, 0.3);
-  border-radius: 16px;
-  padding: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(15px);
+  background: #3b82f6;
+  border-radius: 12px;
+  padding: 20px;
   min-width: 200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .stat-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .stat-item:last-child {
   border-bottom: none;
+  padding-bottom: 0;
+}
+
+.stat-item:first-child {
+  padding-top: 0;
 }
 
 .stat-label {
   font-size: 0.9rem;
-  color: #cbd5e1;
+  color: #ffffff;
   font-weight: 500;
 }
 
 .stat-value {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #ffffff;
 }
@@ -394,9 +398,7 @@
   }
   
   .stat-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+    padding: 8px 0;
   }
   
   .game-list {

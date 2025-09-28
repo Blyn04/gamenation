@@ -26,7 +26,7 @@
 /* Game Sections */
 .game-section {
   max-width: 1400px;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 60px auto;
   padding: 40px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
@@ -39,7 +39,7 @@
 
 .game-section1 {
   max-width: 1400px;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 60px auto;
   padding: 40px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
@@ -55,11 +55,12 @@
 
 /* Popular Games Section - Matching discount section styling */
 .popular-games-section {
+  max-width: 1400px;
+  margin: 0 auto 60px auto;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(20px);
-  margin-bottom: 0;
   padding: 40px;
   padding-bottom: 80px;
   transition: height 0.5s ease-in-out;
@@ -511,8 +512,8 @@
 
 /* Featured Section */
 .featured-section {
-  max-width: 1500px;
-  margin: 0 auto 40px auto;
+  max-width: 1400px;
+  margin: 0 auto 60px auto;
   padding: 0 40px;
   position: relative;
   z-index: 1;
@@ -643,8 +644,8 @@
 
 /* Carousel Section */
 .carousel-section {
-  max-width: 1700px;
-  margin: 0 auto 40px auto;
+  max-width: 1400px;
+  margin: 0 auto 60px auto;
   padding: 0 40px;
   position: relative;
   z-index: 1;
@@ -792,8 +793,8 @@
 
 /* Categorized Section */
 .categorized-section {
-  max-width: 1200px;
-  margin: 0 auto 40px auto;
+  max-width: 1400px;
+  margin: 0 auto 60px auto;
   padding: 0 40px;
   position: relative;
   z-index: 1;
@@ -1225,14 +1226,13 @@
 
 @media (max-width: 768px) {
   .game-section,
+  .game-section1,
+  .popular-games-section,
   .featured-section,
   .carousel-section,
   .categorized-section {
-    padding: 0 20px;
-  }
-  
-  .game-section {
     padding: 20px;
+    margin: 0 auto 40px auto;
   }
   
   .featured-hero-banner {
@@ -1420,6 +1420,16 @@
 }
 
 @media (max-width: 480px) {
+  .game-section,
+  .game-section1,
+  .popular-games-section,
+  .featured-section,
+  .carousel-section,
+  .categorized-section {
+    padding: 16px;
+    margin: 0 auto 30px auto;
+  }
+  
   .game-grid,
   .popular-games-grid {
     width: 100%;
