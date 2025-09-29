@@ -117,7 +117,9 @@
   background: #3b82f6;
   border-radius: 12px;
   padding: 20px;
-  min-width: 200px;
+  min-width: 320px;
+  width: 100%;
+  max-width: 400px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -337,7 +339,7 @@
   
   .stats-box {
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
   }
 }
 
@@ -394,7 +396,7 @@
   }
   
   .stats-box {
-    padding: 20px;
+    min-width: 280px;
   }
   
   .stat-item {
