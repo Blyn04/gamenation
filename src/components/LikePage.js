@@ -208,71 +208,66 @@ const LikePage = () => {
   };
 
   return (
-    <div className="wishlist-container">
+    <div className="min-h-screen bg-gradient-to-br from-blue-800 via-blue-600 to-blue-800 text-white font-['Inter'] pt-20 relative">
       {/* Header */}
       <Header />
 
       {/* Wishlist Section */}
-      <section className="wishlist-section">
-        <div className="wishlist-content">
-          <h1 className="wishlist-title">Wishlist</h1>
+      <section className="relative z-10 px-4 sm:px-6 lg:px-8 xl:px-10 max-w-7xl mx-auto">
+        <div className="w-full">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 text-white text-left drop-shadow-lg">Wishlist</h1>
           
           {/* Search and Filter Bar */}
-          <div className="wishlist-filters">
-            <div className="wishlist-search-container">
-              <SearchOutlined className="wishlist-search-icon" />
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8">
+            <div className="relative flex items-center bg-white/10 border border-white/20 rounded-xl backdrop-blur-sm transition-all duration-300 hover:bg-white/15 hover:border-white/30 focus-within:bg-white/15 focus-within:border-yellow-500/50 focus-within:ring-2 focus-within:ring-yellow-500/20 min-w-0 flex-1 sm:min-w-[250px]">
+              <SearchOutlined className="text-white/70 text-base ml-3 mr-2 pointer-events-none" />
               <input
                 type="text"
                 placeholder="Search Here..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="wishlist-search-input"
+                className="bg-transparent border-none text-white text-sm py-3 px-2 w-full outline-none placeholder-white/60"
               />
             </div>
-            <select className="wishlist-filter-select">
-              <option>Sort</option>
-              <option>Name: A-Z</option>
-              <option>Name: Z-A</option>
-              <option>Recently Added</option>
-              <option>Most Wanted</option>
+            <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-[120px] backdrop-blur-sm transition-all duration-300 hover:bg-white/15 hover:border-white/30">
+              <option className="bg-slate-800 text-white">Sort</option>
+              <option className="bg-slate-800 text-white">Name: A-Z</option>
+              <option className="bg-slate-800 text-white">Name: Z-A</option>
+              <option className="bg-slate-800 text-white">Recently Added</option>
+              <option className="bg-slate-800 text-white">Most Wanted</option>
             </select>
-            <select className="wishlist-filter-select">
-              <option>Genre</option>
-              <option>Action</option>
-              <option>Adventure</option>
-              <option>RPG</option>
-              <option>Sports</option>
-              <option>Racing</option>
+            <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-[120px] backdrop-blur-sm transition-all duration-300 hover:bg-white/15 hover:border-white/30">
+              <option className="bg-slate-800 text-white">Genre</option>
+              <option className="bg-slate-800 text-white">Action</option>
+              <option className="bg-slate-800 text-white">Adventure</option>
+              <option className="bg-slate-800 text-white">RPG</option>
+              <option className="bg-slate-800 text-white">Sports</option>
+              <option className="bg-slate-800 text-white">Racing</option>
             </select>
           </div>
 
-          {/* Games Grid */}
-          <div className="wishlist-games-grid">
+          {/* Games Grid - 2 cards per row on mobile, 3 on tablet, 4 on desktop */}
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 mb-8">
             {currentGames.map((game) => (
-              <div key={game.id} className="wishlist-game-card">
-                <div className="wishlist-game-image">
+              <div key={game.id} className="wishlist-game-card group cursor-pointer">
+                <div className="wishlist-game-image relative overflow-hidden rounded-xl mb-3 bg-slate-700 shadow-lg transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-1">
                   <img 
                     src={wishlistImageMap[game.image] || wishlistImageMap['er.png']} 
                     alt={game.title}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      borderRadius: '12px'
-                    }}
+                    className="w-full h-48 sm:h-44 md:h-48 lg:h-52 object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-                <div className="wishlist-game-info">
-                  <h4 className="wishlist-game-title">{game.title}</h4>
-                  <div className="wishlist-heart-container">
+                <div className="wishlist-game-info flex justify-between items-start gap-2">
+                  <h4 className="wishlist-game-title text-white text-sm font-semibold leading-tight flex-1 line-clamp-2">{game.title}</h4>
+                  <div className="wishlist-heart-container flex-shrink-0">
                     {game.isLiked ? (
                       <HeartFilled 
-                        className="wishlist-heart-filled" 
+                        className="wishlist-heart-filled text-red-500 text-lg p-1 rounded-full bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 hover:border-red-500/40 hover:scale-110 transition-all duration-300 cursor-pointer" 
                         onClick={() => handleHeartClick(game.id)}
                       />
                     ) : (
                       <HeartOutlined 
-                        className="wishlist-heart-outline" 
+                        className="wishlist-heart-outline text-white/70 text-lg p-1 rounded-full border border-white/20 hover:text-red-500 hover:bg-red-500/10 hover:border-red-500/30 hover:scale-110 transition-all duration-300 cursor-pointer" 
                         onClick={() => handleHeartClick(game.id)}
                       />
                     )}
@@ -284,25 +279,25 @@ const LikePage = () => {
 
           {/* No results message */}
           {filteredGames.length === 0 && searchTerm && (
-            <div className="wishlist-no-results">
-              <p>No games found matching "{searchTerm}"</p>
+            <div className="text-center py-10 text-white/70 text-base">
+              <p className="italic">No games found matching "{searchTerm}"</p>
             </div>
           )}
 
           {/* Empty wishlist message */}
           {games.length === 0 && (
-            <div className="wishlist-empty">
-              <HeartOutlined className="wishlist-empty-icon" />
-              <h3>Your wishlist is empty</h3>
-              <p>Start adding games to your wishlist to see them here!</p>
+            <div className="text-center py-16 px-5 text-white/70">
+              <HeartOutlined className="text-6xl text-white/30 mb-5 block" />
+              <h3 className="text-2xl mb-3 text-white/80">Your wishlist is empty</h3>
+              <p className="text-base italic">Start adding games to your wishlist to see them here!</p>
             </div>
           )}
 
           {/* Pagination */}
           {filteredGames.length > 0 && (
-            <div className="wishlist-pagination">
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
               <button 
-                className="wishlist-pagination-btn" 
+                className="px-3 py-2 rounded-xl border border-white/20 bg-white/10 text-white text-sm min-w-[40px] backdrop-blur-sm transition-all duration-300 hover:bg-white/15 hover:border-white/30 disabled:opacity-50 disabled:cursor-not-allowed" 
                 onClick={handlePreviousPage}
                 disabled={currentPage === 1}
               >
@@ -312,7 +307,11 @@ const LikePage = () => {
               {getPageNumbers().map((num) => (
                 <button
                   key={num}
-                  className={`wishlist-pagination-btn ${currentPage === num ? "active" : ""}`}
+                  className={`px-3 py-2 rounded-xl border text-sm min-w-[40px] backdrop-blur-sm transition-all duration-300 ${
+                    currentPage === num 
+                      ? "bg-white text-slate-800 border-white" 
+                      : "border-white/20 bg-white/10 text-white hover:bg-white/15 hover:border-white/30"
+                  }`}
                   onClick={() => handlePageChange(num)}
                 >
                   {num}
@@ -320,12 +319,12 @@ const LikePage = () => {
               ))}
               
               {totalFilteredPages > 4 && currentPage < totalFilteredPages - 2 && (
-                <span className="wishlist-pagination-dots">...</span>
+                <span className="text-white text-sm px-1">...</span>
               )}
               
               {totalFilteredPages > 4 && currentPage < totalFilteredPages - 2 && (
                 <button 
-                  className="wishlist-pagination-btn"
+                  className="px-3 py-2 rounded-xl border border-white/20 bg-white/10 text-white text-sm min-w-[40px] backdrop-blur-sm transition-all duration-300 hover:bg-white/15 hover:border-white/30"
                   onClick={() => handlePageChange(totalFilteredPages)}
                 >
                   {totalFilteredPages}
@@ -333,7 +332,7 @@ const LikePage = () => {
               )}
               
               <button 
-                className="wishlist-pagination-btn" 
+                className="px-3 py-2 rounded-xl border border-white/20 bg-white/10 text-white text-sm min-w-[40px] backdrop-blur-sm transition-all duration-300 hover:bg-white/15 hover:border-white/30 disabled:opacity-50 disabled:cursor-not-allowed" 
                 onClick={handleNextPage}
                 disabled={currentPage === totalFilteredPages}
               >

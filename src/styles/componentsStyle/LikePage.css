@@ -124,15 +124,9 @@
   color: white;
 }
 
-/* Games Grid */
-.wishlist-games-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
+/* Games Grid - Tailwind handles the grid layout */
 .wishlist-game-card {
+  /* Keep minimal styles for compatibility */
   background: transparent;
   border: none;
   padding: 0;
@@ -149,11 +143,7 @@
 }
 
 .wishlist-game-image {
-  width: 100%;
-  height: 200px;
-  border-radius: 12px;
-  margin-bottom: 12px;
-  overflow: hidden;
+  /* Tailwind classes handle most styling */
   background-color: #334155;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
@@ -163,22 +153,10 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
-.wishlist-game-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 10px;
-}
-
 .wishlist-game-title {
-  font-size: 14px;
-  font-weight: 600;
-  margin: 0;
-  line-height: 1.3;
-  color: #ffffff;
+  /* Tailwind classes handle most styling */
   word-wrap: break-word;
   overflow-wrap: break-word;
-  flex: 1;
 }
 
 /* Heart Icon Styling */
@@ -309,76 +287,10 @@
   padding: 0 4px;
 }
 
-/* Responsive Breakpoints */
-
-/* Tablets */
-@media (max-width: 1024px) {
-  .wishlist-games-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .wishlist-title {
-    font-size: 2rem;
-  }
-}
-
-/* Mobile Landscape */
-@media (max-width: 768px) {
-  .wishlist-games-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-
-  .wishlist-filters {
-    gap: 10px;
-  }
-
-  .wishlist-filter-select {
-    min-width: 100px;
-    padding: 8px 12px;
-  }
-
-  .wishlist-search-container {
-    min-width: 200px;
-  }
-
-  .wishlist-title {
-    font-size: 1.8rem;
-  }
-
-  .wishlist-section {
-    padding: 20px;
-  }
-}
-
-/* Mobile Portrait */
-@media (max-width: 480px) {
-  .wishlist-games-grid {
-    grid-template-columns: repeat(1, 1fr);
-    padding: 0 15px;
-    gap: 12px;
-  }
-
-  .wishlist-filters {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .wishlist-filter-select {
-    width: 100%;
-    max-width: 200px;
-  }
-
-  .wishlist-search-container {
-    width: 100%;
-    max-width: 200px;
-  }
-
-  .wishlist-title {
-    font-size: 1.5rem;
-  }
-
-  .wishlist-section {
-    padding: 15px;
-  }
-}
+/* Responsive behavior is now handled by Tailwind classes */
+/* The grid layout is: 
+   - 1 column on mobile (grid-cols-1)
+   - 2 columns on small screens and up (sm:grid-cols-2) 
+   - 3 columns on medium screens and up (md:grid-cols-3)
+   - 4 columns on large screens and up (lg:grid-cols-4)
+*/
