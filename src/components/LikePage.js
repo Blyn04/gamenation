@@ -218,32 +218,34 @@ const LikePage = () => {
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 text-white text-left drop-shadow-lg">Wishlist</h1>
           
           {/* Search and Filter Bar */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8">
-            <div className="relative flex items-center bg-white/10 border border-white/20 rounded-xl backdrop-blur-sm transition-all duration-300 hover:bg-white/15 hover:border-white/30 focus-within:bg-white/15 focus-within:border-yellow-500/50 focus-within:ring-2 focus-within:ring-yellow-500/20 min-w-0 flex-1 sm:min-w-[250px]">
+          <div className="flex flex-col sm:flex-row gap-4 mb-8 items-start sm:items-center">
+            <div className="relative flex items-center bg-white/10 border border-white/20 rounded-xl backdrop-blur-sm transition-all duration-300 hover:bg-white/15 focus-within:bg-white/15 focus-within:border-amber-500/50 focus-within:shadow-lg focus-within:shadow-amber-500/20 min-w-64">
               <SearchOutlined className="text-white/70 text-base ml-3 mr-2 pointer-events-none" />
               <input
                 type="text"
                 placeholder="Search Here..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="bg-transparent border-none text-white text-sm py-3 px-2 w-full outline-none placeholder-white/60"
+                className="bg-transparent border-none text-white text-sm py-3 px-4 w-full outline-none font-inherit placeholder-white/60"
               />
             </div>
-            <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-[120px] backdrop-blur-sm transition-all duration-300 hover:bg-white/15 hover:border-white/30">
-              <option className="bg-slate-800 text-white">Sort</option>
-              <option className="bg-slate-800 text-white">Name: A-Z</option>
-              <option className="bg-slate-800 text-white">Name: Z-A</option>
-              <option className="bg-slate-800 text-white">Recently Added</option>
-              <option className="bg-slate-800 text-white">Most Wanted</option>
-            </select>
-            <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-[120px] backdrop-blur-sm transition-all duration-300 hover:bg-white/15 hover:border-white/30">
-              <option className="bg-slate-800 text-white">Genre</option>
-              <option className="bg-slate-800 text-white">Action</option>
-              <option className="bg-slate-800 text-white">Adventure</option>
-              <option className="bg-slate-800 text-white">RPG</option>
-              <option className="bg-slate-800 text-white">Sports</option>
-              <option className="bg-slate-800 text-white">Racing</option>
-            </select>
+            <div className="flex gap-3">
+              <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-32 backdrop-blur-sm transition-all duration-300 hover:bg-white/15">
+                <option className="bg-slate-900 text-white">Sort</option>
+                <option className="bg-slate-900 text-white">Name: A-Z</option>
+                <option className="bg-slate-900 text-white">Name: Z-A</option>
+                <option className="bg-slate-900 text-white">Recently Added</option>
+                <option className="bg-slate-900 text-white">Most Wanted</option>
+              </select>
+              <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-32 backdrop-blur-sm transition-all duration-300 hover:bg-white/15">
+                <option className="bg-slate-900 text-white">Genre</option>
+                <option className="bg-slate-900 text-white">Action</option>
+                <option className="bg-slate-900 text-white">Adventure</option>
+                <option className="bg-slate-900 text-white">RPG</option>
+                <option className="bg-slate-900 text-white">Sports</option>
+                <option className="bg-slate-900 text-white">Racing</option>
+              </select>
+            </div>
           </div>
 
           {/* Games Grid - 2 cards per row on mobile, 3 on tablet, 4 on desktop */}
