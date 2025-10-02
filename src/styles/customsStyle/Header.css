@@ -34,12 +34,14 @@
   gap: 12px;
 }
 
-.logo-square {
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+.logo-image {
+  height: 50px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo-image:hover {
+  transform: scale(1.05);
 }
 
 .logo-text {
@@ -190,33 +192,29 @@
   .main-nav {
     padding: 12px 20px;
     position: relative;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 12px;
   }
   
-  /* Icons are now visible on both desktop and mobile */
-  
-  /* Create a flex container for logo and menu trigger */
+  /* Logo and menu trigger in same row */
   .logo {
-    flex: 1;
+    flex: 0 0 auto;
+    order: 1;
   }
   
   .menu-trigger {
     display: flex;
-    flex-shrink: 0;
-    margin-left: 12px;
+    flex: 0 0 auto;
+    order: 3;
+    margin-left: auto;
   }
   
   .search-input {
     order: 2;
     margin: 0;
     max-width: none;
-    width: calc(100% - 150px);
-    padding-top: 0;
-  }
-  
-  .menu-trigger {
-    order: 3;
+    flex: 1;
+    min-width: 0;
   }
   
   /* Dropdown menu */
@@ -324,34 +322,35 @@
 }
 
 @media (max-width: 480px) {
-  .logo-text {
-    font-size: 1.1rem;
+  .main-nav {
+    padding: 10px 15px;
+    gap: 8px;
   }
   
-  .logo-square {
-    width: 28px;
-    height: 28px;
+  .logo-image {
+    height: 35px;
+  }
+  
+  .logo-text {
+    font-size: 1rem;
   }
   
   .menu-trigger {
-    margin-left: 40px;
+    margin-left: 8px;
+    padding: 6px;
   }
   
   .burger-icon {
-    font-size: 1.1rem;
-  }
-  
-  .search-input {
-    width: calc(100% - 150px);
+    font-size: 1rem;
   }
   
   .search-bar {
-    padding: 10px 0px 10px 44px;
+    padding: 8px 0px 8px 40px;
     font-size: 0.85rem;
   }
   
   .search-icon {
-    left: 14px;
+    left: 12px;
     font-size: 14px;
   }
 }

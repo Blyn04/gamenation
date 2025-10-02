@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/customsStyle/Header.css';
 import { UserOutlined, ShoppingCartOutlined, SearchOutlined, MenuOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
+import GN2Logo from '../assets/logo/png/GN2.png'; 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,8 +29,8 @@ const Header = () => {
         {/* Left: Logo */}
         <Link to="/" className="logo" onClick={closeMenu}>
           <div className="logo-container">
-            <div className="logo-square"></div>
-            <span className="logo-text">GameStation</span>
+            <img src={GN2Logo} alt="GameNation" className="logo-image" />
+            <span className="logo-text">GameNation</span>
           </div>
         </Link>
 
