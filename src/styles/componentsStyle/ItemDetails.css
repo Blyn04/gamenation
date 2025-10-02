@@ -137,6 +137,8 @@
   min-height: 50px !important;
   max-width: 50px !important;
   max-height: 50px !important;
+  padding-top: 4px !important;
+  top: 10px;
 }
 
 .wishlist-btn:hover {
