@@ -216,9 +216,9 @@ const ItemDetails = () => {
       <div className={`game-details ${isExpanded ? 'expanded' : ''}`}>
         <div className="game-metadata">
           <div className="metadata-left">
-            <p>Company Name: {gameData.company}</p>
-            <p>Release: {gameData.release}</p>
-            <p>Genre: {gameData.genre}</p>
+            <p><span className="label">Company Name:</span><span className="value">{gameData.company}</span></p>
+            <p><span className="label">Release:</span><span className="value">{gameData.release}</span></p>
+            <p><span className="label">Genre:</span><span className="value">{gameData.genre}</span></p>
           </div>
           <div className="metadata-right">
             <div className="stat-card">
