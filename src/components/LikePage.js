@@ -3,6 +3,7 @@ import "../styles/componentsStyle/LikePage.css";
 import Header from "../customs/Header";
 import Footer from "../customs/Footer";
 import { SearchOutlined, HeartOutlined, HeartFilled } from '@ant-design/icons';
+import { useNavigate } from "react-router-dom";
 
 // Import game images for wishlist games
 import ittakes2 from '../assets/ps5Games/itt.png';
@@ -135,6 +136,7 @@ const wishlistGames = [
 ];
 
 const LikePage = () => {
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [games, setGames] = useState(wishlistGames);
@@ -176,6 +178,31 @@ const LikePage = () => {
   // Handle heart click (remove from wishlist)
   const handleHeartClick = (gameId) => {
     setGames(prevGames => prevGames.filter(game => game.id !== gameId));
+  };
+
+  // Handle game card click
+  const handleGameClick = (game) => {
+    // Generate random details for the game
+    const randomPrice = Math.floor(Math.random() * 2000) + 1000; // Price between 1000-3000
+    const randomRating = (Math.random() * 2 + 3).toFixed(1); // Rating between 3.0-5.0
+    const randomDownloads = Math.floor(Math.random() * 2000000) + 100000; // Downloads between 100k-2M
+    const randomSize = Math.floor(Math.random() * 50) + 10; // Size between 10-60GB
+    
+    const gameData = {
+      title: game.title,
+      subtitle: "",
+      image: game.image,
+      price: `₱${randomPrice.toLocaleString()}`,
+      rating: randomRating,
+      downloads: randomDownloads,
+      size: `${randomSize}GB`,
+      company: "GameNation Studios",
+      release: "2024",
+      genre: "Action",
+      description: `Experience the ultimate gaming adventure with ${game.title}. This incredible game offers stunning graphics, immersive gameplay, and hours of entertainment. Perfect for gamers of all skill levels, ${game.title} delivers an unforgettable experience that will keep you coming back for more.`
+    };
+    
+    navigate("/item-details", { state: { gameData } });
   };
 
   // Reset to page 1 when searching
@@ -250,8 +277,16 @@ const LikePage = () => {
 
           {/* Games Grid - 2 cards per row on mobile, 3 on tablet, 4 on desktop */}
           <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 mb-8">
-            {currentGames.map((game) => (
-              <div key={game.id} className="wishlist-game-card group cursor-pointer">
+            {currentGames.map((game, index) => (
+              <div 
+                key={game.id} 
+                className="wishlist-game-card group cursor-pointer bg-transparent border-none p-0 text-left rounded-2xl transition-transform duration-200 relative overflow-hidden animate-fade-in-up"
+                style={{ 
+                  animationDelay: `${index * 0.1}s`,
+                  animationFillMode: 'forwards'
+                }}
+                onClick={() => handleGameClick(game)}
+              >
                 <div className="wishlist-game-image relative overflow-hidden rounded-xl mb-3 bg-slate-700 shadow-lg transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-1">
                   <img 
                     src={wishlistImageMap[game.image] || wishlistImageMap['er.png']} 
@@ -261,16 +296,20 @@ const LikePage = () => {
                 </div>
                 <div className="wishlist-game-info flex justify-between items-start gap-2">
                   <h4 className="wishlist-game-title text-white text-sm font-semibold leading-tight flex-1 line-clamp-2">{game.title}</h4>
-                  <div className="wishlist-heart-container flex-shrink-0">
+                  <div 
+                    className="wishlist-heart-container flex-shrink-0"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleHeartClick(game.id);
+                    }}
+                  >
                     {game.isLiked ? (
                       <HeartFilled 
                         className="wishlist-heart-filled text-red-500 text-lg p-1 rounded-full bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 hover:border-red-500/40 hover:scale-110 transition-all duration-300 cursor-pointer" 
-                        onClick={() => handleHeartClick(game.id)}
                       />
                     ) : (
                       <HeartOutlined 
                         className="wishlist-heart-outline text-white/70 text-lg p-1 rounded-full border border-white/20 hover:text-red-500 hover:bg-red-500/10 hover:border-red-500/30 hover:scale-110 transition-all duration-300 cursor-pointer" 
-                        onClick={() => handleHeartClick(game.id)}
                       />
                     )}
                   </div>
