@@ -213,9 +213,9 @@ const LikePage = () => {
       <Header />
 
       {/* Wishlist Section */}
-      <section className="relative z-10 px-4 sm:px-6 lg:px-8 xl:px-10 max-w-7xl mx-auto">
+      <section className="relative z-10 px-4 sm:px-6 lg:px-8 xl:px-10 max-w-7xl mx-auto py-10">
         <div className="w-full">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 text-white text-left drop-shadow-lg">Wishlist</h1>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-white text-left drop-shadow-lg">Wishlist</h1>
           
           {/* Search and Filter Bar */}
           <div className="flex flex-col sm:flex-row gap-4 mb-8 items-start sm:items-center">
