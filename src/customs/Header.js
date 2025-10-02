@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/customsStyle/Header.css';
 import { UserOutlined, ShoppingCartOutlined, SearchOutlined, MenuOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import GN2Logo from '../assets/logo/png/GN2.png'; 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   
@@ -42,9 +43,9 @@ const Header = () => {
 
         {/* Navigation Menu + Icons */}
         <ul className={`nav ${isMenuOpen ? 'active' : ''}`}>
-          <li><Link to="/" className="active" onClick={closeMenu}>Home</Link></li>
-          <li><Link to="/browse" onClick={closeMenu}>Browse</Link></li>
-          <li><Link to="/library" onClick={closeMenu}>My Library</Link></li>
+          <li><Link to="/" className={location.pathname === '/' ? 'active' : ''} onClick={closeMenu}>Home</Link></li>
+          <li><Link to="/browse" className={location.pathname === '/browse' ? 'active' : ''} onClick={closeMenu}>Browse</Link></li>
+          <li><Link to="/library" className={location.pathname === '/library' ? 'active' : ''} onClick={closeMenu}>My Library</Link></li>
 
           {/* Icons/Text - responsive based on screen size */}
           <li>

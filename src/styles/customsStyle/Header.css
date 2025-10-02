@@ -277,6 +277,20 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .nav li a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: #f59e0b;
+    transition: width 0.3s ease;
+    z-index: 1;
   }
   
   .nav li:hover {
@@ -288,11 +302,17 @@
     transform: none;
   }
   
+  .nav li a:hover::before {
+    width: 100%;
+  }
+  
   .nav li a.active {
     color: white;
     background: rgba(245, 158, 11, 0.2);
-    border-left: none;
-    border-bottom: 2px solid #f59e0b;
+  }
+  
+  .nav li a.active::before {
+    width: 100%;
   }
   
   /* Icon styling for mobile */
