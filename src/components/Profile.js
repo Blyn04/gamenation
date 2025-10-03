@@ -77,7 +77,6 @@ const Profile = () => {
 
   return (
     <div className="profile-page">
-      {/* Profile Section */}
       <div className="profile-card">
         <div className="profile-left">
           <div className="avatar">
