@@ -348,9 +348,9 @@
 }
 
 .save-btn {
-  background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
-  border: none;
-  color: white;
+  background: white;
+  border: 1px solid #1e40af;
+  color: #1e40af;
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 0.85rem;
@@ -361,9 +361,11 @@
 }
 
 .save-btn:hover {
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  background: #f8f9fa;
+  border-color: #1e40af;
+  color: #1e40af;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
 }
 
 .cancel-btn {
@@ -411,9 +413,9 @@
 
 /* Buttons */
 .primary-btn {
-  background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
-  border: none;
-  color: white;
+  background: white;
+  border: 1px solid #1e40af;
+  color: #1e40af;
   padding: 12px 24px;
   border-radius: 12px;
   font-size: 1rem;
@@ -424,9 +426,11 @@
 }
 
 .primary-btn:hover {
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  background: #f8f9fa;
+  border-color: #1e40af;
+  color: #1e40af;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 8px 20px rgba(30, 64, 175, 0.2);
 }
 
 .secondary-btn {

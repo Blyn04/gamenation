@@ -94,24 +94,26 @@
 }
 
 .buy-btn {
-  background-color: #f59e0b;
-  color: white;
-  border: none;
+  background-color: white;
+  color: #1e40af;
+  border: 1px solid #1e40af;
   padding: 15px 30px;
   border-radius: 8px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 4px 15px rgba(30, 64, 175, 0.2);
 }
 
 .buy-btn:hover {
-  background-color: #f97316;
+  background-color: #f8f9fa;
+  border-color: #1e40af;
+  color: #1e40af;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 8px 25px rgba(30, 64, 175, 0.3);
 }
 
 .wishlist-btn {

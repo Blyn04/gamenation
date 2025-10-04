@@ -491,8 +491,8 @@
 
 .show-all-btn {
   background: white;
-  color: #1e293b;
-  border: none;
+  color: #1e40af;
+  border: 1px solid #1e40af;
   padding: 14px 36px;
   border-radius: 25px;
   font-size: 1rem;
@@ -500,14 +500,16 @@
   cursor: pointer;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(30, 64, 175, 0.2);
   margin-top: 0px;
 }
 
 .show-all-btn:hover {
   background: #f8f9fa;
+  border-color: #1e40af;
+  color: #1e40af;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 25px rgba(30, 64, 175, 0.3);
 }
 
 /* Featured Section */
@@ -626,8 +628,8 @@
 
 .see-more-btn-small {
   background: white;
-  color: #0A205A;
-  border: none;
+  color: #1e40af;
+  border: 1px solid #1e40af;
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 0.85rem;
@@ -638,8 +640,10 @@
 
 .see-more-btn-small:hover {
   background: #f8f9fa;
+  border-color: #1e40af;
+  color: #1e40af;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
 }
 
 /* Carousel Section */
@@ -1063,8 +1067,8 @@
 /* Add to Cart Button */
 .add-to-cart-btn {
   background: white;
-  color: #0A205A;
-  border: none;
+  color: #1e40af;
+  border: 1px solid #1e40af;
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 0.85rem;
@@ -1075,14 +1079,16 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.2);
   align-self: flex-start;
 }
 
 .add-to-cart-btn:hover {
   background: #f8f9fa;
+  border-color: #1e40af;
+  color: #1e40af;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
 }
 
 .add-to-cart-btn:active {
