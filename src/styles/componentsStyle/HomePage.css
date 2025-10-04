@@ -886,13 +886,13 @@
 /* Categorized Game Cards - Simplified Design */
 .categorized-section .game-card {
   background: transparent;
-  border-radius: 16px;
+  border-radius: 16px 16px 0 0;
   padding: 0;
   transition: all 0.3s ease;
   border: none;
   backdrop-filter: none;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   gap: 12px;
