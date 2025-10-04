@@ -461,6 +461,12 @@
   border-color: white;
 }
 
+.allproducts-pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .allproducts-pagination-dots {
   color: white;
   font-size: 14px;

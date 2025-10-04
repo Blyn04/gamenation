@@ -343,11 +343,17 @@ const AllProducts = () => {
 
       {/* Pagination */}
       {filteredProducts.length > 0 && (
-        <div className="allproducts-pagination flex flex-wrap justify-center items-center gap-2 mx-auto z-10 my-8">
+        <div className="flex flex-wrap justify-center items-center gap-2 mx-auto z-10 my-8">
           <button 
-            className="allproducts-pagination-btn" 
+            type="button"
+            className="bg-white/10 border border-white/20 text-white px-3 py-2 rounded-xl cursor-pointer text-sm transition-all duration-300 min-w-10 backdrop-blur-sm hover:bg-white/15 hover:border-white/30 disabled:opacity-50 disabled:cursor-not-allowed" 
             onClick={handlePreviousPage}
             disabled={currentPage === 1}
+            style={{ 
+              pointerEvents: 'auto',
+              zIndex: 999,
+              position: 'relative'
+            }}
           >
             {"<"}
           </button>
@@ -355,20 +361,31 @@ const AllProducts = () => {
           {getPageNumbers().map((num) => (
             <button
               key={num}
-              className={`allproducts-pagination-btn ${currentPage === num ? "active" : ""}`}
+              type="button"
+              className={`px-3 py-2 rounded-xl cursor-pointer text-sm transition-all duration-300 min-w-10 backdrop-blur-sm ${
+                currentPage === num 
+                  ? "bg-white text-slate-900 border-white" 
+                  : "bg-white/10 border border-white/20 text-white hover:bg-white/15 hover:border-white/30"
+              }`}
               onClick={() => handlePageChange(num)}
+              style={{ 
+                pointerEvents: 'auto',
+                zIndex: 999,
+                position: 'relative'
+              }}
             >
               {num}
             </button>
           ))}
           
           {totalFilteredPages > 4 && currentPage < totalFilteredPages - 2 && (
-            <span className="allproducts-pagination-dots">...</span>
+            <span className="text-white text-sm px-1">...</span>
           )}
           
           {totalFilteredPages > 4 && currentPage < totalFilteredPages - 2 && (
             <button 
-              className="allproducts-pagination-btn"
+              type="button"
+              className="bg-white/10 border border-white/20 text-white px-3 py-2 rounded-xl cursor-pointer text-sm transition-all duration-300 min-w-10 backdrop-blur-sm hover:bg-white/15 hover:border-white/30"
               onClick={() => handlePageChange(totalFilteredPages)}
             >
               {totalFilteredPages}
@@ -376,9 +393,15 @@ const AllProducts = () => {
           )}
           
           <button 
-            className="allproducts-pagination-btn" 
+            type="button"
+            className="bg-white/10 border border-white/20 text-white px-3 py-2 rounded-xl cursor-pointer text-sm transition-all duration-300 min-w-10 backdrop-blur-sm hover:bg-white/15 hover:border-white/30 disabled:opacity-50 disabled:cursor-not-allowed" 
             onClick={handleNextPage}
             disabled={currentPage === totalFilteredPages}
+            style={{ 
+              pointerEvents: 'auto',
+              zIndex: 999,
+              position: 'relative'
+            }}
           >
             {">"}
           </button>
