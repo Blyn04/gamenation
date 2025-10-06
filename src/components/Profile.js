@@ -62,7 +62,6 @@ const Profile = () => {
     navigate("/item-details", { state: { gameData } });
   };
 
-  // Dummy data for games
   const libraryGames = [
     { id: 1, title: "ARMORED CORE™ VI FIRES OF RUBICON™ - Deluxe Edition", image: "armoredcore.png" },
     { id: 2, title: "Harvest Moon: The Winds of Anthos", image: "harvestmoon.png" },
