@@ -492,7 +492,19 @@ const HomePage = () => {
               <div className="video-player">
                 <div className="video-thumbnail-small">
                   <div className="video-placeholder-small">
-                    <PlayCircleOutlined className="small-play-icon" />
+                    <iframe
+                      src="https://www.youtube.com/embed/E3Huy2cdih0"
+                      title="ELDEN RING Trailer"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        border: 'none',
+                        borderRadius: '12px'
+                      }}
+                    ></iframe>
                   </div>
                 </div>
               </div>
