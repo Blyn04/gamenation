@@ -208,7 +208,9 @@ const discountGames = [
   { id: 25, title: "Mortal Kombat", genre: "Fighting", price: "$59.99", image: "mk.png" },
   { id: 26, title: "Ghost of Yōtei", genre: "Action", price: "$59.99", image: "gy.png" },
   { id: 27, title: "Cyberpunk 2077", genre: "RPG", price: "$39.99", image: "cyberpunk-2077.png" },
-  { id: 28, title: "Grand Theft Auto Online", genre: "Action", price: "Free", image: "gta-online.png" }
+  { id: 28, title: "Grand Theft Auto Online", genre: "Action", price: "Free", image: "gta-online.png" },
+  { id: 29, title: "Call of Duty® Black Ops 6", genre: "FPS", price: "$69.99", image: "codbo6.png" },
+  { id: 30, title: "NBA 2K26", genre: "Sports", price: "$59.99", image: "nba2k26.png" }
 ];
 
 const carouselGames = [
