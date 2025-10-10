@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/componentsStyle/AllProducts.css";
 import Header from "../customs/Header";
 import Footer from "../customs/Footer";
@@ -124,8 +124,16 @@ const AllProducts = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
   const productsPerPage = 25; // Show 25 products per page (5x5 grid)
   const totalPages = Math.ceil(allProducts.length / productsPerPage);
+
+  // Handle search term from header navigation
+  useEffect(() => {
+    if (location.state?.searchTerm) {
+      setSearchTerm(location.state.searchTerm);
+    }
+  }, [location.state]);
 
   // Handle product card click
   const handleProductClick = (product) => {

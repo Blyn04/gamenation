@@ -1,17 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/customsStyle/Header.css';
 import { UserOutlined, ShoppingCartOutlined, SearchOutlined, MenuOutlined } from '@ant-design/icons';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import GN2Logo from '../assets/logo/png/GN2.png'; 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   
   const closeMenu = () => setIsMenuOpen(false);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      // Navigate to browse page with search term
+      navigate('/browse', { state: { searchTerm: searchTerm.trim() } });
+      setSearchTerm("");
+    }
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -52,10 +67,16 @@ const Header = () => {
         </Link>
 
         {/* Middle: Search bar */}
-        <div className="search-input">
+        <form className="search-input" onSubmit={handleSearch}>
           <SearchOutlined className="search-icon" />
-          <input className="search-bar" type="text" placeholder="Search games..." />
-        </div>
+          <input 
+            className="search-bar" 
+            type="text" 
+            placeholder="Search games..." 
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        </form>
 
         {/* Navigation Menu + Icons */}
         <ul className={`nav ${isMenuOpen ? 'active' : ''}`}>
