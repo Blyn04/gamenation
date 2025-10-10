@@ -569,7 +569,7 @@
 
 .video-overlay1 {
   position: absolute;
-  bottom: -100px;
+  bottom: -110px;
   left: 700px;
   z-index: 10;
   text-align: left;
@@ -648,7 +648,7 @@
 
 /* Carousel Section */
 .carousel-section {
-  max-width: 1400px;
+  max-width: 2000px;
   margin: 0 auto 60px auto;
   padding: 0 40px;
   position: relative;
@@ -1243,12 +1243,12 @@
   
   /* Mobile-specific positioning fixes for discounts section */
   .game-section1 {
-    top: 50px;
+    top: 150px;
     padding-bottom: 100px;
   }
   
   .game-section1.expanded {
-    top: 30px;
+    top: 130px;
     padding-bottom: 100px;
   }
   
@@ -1453,12 +1453,12 @@
   
   /* Mobile-specific positioning fixes for discounts section */
   .game-section1 {
-    top: 50px;
+    top: 150px;
     padding-bottom: 100px;
   }
   
   .game-section1.expanded {
-    top: 30px;
+    top: 130px;
     padding-bottom: 100px;
   }
   

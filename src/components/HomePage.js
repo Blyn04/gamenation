@@ -565,6 +565,7 @@ const HomePage = () => {
               </div>
             ))}
           </div>
+          
           <button className="carousel-nav right hidden sm:flex" onClick={handleCarouselNext}>
             <RightOutlined />
           </button>
