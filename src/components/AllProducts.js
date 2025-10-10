@@ -123,6 +123,7 @@ const allProducts = [
 const AllProducts = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isMonsterHunterModalOpen, setIsMonsterHunterModalOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const productsPerPage = 25; // Show 25 products per page (5x5 grid)
@@ -134,6 +135,15 @@ const AllProducts = () => {
       setSearchTerm(location.state.searchTerm);
     }
   }, [location.state]);
+
+  // Handle Monster Hunter modal
+  const handleMonsterHunterVideoClick = () => {
+    setIsMonsterHunterModalOpen(true);
+  };
+
+  const handleCloseMonsterHunterModal = () => {
+    setIsMonsterHunterModalOpen(false);
+  };
 
   // Handle product card click
   const handleProductClick = (product) => {
@@ -232,8 +242,8 @@ const AllProducts = () => {
             {/* Large hero banner with game scene background */}
             <div className="allproducts-hero-background">
               <img 
-                src={imageMap['er.png']} 
-                alt="ELDEN RING"
+                src={imageMap['mhw.png']} 
+                alt="Monster Hunter World"
                 style={{
                   width: '100%',
                   height: '100%',
@@ -250,8 +260,25 @@ const AllProducts = () => {
            <div className="allproducts-video-overlay">
               <div className="allproducts-video-player">
                 <div className="allproducts-video-thumbnail-small">
-                  <div className="allproducts-video-placeholder-small">
-                    <PlayCircleOutlined className="allproducts-small-play-icon" />
+                  <div 
+                    className="allproducts-video-placeholder-small"
+                    onClick={handleMonsterHunterVideoClick}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <iframe
+                      src="https://www.youtube.com/embed/URG75CDX_rg"
+                      title="Monster Hunter World Trailer"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        border: 'none',
+                        borderRadius: '12px',
+                        pointerEvents: 'none'
+                      }}
+                    ></iframe>
                   </div>
                 </div>
               </div>
@@ -259,9 +286,29 @@ const AllProducts = () => {
 
             <div className="allproducts-video-overlay1">
               <div className="allproducts-video-text-content">
-                <h3>ELDEN RING</h3>
-                <p>Experience the epic adventure in the Lands Between</p>
-                <button className="allproducts-see-more-btn-small">See more</button>
+                <h3>Monster Hunter World</h3>
+                <p>Hunt massive monsters in a living, breathing ecosystem</p>
+                <button 
+                  className="allproducts-see-more-btn-small"
+                  onClick={() => {
+                    const monsterHunterData = {
+                      title: "Monster Hunter World",
+                      subtitle: "Hunt massive monsters in a living, breathing ecosystem",
+                      image: "mhw.png",
+                      price: "₱2,499",
+                      rating: "4.7",
+                      downloads: 1200000,
+                      size: "45GB",
+                      company: "Capcom",
+                      release: "2018",
+                      genre: "Action RPG",
+                      description: "Monster Hunter World is an action RPG that puts you in the role of a hunter tasked with tracking down and slaying massive monsters in a living, breathing ecosystem. Craft weapons and armor from materials gathered during your hunts, and team up with other hunters to take down the most dangerous beasts."
+                    };
+                    navigate("/item-details", { state: { gameData: monsterHunterData } });
+                  }}
+                >
+                  See more
+                </button>
               </div>
             </div>
       </section>
@@ -413,6 +460,32 @@ const AllProducts = () => {
           >
             {">"}
           </button>
+        </div>
+      )}
+
+      {/* Monster Hunter Video Modal */}
+      {isMonsterHunterModalOpen && (
+        <div className="video-modal-overlay" onClick={handleCloseMonsterHunterModal}>
+          <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="video-modal-close" onClick={handleCloseMonsterHunterModal}>
+              ×
+            </button>
+            <div className="video-modal-header">
+              <h3>Monster Hunter World</h3>
+            </div>
+            <div className="video-modal-body">
+              <iframe
+                width="100%"
+                height="400"
+                src="https://www.youtube.com/embed/URG75CDX_rg"
+                title="Monster Hunter World Trailer"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ borderRadius: '12px' }}
+              ></iframe>
+            </div>
+          </div>
         </div>
       )}
 
