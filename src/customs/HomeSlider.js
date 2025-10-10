@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Carousel } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import '../styles/customsStyle/HomeSlider.css';
 import backgroundImage from '../assets/backgroundhomepage.jpg'; 
 
@@ -28,9 +29,14 @@ const banners = [
 
 const HomeSlider = () => {
   const carouselRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleNext = () => carouselRef.current.next();
   const handlePrev = () => carouselRef.current.prev();
+  
+  const handleBrowseNow = () => {
+    navigate('/browse');
+  };
 
   return (
     <div className="slider-wrapper">
@@ -46,7 +52,7 @@ const HomeSlider = () => {
               <div className="slider-text">
                 <div className="slider-title">{banner.title}</div>
                 <p>{banner.description}</p>
-                <button>Browse Now</button>
+                <button onClick={handleBrowseNow}>Browse Now</button>
               </div>
 
               <img
