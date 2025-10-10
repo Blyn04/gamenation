@@ -393,6 +393,8 @@ const HomePage = () => {
   const [activeCategory, setActiveCategory] = useState("new-releases");
   const [isPopularExpanded, setIsPopularExpanded] = useState(false);
   const [isDiscountExpanded, setIsDiscountExpanded] = useState(false);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState(null);
   const carouselRef = useRef(null);
   const navigate = useNavigate();
 
@@ -431,6 +433,17 @@ const HomePage = () => {
 
   const handleShowAllDiscount = () => {
     setIsDiscountExpanded(!isDiscountExpanded);
+  };
+
+  // Handle video modal
+  const handleVideoClick = (videoId, gameTitle) => {
+    setSelectedVideo({ videoId, gameTitle });
+    setIsVideoModalOpen(true);
+  };
+
+  const handleCloseVideoModal = () => {
+    setIsVideoModalOpen(false);
+    setSelectedVideo(null);
   };
 
   // Function to get games based on active category
@@ -514,7 +527,27 @@ const HomePage = () => {
               <div className="video-text-content">
                 <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl">ELDEN RING</h3>
                 <p className="text-xs sm:text-sm md:text-base">Experience the epic adventure in the Lands Between</p>
-                <button className="see-more-btn-small text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2">See more</button>
+                <button 
+                  className="see-more-btn-small text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2"
+                  onClick={() => {
+                    const eldenRingData = {
+                      title: "ELDEN RING",
+                      subtitle: "Experience the epic adventure in the Lands Between",
+                      image: "er.png",
+                      price: "₱2,999",
+                      rating: "4.8",
+                      downloads: 1500000,
+                      size: "60GB",
+                      company: "FromSoftware",
+                      release: "2022",
+                      genre: "Action RPG",
+                      description: "ELDEN RING is a fantasy action-RPG adventure set in a world created by Hidetaka Miyazaki and George R.R. Martin. Explore the Lands Between, a vast realm where demigods once ruled. Create your character and embark on an epic journey to become an Elden Lord."
+                    };
+                    navigate("/item-details", { state: { gameData: eldenRingData } });
+                  }}
+                >
+                  See more
+                </button>
               </div>
             </div>
       </section>
@@ -565,19 +598,47 @@ const HomePage = () => {
           </button>
           
           <div className="carousel-content overflow-x-auto scrollbar-hide" ref={carouselRef}>
-            {carouselGames.map((game) => (
-              <div key={game.id} className="carousel-card min-w-[120px] sm:min-w-[140px] md:min-w-[160px]">
-                <div className="carousel-thumbnail h-20 sm:h-24 md:h-28 lg:h-32">
-                  <img 
-                    src={imageMap[game.image]} 
-                    alt={game.title}
-                    className="w-full h-full object-cover rounded-xl"
-                  />
-                  <div className="carousel-video-icon">▶</div>
+            {carouselGames.map((game) => {
+              // Define YouTube video IDs for each game
+              const getVideoId = (gameTitle) => {
+                const videoMap = {
+                  "METAL GEAR SOLID Δ SNAKE EATER": "ajh3YHJ6baI",
+                  "Call of Duty® Black Ops 6": "h0uxvKUjsj4",
+                  "NBA 2K26": "Amg9VwyFUto",
+                  "Split Fiction": "vRDXNJJ5Y3c",
+                  "CarX Street": "oGRJXKb8kvE",
+                  "Forza Horizon 5": "W-SpP-Z0Uu8",
+                  "Borderlands 4": "26vY2GMfYTw",
+                  "Clair Obscur Expedition 33": "-qgOZDRDynw"
+                };
+                return videoMap[gameTitle] || null;
+              };
+
+              const videoId = getVideoId(game.title);
+              
+              return (
+                <div 
+                  key={game.id} 
+                  className="carousel-card min-w-[120px] sm:min-w-[140px] md:min-w-[160px]"
+                  onClick={() => {
+                    if (videoId) {
+                      handleVideoClick(videoId, game.title);
+                    }
+                  }}
+                  style={{ cursor: videoId ? 'pointer' : 'default' }}
+                >
+                  <div className="carousel-thumbnail h-20 sm:h-24 md:h-28 lg:h-32">
+                    <img 
+                      src={imageMap[game.image]} 
+                      alt={game.title}
+                      className="w-full h-full object-cover rounded-xl"
+                    />
+                    <div className="carousel-video-icon">▶</div>
+                  </div>
+                  <h4 className="text-xs sm:text-sm font-medium mt-2 line-clamp-2">{game.title}</h4>
                 </div>
-                <h4 className="text-xs sm:text-sm font-medium mt-2 line-clamp-2">{game.title}</h4>
-              </div>
-            ))}
+              );
+            })}
           </div>
           
           <button className="carousel-nav right hidden sm:flex" onClick={handleCarouselNext}>
@@ -615,6 +676,32 @@ const HomePage = () => {
           ))}
         </div>
       </section>
+
+      {/* Video Modal */}
+      {isVideoModalOpen && selectedVideo && (
+        <div className="video-modal-overlay" onClick={handleCloseVideoModal}>
+          <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="video-modal-close" onClick={handleCloseVideoModal}>
+              ×
+            </button>
+            <div className="video-modal-header">
+              <h3>{selectedVideo.gameTitle}</h3>
+            </div>
+            <div className="video-modal-body">
+              <iframe
+                width="100%"
+                height="400"
+                src={`https://www.youtube.com/embed/${selectedVideo.videoId}`}
+                title={selectedVideo.gameTitle}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ borderRadius: '12px' }}
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Footer */}
       <Footer />
