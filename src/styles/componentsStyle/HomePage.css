@@ -590,14 +590,17 @@
 .video-placeholder-small {
   width: 500px;
   height: 220px;
-  background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
   border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.video-placeholder-small iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: none;
 }
 
 
@@ -1361,6 +1364,11 @@
     height: 120px;
   }
   
+  .categorized-section .game-text h4 {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+  
   .game-card {
     padding: 10px;
     min-height: 190px;
@@ -1559,6 +1567,11 @@
     height: 100px;
   }
   
+  .categorized-section .game-text h4 {
+    font-size: 0.7rem;
+    line-height: 1.1;
+  }
+  
   .carousel-content {
     gap: 15px;
   }
@@ -1734,15 +1747,40 @@
 /* Responsive modal */
 @media (max-width: 768px) {
   .video-modal-content {
-    width: 95vw;
+    width: 90vw;
+    max-width: 400px;
     padding: 15px;
   }
   
   .video-modal-body iframe {
-    height: 250px;
+    height: 200px;
   }
   
   .video-modal-header h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-modal-content {
+    width: 85vw;
+    max-width: 350px;
+    padding: 12px;
+  }
+  
+  .video-modal-body iframe {
+    height: 180px;
+  }
+  
+  .video-modal-header h3 {
+    font-size: 1rem;
+  }
+  
+  .video-modal-close {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    top: 10px;
+    right: 10px;
   }
 }

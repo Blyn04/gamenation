@@ -395,6 +395,7 @@ const HomePage = () => {
   const [isDiscountExpanded, setIsDiscountExpanded] = useState(false);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [isEldenRingModalOpen, setIsEldenRingModalOpen] = useState(false);
   const carouselRef = useRef(null);
   const navigate = useNavigate();
 
@@ -444,6 +445,15 @@ const HomePage = () => {
   const handleCloseVideoModal = () => {
     setIsVideoModalOpen(false);
     setSelectedVideo(null);
+  };
+
+  // Handle ELDEN RING modal
+  const handleEldenRingVideoClick = () => {
+    setIsEldenRingModalOpen(true);
+  };
+
+  const handleCloseEldenRingModal = () => {
+    setIsEldenRingModalOpen(false);
   };
 
   // Function to get games based on active category
@@ -504,7 +514,11 @@ const HomePage = () => {
            <div className="video-overlay">
               <div className="video-player">
                 <div className="video-thumbnail-small">
-                  <div className="video-placeholder-small">
+                  <div 
+                    className="video-placeholder-small"
+                    onClick={handleEldenRingVideoClick}
+                    style={{ cursor: 'pointer' }}
+                  >
                     <iframe
                       src="https://www.youtube.com/embed/E3Huy2cdih0"
                       title="ELDEN RING Trailer"
@@ -515,7 +529,8 @@ const HomePage = () => {
                         width: '100%',
                         height: '100%',
                         border: 'none',
-                        borderRadius: '12px'
+                        borderRadius: '12px',
+                        pointerEvents: 'none'
                       }}
                     ></iframe>
                   </div>
@@ -693,6 +708,32 @@ const HomePage = () => {
                 height="400"
                 src={`https://www.youtube.com/embed/${selectedVideo.videoId}`}
                 title={selectedVideo.gameTitle}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ borderRadius: '12px' }}
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ELDEN RING Video Modal */}
+      {isEldenRingModalOpen && (
+        <div className="video-modal-overlay" onClick={handleCloseEldenRingModal}>
+          <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="video-modal-close" onClick={handleCloseEldenRingModal}>
+              ×
+            </button>
+            <div className="video-modal-header">
+              <h3>ELDEN RING</h3>
+            </div>
+            <div className="video-modal-body">
+              <iframe
+                width="100%"
+                height="400"
+                src="https://www.youtube.com/embed/E3Huy2cdih0"
+                title="ELDEN RING Trailer"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
