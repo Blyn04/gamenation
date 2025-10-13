@@ -1479,7 +1479,6 @@
   .popular-games-grid {
     width: 100%;
     padding: 8px 0;
-    /* Let Tailwind handle grid columns */
   }
   
   /* Force 2 columns on very small mobile too */
