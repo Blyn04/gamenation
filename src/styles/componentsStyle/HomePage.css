@@ -1487,7 +1487,6 @@
     grid-template-columns: repeat(2, 1fr) !important;
   }
   
-  /* Even smaller cards on very small mobile */
   .popular-games-grid .game-card,
   .discount-games-grid .game-card {
     padding: 6px;
