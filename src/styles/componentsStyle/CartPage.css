@@ -139,8 +139,8 @@
   text-align: left;
 }
 
-.item-price {
-  color: #ffffff;
+.cart-item .item-price {
+  color: #ffffff !important;
   font-weight: 600;
   font-size: 1rem;
   text-align: left;
@@ -376,7 +376,8 @@
     display: none;
   }
   
-  .item-price {
+  .cart-item .item-price {
+    color: #ffffff !important;
     font-size: 0.8rem;
     font-weight: 600;
     margin: 0;
