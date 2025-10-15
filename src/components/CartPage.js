@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DeleteOutlined, MinusOutlined, PlusOutlined, ShoppingCartOutlined, CloseOutlined, GiftOutlined } from '@ant-design/icons';
+import { DeleteOutlined, MinusOutlined, PlusOutlined, ShoppingCartOutlined, CloseOutlined, GiftOutlined, CreditCardOutlined, BankOutlined, WalletOutlined } from '@ant-design/icons';
 import Footer from '../customs/Footer';
 import '../styles/componentsStyle/CartPage.css';
 
@@ -180,6 +180,16 @@ const CartPage = () => {
   const [appliedVouchers, setAppliedVouchers] = useState([]);
   const [voucherError, setVoucherError] = useState('');
   
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('credit-card');
+  const [isCardModalOpen, setIsCardModalOpen] = useState(false);
+  const [cardData, setCardData] = useState({
+    cardNumber: '',
+    expiryDate: '',
+    cvv: '',
+    cardholderName: ''
+  });
+  
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
@@ -278,6 +288,44 @@ const CartPage = () => {
     setAppliedVouchers(prev => prev.filter(v => v.code !== voucherCode));
   };
 
+  // Payment method functionality
+  const handlePaymentMethodSelect = (method) => {
+    setSelectedPaymentMethod(method);
+    if (method === 'credit-card') {
+      setIsPaymentModalOpen(false);
+      setIsCardModalOpen(true);
+    }
+  };
+
+  const handlePaymentMethodSubmit = () => {
+    if (selectedPaymentMethod === 'digital-wallet') {
+      setIsPaymentModalOpen(false);
+      // Here you would typically save the payment method to state or send to backend
+    }
+  };
+
+  // Card input functionality
+  const handleCardInputChange = (field, value) => {
+    setCardData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleCardSubmit = (e) => {
+    e.preventDefault();
+    setIsCardModalOpen(false);
+    // Here you would typically validate and save the card data
+  };
+
+  const formatCardNumber = (value) => {
+    return value.replace(/\s/g, '').replace(/(.{4})/g, '$1 ').trim();
+  };
+
+  const formatExpiryDate = (value) => {
+    return value.replace(/\D/g, '').replace(/(.{2})/, '$1/');
+  };
+
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   
   // Calculate total discount from applied vouchers
@@ -366,7 +414,11 @@ const CartPage = () => {
               <GiftOutlined style={{ marginRight: '8px' }} />
               Add Vouchers
             </button>
-            <button className="action-btn">
+            <button 
+              className="action-btn"
+              onClick={() => setIsPaymentModalOpen(true)}
+            >
+              <CreditCardOutlined style={{ marginRight: '8px' }} />
               Change Payment Method
             </button>
           </div>
@@ -491,6 +543,191 @@ const CartPage = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Payment Method Modal */}
+      {isPaymentModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsPaymentModalOpen(false)}>
+          <div className="payment-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3 className="modal-title">
+                <CreditCardOutlined style={{ marginRight: '8px' }} />
+                Payment Method
+              </h3>
+              <button 
+                className="close-btn"
+                onClick={() => setIsPaymentModalOpen(false)}
+              >
+                <CloseOutlined />
+              </button>
+            </div>
+            
+            <div className="modal-content">
+              <div className="payment-options">
+                <h4>Select Payment Method</h4>
+                
+                <div className="payment-method-list">
+                  <div 
+                    className={`payment-option ${selectedPaymentMethod === 'credit-card' ? 'selected' : ''}`}
+                    onClick={() => handlePaymentMethodSelect('credit-card')}
+                  >
+                    <div className="payment-icon">
+                      <CreditCardOutlined />
+                    </div>
+                    <div className="payment-details">
+                      <h5>Credit/Debit Card</h5>
+                      <p>Visa, Mastercard, American Express</p>
+                    </div>
+                    <div className="payment-radio">
+                      <input 
+                        type="radio" 
+                        name="payment" 
+                        value="credit-card"
+                        checked={selectedPaymentMethod === 'credit-card'}
+                        onChange={() => handlePaymentMethodSelect('credit-card')}
+                      />
+                    </div>
+                  </div>
+                  
+                  <div 
+                    className={`payment-option ${selectedPaymentMethod === 'digital-wallet' ? 'selected' : ''}`}
+                    onClick={() => handlePaymentMethodSelect('digital-wallet')}
+                  >
+                    <div className="payment-icon">
+                      <WalletOutlined />
+                    </div>
+                    <div className="payment-details">
+                      <h5>Digital Wallet</h5>
+                      <p>PayPal, Apple Pay, Google Pay</p>
+                    </div>
+                    <div className="payment-radio">
+                      <input 
+                        type="radio" 
+                        name="payment" 
+                        value="digital-wallet"
+                        checked={selectedPaymentMethod === 'digital-wallet'}
+                        onChange={() => handlePaymentMethodSelect('digital-wallet')}
+                      />
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="modal-actions">
+                  <button 
+                    type="button" 
+                    className="cancel-btn"
+                    onClick={() => setIsPaymentModalOpen(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button 
+                    type="button" 
+                    className="apply-btn"
+                    onClick={handlePaymentMethodSubmit}
+                  >
+                    Confirm Payment Method
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Card Input Modal */}
+      {isCardModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsCardModalOpen(false)}>
+          <div className="card-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3 className="modal-title">
+                <CreditCardOutlined style={{ marginRight: '8px' }} />
+                Card Details
+              </h3>
+              <button 
+                className="close-btn"
+                onClick={() => setIsCardModalOpen(false)}
+              >
+                <CloseOutlined />
+              </button>
+            </div>
+            
+            <div className="modal-content">
+              <form onSubmit={handleCardSubmit}>
+                <div className="card-form">
+                  <div className="form-group">
+                    <label htmlFor="cardholder-name">Cardholder Name</label>
+                    <input
+                      id="cardholder-name"
+                      type="text"
+                      value={cardData.cardholderName}
+                      onChange={(e) => handleCardInputChange('cardholderName', e.target.value)}
+                      placeholder="Enter cardholder name"
+                      className="card-input"
+                      required
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="card-number">Card Number</label>
+                    <input
+                      id="card-number"
+                      type="text"
+                      value={cardData.cardNumber}
+                      onChange={(e) => handleCardInputChange('cardNumber', formatCardNumber(e.target.value))}
+                      placeholder="1234 5678 9012 3456"
+                      className="card-input"
+                      maxLength="19"
+                      required
+                    />
+                  </div>
+                  
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="expiry-date">Expiry Date</label>
+                      <input
+                        id="expiry-date"
+                        type="text"
+                        value={cardData.expiryDate}
+                        onChange={(e) => handleCardInputChange('expiryDate', formatExpiryDate(e.target.value))}
+                        placeholder="MM/YY"
+                        className="card-input"
+                        maxLength="5"
+                        required
+                      />
+                    </div>
+                    
+                    <div className="form-group">
+                      <label htmlFor="cvv">CVV</label>
+                      <input
+                        id="cvv"
+                        type="text"
+                        value={cardData.cvv}
+                        onChange={(e) => handleCardInputChange('cvv', e.target.value.replace(/\D/g, ''))}
+                        placeholder="123"
+                        className="card-input"
+                        maxLength="4"
+                        required
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="modal-actions">
+                    <button 
+                      type="button" 
+                      className="cancel-btn"
+                      onClick={() => setIsCardModalOpen(false)}
+                    >
+                      Cancel
+                    </button>
+                    <button type="submit" className="apply-btn">
+                      Save Card
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
