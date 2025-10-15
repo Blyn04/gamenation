@@ -1,5 +1,5 @@
-import React from "react";
-import { SettingOutlined, MoreOutlined, UserOutlined } from '@ant-design/icons';
+import React, { useState } from "react";
+import { SettingOutlined, MoreOutlined, UserOutlined, InfoCircleOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import "../styles/componentsStyle/Profile.css";
 import Footer from '../customs/Footer';
@@ -24,6 +24,7 @@ const imageMap = {
 
 const Profile = () => {
   const navigate = useNavigate();
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
   const handleSettingsClick = () => {
     navigate('/account-settings');
@@ -35,6 +36,32 @@ const Profile = () => {
 
   const handleWishlistShowAll = () => {
     navigate('/wishlist');
+  };
+
+  // Handle dropdown toggle
+  const handleDropdownToggle = (gameId, section) => {
+    const dropdownId = `${section}-${gameId}`;
+    setActiveDropdown(activeDropdown === dropdownId ? null : dropdownId);
+  };
+
+  // Handle dropdown actions
+  const handleDetails = (game) => {
+    handleGameClick(game);
+    setActiveDropdown(null);
+  };
+
+  const handleUninstall = (gameId, section) => {
+    // Here you would typically remove the game from the library
+    console.log(`Uninstalling game ${gameId} from ${section}`);
+    setActiveDropdown(null);
+    // You could also update the state to remove the game from the list
+  };
+
+  const handleRemoveFromWishlist = (gameId) => {
+    // Here you would typically remove the game from the wishlist
+    console.log(`Removing game ${gameId} from wishlist`);
+    setActiveDropdown(null);
+    // You could also update the state to remove the game from the list
   };
 
   // Handle game click to navigate to item details
@@ -113,8 +140,8 @@ const Profile = () => {
             <button onClick={handleLibraryShowAll} className="show-all-link">Show All</button>
           </div>
           {libraryGames.map((game) => (
-            <div key={game.id} className="game-item" onClick={() => handleGameClick(game)}>
-              <div className="game-thumbnail">
+            <div key={game.id} className="game-item">
+              <div className="game-thumbnail" onClick={() => handleGameClick(game)}>
                 <img 
                   src={imageMap[game.image]} 
                   alt={game.title}
@@ -126,11 +153,29 @@ const Profile = () => {
                   }}
                 />
               </div>
-              <div className="game-detailsss">
+              <div className="game-detailsss" onClick={() => handleGameClick(game)}>
                 <h4 className="game-titles">{game.title}</h4>
               </div>
               <div className="game-actions">
-                <MoreOutlined className="more-icon" />
+                <MoreOutlined 
+                  className="more-icon" 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDropdownToggle(game.id, 'library');
+                  }}
+                />
+                {activeDropdown === `library-${game.id}` && (
+                  <div className="dropdown-menu">
+                    <div className="dropdown-item" onClick={() => handleDetails(game)}>
+                      <InfoCircleOutlined />
+                      <span>Details</span>
+                    </div>
+                    <div className="dropdown-item" onClick={() => handleUninstall(game.id, 'library')}>
+                      <DeleteOutlined />
+                      <span>Uninstall</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -145,8 +190,8 @@ const Profile = () => {
             <button onClick={handleWishlistShowAll} className="show-all-link">Show All</button>
           </div>
           {wishlistGames.map((game) => (
-            <div key={game.id} className="game-item" onClick={() => handleGameClick(game)}>
-              <div className="game-thumbnail">
+            <div key={game.id} className="game-item">
+              <div className="game-thumbnail" onClick={() => handleGameClick(game)}>
                 <img 
                   src={imageMap[game.image]} 
                   alt={game.title}
@@ -158,11 +203,29 @@ const Profile = () => {
                   }}
                 />
               </div>
-              <div className="game-detailsss">
+              <div className="game-detailsss" onClick={() => handleGameClick(game)}>
                 <h4 className="game-titles">{game.title}</h4>
               </div>
               <div className="game-actions">
-                <MoreOutlined className="more-icon" />
+                <MoreOutlined 
+                  className="more-icon" 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDropdownToggle(game.id, 'wishlist');
+                  }}
+                />
+                {activeDropdown === `wishlist-${game.id}` && (
+                  <div className="dropdown-menu">
+                    <div className="dropdown-item" onClick={() => handleDetails(game)}>
+                      <InfoCircleOutlined />
+                      <span>Details</span>
+                    </div>
+                    <div className="dropdown-item" onClick={() => handleRemoveFromWishlist(game.id)}>
+                      <DeleteOutlined />
+                      <span>Remove from Wishlist</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}
