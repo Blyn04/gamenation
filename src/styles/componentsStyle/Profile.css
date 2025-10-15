@@ -172,7 +172,7 @@
 }
 
 .show-all-link {
-  color: #1e40af;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.9rem;
@@ -185,7 +185,7 @@
 }
 
 .show-all-link:hover {
-  color: #3b82f6;
+  color: #cbd5e1;
 }
 
 /* Game List Layout */
