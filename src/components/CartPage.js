@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DeleteOutlined, MinusOutlined, PlusOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { DeleteOutlined, MinusOutlined, PlusOutlined, ShoppingCartOutlined, CloseOutlined, GiftOutlined } from '@ant-design/icons';
 import Footer from '../customs/Footer';
 import '../styles/componentsStyle/CartPage.css';
 
@@ -175,6 +175,11 @@ const cartImageMap = {
 };
 
 const CartPage = () => {
+  const [isVoucherModalOpen, setIsVoucherModalOpen] = useState(false);
+  const [voucherCode, setVoucherCode] = useState('');
+  const [appliedVouchers, setAppliedVouchers] = useState([]);
+  const [voucherError, setVoucherError] = useState('');
+  
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
@@ -239,9 +244,52 @@ const CartPage = () => {
     setCartItems(items => items.filter(item => item.id !== id));
   };
 
+  // Voucher functionality
+  const handleVoucherSubmit = (e) => {
+    e.preventDefault();
+    setVoucherError('');
+    
+    // Mock voucher validation
+    const validVouchers = {
+      'SAVE10': { code: 'SAVE10', discount: 10, type: 'percentage' },
+      'SAVE20': { code: 'SAVE20', discount: 20, type: 'percentage' },
+      'FIXED5': { code: 'FIXED5', discount: 5, type: 'fixed' },
+      'WELCOME': { code: 'WELCOME', discount: 15, type: 'percentage' }
+    };
+    
+    const voucher = validVouchers[voucherCode.toUpperCase()];
+    
+    if (!voucher) {
+      setVoucherError('Invalid voucher code');
+      return;
+    }
+    
+    if (appliedVouchers.find(v => v.code === voucher.code)) {
+      setVoucherError('Voucher already applied');
+      return;
+    }
+    
+    setAppliedVouchers(prev => [...prev, voucher]);
+    setVoucherCode('');
+    setIsVoucherModalOpen(false);
+  };
+
+  const removeVoucher = (voucherCode) => {
+    setAppliedVouchers(prev => prev.filter(v => v.code !== voucherCode));
+  };
+
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const discount = 10.00; // Example discount
-  const total = subtotal - discount;
+  
+  // Calculate total discount from applied vouchers
+  const totalDiscount = appliedVouchers.reduce((total, voucher) => {
+    if (voucher.type === 'percentage') {
+      return total + (subtotal * voucher.discount / 100);
+    } else {
+      return total + voucher.discount;
+    }
+  }, 0);
+  
+  const total = subtotal - totalDiscount;
 
   return (
     <div className="cart-page">
@@ -311,7 +359,11 @@ const CartPage = () => {
           
           {/* Action Buttons */}
           <div className="cart-actions">
-            <button className="action-btn">
+            <button 
+              className="action-btn"
+              onClick={() => setIsVoucherModalOpen(true)}
+            >
+              <GiftOutlined style={{ marginRight: '8px' }} />
               Add Vouchers
             </button>
             <button className="action-btn">
@@ -329,9 +381,31 @@ const CartPage = () => {
             <span>P {subtotal.toFixed(2)}</span>
           </div>
           
+          {appliedVouchers.length > 0 && (
+            <div className="applied-vouchers">
+              {appliedVouchers.map((voucher, index) => (
+                <div key={index} className="voucher-item">
+                  <span className="voucher-code">{voucher.code}</span>
+                  <span className="voucher-discount">
+                    -P {voucher.type === 'percentage' 
+                      ? (subtotal * voucher.discount / 100).toFixed(2)
+                      : voucher.discount.toFixed(2)
+                    }
+                  </span>
+                  <button 
+                    className="remove-voucher-btn"
+                    onClick={() => removeVoucher(voucher.code)}
+                  >
+                    <CloseOutlined />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+          
           <div className="summary-item">
             <span>Discount:</span>
-            <span>-P {discount.toFixed(2)}</span>
+            <span>-P {totalDiscount.toFixed(2)}</span>
           </div>
           
           <div className="summary-divider"></div>
@@ -346,6 +420,81 @@ const CartPage = () => {
           </button>
         </div>
       </div>
+      
+      {/* Voucher Modal */}
+      {isVoucherModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsVoucherModalOpen(false)}>
+          <div className="voucher-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3 className="modal-title">
+                <GiftOutlined style={{ marginRight: '8px' }} />
+                Add Voucher
+              </h3>
+              <button 
+                className="close-btn"
+                onClick={() => setIsVoucherModalOpen(false)}
+              >
+                <CloseOutlined />
+              </button>
+            </div>
+            
+            <div className="modal-content">
+              <form onSubmit={handleVoucherSubmit}>
+                <div className="input-group">
+                  <label htmlFor="voucher-code">Voucher Code</label>
+                  <input
+                    id="voucher-code"
+                    type="text"
+                    value={voucherCode}
+                    onChange={(e) => setVoucherCode(e.target.value)}
+                    placeholder="Enter voucher code"
+                    className="voucher-input"
+                    required
+                  />
+                  {voucherError && (
+                    <div className="error-message">{voucherError}</div>
+                  )}
+                </div>
+                
+                <div className="modal-actions">
+                  <button 
+                    type="button" 
+                    className="cancel-btn"
+                    onClick={() => setIsVoucherModalOpen(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button type="submit" className="apply-btn">
+                    Apply Voucher
+                  </button>
+                </div>
+              </form>
+              
+              <div className="voucher-info">
+                <h4>Available Vouchers:</h4>
+                <div className="voucher-list">
+                  <div className="voucher-example">
+                    <span className="code">SAVE10</span>
+                    <span className="description">10% off</span>
+                  </div>
+                  <div className="voucher-example">
+                    <span className="code">SAVE20</span>
+                    <span className="description">20% off</span>
+                  </div>
+                  <div className="voucher-example">
+                    <span className="code">FIXED5</span>
+                    <span className="description">P5.00 off</span>
+                  </div>
+                  <div className="voucher-example">
+                    <span className="code">WELCOME</span>
+                    <span className="description">15% off</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       
       {/* Footer */}
       <Footer />
