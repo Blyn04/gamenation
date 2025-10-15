@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { DeleteOutlined, MinusOutlined, PlusOutlined, ShoppingCartOutlined, CloseOutlined, GiftOutlined, CreditCardOutlined, BankOutlined, WalletOutlined } from '@ant-design/icons';
+import { DeleteOutlined, MinusOutlined, PlusOutlined, ShoppingCartOutlined, CloseOutlined, GiftOutlined, CreditCardOutlined, BankOutlined, WalletOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import Footer from '../customs/Footer';
 import '../styles/componentsStyle/CartPage.css';
+import '../styles/componentsStyle/ConfirmModal.css';
 
 // Import all PS5 game images from Library and HomePage
 import ittakes2 from '../assets/ps5Games/itt.png';
@@ -189,6 +190,7 @@ const CartPage = () => {
     cvv: '',
     cardholderName: ''
   });
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   
   const [cartItems, setCartItems] = useState([
     {
@@ -324,6 +326,17 @@ const CartPage = () => {
 
   const formatExpiryDate = (value) => {
     return value.replace(/\D/g, '').replace(/(.{2})/, '$1/');
+  };
+
+  // Purchase confirmation functionality
+  const handleBuyNow = () => {
+    setIsConfirmModalOpen(true);
+  };
+
+  const handleConfirmPurchase = () => {
+    setIsConfirmModalOpen(false);
+    // Here you would typically process the payment and redirect to success page
+    alert('Purchase successful! Thank you for your order.');
   };
 
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -467,7 +480,7 @@ const CartPage = () => {
             <span>P {total.toFixed(2)}</span>
           </div>
           
-          <button className="buy-btn">
+          <button className="buy-btn" onClick={handleBuyNow}>
             Buy Now
           </button>
         </div>
@@ -728,6 +741,81 @@ const CartPage = () => {
                   </div>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Purchase Confirmation Modal */}
+      {isConfirmModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsConfirmModalOpen(false)}>
+          <div className="confirm-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3 className="modal-title">
+                <CheckCircleOutlined style={{ marginRight: '8px' }} />
+                Confirm Purchase
+              </h3>
+              <button 
+                className="close-btn"
+                onClick={() => setIsConfirmModalOpen(false)}
+              >
+                <CloseOutlined />
+              </button>
+            </div>
+            
+            <div className="modal-content">
+              <div className="confirm-content">
+                <div className="order-details">
+                  <h4>Order Summary</h4>
+                  <div className="order-items">
+                    {cartItems.map((item) => (
+                      <div key={item.id} className="order-item">
+                        <span className="item-name">{item.title} x{item.quantity}</span>
+                        <span className="item-price">P {(item.price * item.quantity).toFixed(2)}</span>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="order-totals">
+                    <div className="total-line">
+                      <span>Subtotal:</span>
+                      <span>P {subtotal.toFixed(2)}</span>
+                    </div>
+                    {totalDiscount > 0 && (
+                      <div className="total-line">
+                        <span>Discount:</span>
+                        <span>-P {totalDiscount.toFixed(2)}</span>
+                      </div>
+                    )}
+                    <div className="total-line final-total">
+                      <span>Total:</span>
+                      <span>P {total.toFixed(2)}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="payment-info">
+                    <h4>Payment Method</h4>
+                    <p>{selectedPaymentMethod === 'credit-card' ? 'Credit/Debit Card' : 'Digital Wallet'}</p>
+                  </div>
+                </div>
+                
+                <div className="modal-actions">
+                  <button 
+                    type="button" 
+                    className="cancel-btn"
+                    onClick={() => setIsConfirmModalOpen(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button 
+                    type="button" 
+                    className="confirm-btn"
+                    onClick={handleConfirmPurchase}
+                  >
+                    Confirm Purchase
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
