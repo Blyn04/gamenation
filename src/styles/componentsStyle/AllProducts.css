@@ -176,8 +176,28 @@
   margin-left: auto;
   margin-right: auto;
   z-index: 1;
-  align-items: center;
+  align-items: flex-end;
   margin-top: 200px;
+}
+
+/* Filter Group Container */
+.allproducts-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+/* Filter Labels */
+.allproducts-filter-label {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
 }
 
 /* Mobile responsive - group filters into rows */
@@ -189,7 +209,7 @@
     gap: 15px;
     padding: 0 16px;
     margin-top: 180px;
-    align-items: center;
+    align-items: flex-start;
     justify-items: center;
   }
   
@@ -198,24 +218,28 @@
     width: 100%;
   }
   
-  .allproducts-filter-select:nth-of-type(1) {
+  .allproducts-filter-group:nth-of-type(2) {
     grid-row: 2;
     grid-column: 1;
   }
   
-  .allproducts-filter-select:nth-of-type(2) {
+  .allproducts-filter-group:nth-of-type(3) {
     grid-row: 2;
     grid-column: 2;
   }
   
-  .allproducts-filter-select:nth-of-type(3) {
+  .allproducts-filter-group:nth-of-type(4) {
     grid-row: 3;
     grid-column: 1;
   }
   
-  .allproducts-filter-select:nth-of-type(4) {
+  .allproducts-filter-group:nth-of-type(5) {
     grid-row: 3;
     grid-column: 2;
+  }
+  
+  .allproducts-filter-label {
+    font-size: 10px;
   }
 }
 
@@ -266,26 +290,95 @@
 }
 
 .allproducts-filter-select {
-  padding: 10px 15px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
   min-width: 120px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
 }
 
-.allproducts-filter-select:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
+/* Ant Design Select custom styling */
+.allproducts-filter-select {
+  min-width: 120px;
+  display: block !important;
 }
 
-.allproducts-filter-select option {
-  background: rgba(15, 23, 42, 0.95);
-  color: white;
+.allproducts-filter-select .ant-select-selector {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(10px) !important;
+  color: white !important;
+  min-height: 40px !important;
+  padding: 4px 11px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.allproducts-filter-select .ant-select-selection-item {
+  color: white !important;
+  font-size: 14px !important;
+}
+
+.allproducts-filter-select .ant-select-selection-placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 14px !important;
+}
+
+.allproducts-filter-select:hover .ant-select-selector {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.allproducts-filter-select.ant-select-focused .ant-select-selector {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(245, 158, 11, 0.5) !important;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2) !important;
+}
+
+.allproducts-filter-select .ant-select-arrow {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Dropdown styling */
+.allproducts-filter-select .ant-select-dropdown {
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.allproducts-filter-select .ant-select-item {
+  color: white !important;
+  background: transparent !important;
+}
+
+.allproducts-filter-select .ant-select-item:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.allproducts-filter-select .ant-select-item-option-selected {
+  background: rgba(245, 158, 11, 0.2) !important;
+  color: #f59e0b !important;
+}
+
+/* Ensure dropdowns are visible and functional */
+.allproducts-filter-select .ant-select-selection-search {
+  color: white !important;
+}
+
+.allproducts-filter-select .ant-select-selection-placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+.allproducts-filter-select .ant-select-arrow {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 12px !important;
+}
+
+/* Force visibility */
+.allproducts-filter-select {
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 10 !important;
 }
 
 /* No results message */

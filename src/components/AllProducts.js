@@ -4,6 +4,8 @@ import "../styles/componentsStyle/AllProducts.css";
 import Header from "../customs/Header";
 import Footer from "../customs/Footer";
 import { PlayCircleOutlined, SearchOutlined } from '@ant-design/icons';
+import { Select } from 'antd';
+import 'antd/dist/reset.css';
 
 // Import game images
 import watchdog from '../assets/ps5Games/watchdog.png';
@@ -67,63 +69,67 @@ const imageMap = {
 
 // Extended product data with more games for pagination
 const allProducts = [
-  { id: 1, title: "Watch Dogs: Legion - Deluxe Edition", price: "₱1,800", image: "watchdog.png" },
-  { id: 2, title: "FINAL FANTASY VII REBIRTH", price: "₱2,500", image: "ffvr.png" },
-  { id: 3, title: "Bad Cat", price: "₱1,000", image: "badcat.png" },
-  { id: 4, title: "Digimon Story Time Stranger", price: "₱1,500", image: "digimon.png" },
-  { id: 5, title: "OCTOPATH TRAVELER O", price: "₱1,800", image: "octapath0.png" },
-  { id: 6, title: "SILENT HILL 1", price: "₱2,800", image: "sh1.png" },
-  { id: 7, title: "Dying Light: The Beast", price: "₱1,200", image: "dytb.png" },
-  { id: 8, title: "Resident Evil 3 Nemesis", price: "₱1,700", image: "re3nemesis.png" },
-  { id: 9, title: "Cats Ritual", price: "₱1,000", image: "catsritual.png" },
-  { id: 10, title: "Sonic Racing: CrossWorlds", price: "₱2,000", image: "srcw.png" },
-  { id: 11, title: "The Outer Worlds 2", price: "₱2,800", image: "outerworld.png" },
-  { id: 12, title: "TEKKEN 8 Advanced Edition", price: "₱2,400", image: "tekken8.png" },
-  { id: 13, title: "LEGO® Horizon Adventures™", price: "₱2,800", image: "lego.png" },
-  { id: 14, title: "Life is Strange: Double Exposure", price: "₱2,800", image: "lifestrange.png" },
-  { id: 15, title: "Metaphor: ReFantazio", price: "₱2,800", image: "metaphor.png" },
-  { id: 16, title: "Ready or Not: Digital Deluxe Edition", price: "₱2,200", image: "readyornot.png" },
-  { id: 17, title: "Indiana Jones and the Great Circle", price: "₱1,100", image: "ijgc.png" },
-  { id: 18, title: "The First Berserker: Khazan", price: "₱2,800", image: "firstberserker.png" },
-  { id: 19, title: "SPYKANYA: Operation Memories", price: "₱2,800", image: "spy.png" },
-  { id: 20, title: "Persona 5 Tactical", price: "₱2,800", image: "p5.png" },
-  { id: 21, title: "EDENS ZERO", price: "₱2,400", image: "edenzero.png" },
-  { id: 22, title: "HUNTER×HUNTER NEN×IMPACT", price: "₱1,500", image: "hxh.png" },
-  { id: 23, title: "Atelier Yumic The Alchemist of Memories", price: "₱1,500", image: "atelieryumia.png" },
-  { id: 24, title: "Shin Megami Tensei V Vengeance", price: "₱2,000", image: "shin.png" },
-  { id: 25, title: "F1 24", price: "₱1,700", image: "f1.png" },
+  { id: 1, title: "Watch Dogs: Legion - Deluxe Edition", price: "₱1,800", image: "watchdog.png", genre: "Action", type: "Digital", priceRange: "1000-2000" },
+  { id: 2, title: "FINAL FANTASY VII REBIRTH", price: "₱2,500", image: "ffvr.png", genre: "RPG", type: "Digital", priceRange: "2000-3000" },
+  { id: 3, title: "Bad Cat", price: "₱1,000", image: "badcat.png", genre: "Adventure", type: "Digital", priceRange: "1000-2000" },
+  { id: 4, title: "Digimon Story Time Stranger", price: "₱1,500", image: "digimon.png", genre: "RPG", type: "Digital", priceRange: "1000-2000" },
+  { id: 5, title: "OCTOPATH TRAVELER O", price: "₱1,800", image: "octapath0.png", genre: "RPG", type: "Digital", priceRange: "1000-2000" },
+  { id: 6, title: "SILENT HILL 1", price: "₱2,800", image: "sh1.png", genre: "Adventure", type: "Digital", priceRange: "2000-3000" },
+  { id: 7, title: "Dying Light: The Beast", price: "₱1,200", image: "dytb.png", genre: "Action", type: "Digital", priceRange: "1000-2000" },
+  { id: 8, title: "Resident Evil 3 Nemesis", price: "₱1,700", image: "re3nemesis.png", genre: "Action", type: "Digital", priceRange: "1000-2000" },
+  { id: 9, title: "Cats Ritual", price: "₱1,000", image: "catsritual.png", genre: "Adventure", type: "Digital", priceRange: "1000-2000" },
+  { id: 10, title: "Sonic Racing: CrossWorlds", price: "₱2,000", image: "srcw.png", genre: "Racing", type: "Digital", priceRange: "1000-2000" },
+  { id: 11, title: "The Outer Worlds 2", price: "₱2,800", image: "outerworld.png", genre: "RPG", type: "Digital", priceRange: "2000-3000" },
+  { id: 12, title: "TEKKEN 8 Advanced Edition", price: "₱2,400", image: "tekken8.png", genre: "Action", type: "Deluxe", priceRange: "2000-3000" },
+  { id: 13, title: "LEGO® Horizon Adventures™", price: "₱2,800", image: "lego.png", genre: "Adventure", type: "Digital", priceRange: "2000-3000" },
+  { id: 14, title: "Life is Strange: Double Exposure", price: "₱2,800", image: "lifestrange.png", genre: "Adventure", type: "Digital", priceRange: "2000-3000" },
+  { id: 15, title: "Metaphor: ReFantazio", price: "₱2,800", image: "metaphor.png", genre: "RPG", type: "Digital", priceRange: "2000-3000" },
+  { id: 16, title: "Ready or Not: Digital Deluxe Edition", price: "₱2,200", image: "readyornot.png", genre: "Action", type: "Deluxe", priceRange: "2000-3000" },
+  { id: 17, title: "Indiana Jones and the Great Circle", price: "₱1,100", image: "ijgc.png", genre: "Adventure", type: "Digital", priceRange: "1000-2000" },
+  { id: 18, title: "The First Berserker: Khazan", price: "₱2,800", image: "firstberserker.png", genre: "Action", type: "Digital", priceRange: "2000-3000" },
+  { id: 19, title: "SPYKANYA: Operation Memories", price: "₱2,800", image: "spy.png", genre: "Adventure", type: "Digital", priceRange: "2000-3000" },
+  { id: 20, title: "Persona 5 Tactical", price: "₱2,800", image: "p5.png", genre: "RPG", type: "Digital", priceRange: "2000-3000" },
+  { id: 21, title: "EDENS ZERO", price: "₱2,400", image: "edenzero.png", genre: "RPG", type: "Digital", priceRange: "2000-3000" },
+  { id: 22, title: "HUNTER×HUNTER NEN×IMPACT", price: "₱1,500", image: "hxh.png", genre: "Action", type: "Digital", priceRange: "1000-2000" },
+  { id: 23, title: "Atelier Yumic The Alchemist of Memories", price: "₱1,500", image: "atelieryumia.png", genre: "RPG", type: "Digital", priceRange: "1000-2000" },
+  { id: 24, title: "Shin Megami Tensei V Vengeance", price: "₱2,000", image: "shin.png", genre: "RPG", type: "Digital", priceRange: "1000-2000" },
+  { id: 25, title: "F1 24", price: "₱1,700", image: "f1.png", genre: "Racing", type: "Digital", priceRange: "1000-2000" },
   // Additional games for pagination
-  { id: 26, title: "Monster Hunter Wilds", price: "₱3,200", image: "mhw.png" },
-  { id: 27, title: "Cyberpunk 2077", price: "₱2,100", image: "cyberpunk-2077.png" },
-  { id: 28, title: "Grand Theft Auto Online", price: "₱1,800", image: "gta-online.png" },
-  { id: 29, title: "Call of Duty Black Ops 6", price: "₱2,600", image: "codbo6.png" },
-  { id: 30, title: "NBA 2K26", price: "₱2,300", image: "nba2k26.png" },
-  { id: 31, title: "Mortal Kombat", price: "₱2,100", image: "mk.png" },
-  { id: 32, title: "Street Fighter 6", price: "₱2,400", image: "streetfighter.png" },
-  { id: 33, title: "King of Fighters XV", price: "₱1,900", image: "kingoffighters.png" },
-  { id: 34, title: "Dead by Daylight", price: "₱1,600", image: "dbd.png" },
-  { id: 35, title: "Phasmophobia", price: "₱800", image: "phasmophobia.png" },
-  { id: 36, title: "Hogwarts Legacy", price: "₱2,700", image: "hl.png" },
-  { id: 37, title: "ASTRO BOT", price: "₱1,900", image: "ab.png" },
-  { id: 38, title: "Hitman World of Assassination", price: "₱2,200", image: "hitman.png" },
-  { id: 39, title: "The Last of Us Part II", price: "₱2,800", image: "thelastofus.png" },
-  { id: 40, title: "WUCHANG Fallen Feathers", price: "₱2,500", image: "wff.png" },
-  { id: 41, title: "DOOM The Dark Ages", price: "₱2,300", image: "doom.png" },
-  { id: 42, title: "EA SPORTS FC", price: "₱2,400", image: "ea-sports-fc.png" },
-  { id: 43, title: "Death Stranding 2", price: "₱2,900", image: "ds2tb.png" },
-  { id: 44, title: "Ghost of Yōtei", price: "₱2,600", image: "gy.png" },
-  { id: 45, title: "Metal Gear Solid Delta", price: "₱3,000", image: "mgsse.png" },
-  { id: 46, title: "Split Fiction", price: "₱2,200", image: "sf.png" },
-  { id: 47, title: "CarX Street", price: "₱1,800", image: "carx-street.png" },
-  { id: 48, title: "Forza Horizon 5", price: "₱2,500", image: "fh5.png" },
-  { id: 49, title: "Borderlands 4", price: "₱2,700", image: "borderlands4.png" },
-  { id: 50, title: "Clair Obscur Expedition 33", price: "₱2,300", image: "coe33.png" }
+  { id: 26, title: "Monster Hunter Wilds", price: "₱3,200", image: "mhw.png", genre: "Action", type: "Digital", priceRange: "3000+" },
+  { id: 27, title: "Cyberpunk 2077", price: "₱2,100", image: "cyberpunk-2077.png", genre: "Action", type: "Digital", priceRange: "2000-3000" },
+  { id: 28, title: "Grand Theft Auto Online", price: "₱1,800", image: "gta-online.png", genre: "Action", type: "Digital", priceRange: "1000-2000" },
+  { id: 29, title: "Call of Duty Black Ops 6", price: "₱2,600", image: "codbo6.png", genre: "Action", type: "Digital", priceRange: "2000-3000" },
+  { id: 30, title: "NBA 2K26", price: "₱2,300", image: "nba2k26.png", genre: "Sports", type: "Digital", priceRange: "2000-3000" },
+  { id: 31, title: "Mortal Kombat", price: "₱2,100", image: "mk.png", genre: "Action", type: "Digital", priceRange: "2000-3000" },
+  { id: 32, title: "Street Fighter 6", price: "₱2,400", image: "streetfighter.png", genre: "Action", type: "Digital", priceRange: "2000-3000" },
+  { id: 33, title: "King of Fighters XV", price: "₱1,900", image: "kingoffighters.png", genre: "Action", type: "Digital", priceRange: "1000-2000" },
+  { id: 34, title: "Dead by Daylight", price: "₱1,600", image: "dbd.png", genre: "Action", type: "Digital", priceRange: "1000-2000" },
+  { id: 35, title: "Phasmophobia", price: "₱800", image: "phasmophobia.png", genre: "Adventure", type: "Digital", priceRange: "under-1000" },
+  { id: 36, title: "Hogwarts Legacy", price: "₱2,700", image: "hl.png", genre: "RPG", type: "Digital", priceRange: "2000-3000" },
+  { id: 37, title: "ASTRO BOT", price: "₱1,900", image: "ab.png", genre: "Adventure", type: "Digital", priceRange: "1000-2000" },
+  { id: 38, title: "Hitman World of Assassination", price: "₱2,200", image: "hitman.png", genre: "Action", type: "Digital", priceRange: "2000-3000" },
+  { id: 39, title: "The Last of Us Part II", price: "₱2,800", image: "thelastofus.png", genre: "Action", type: "Digital", priceRange: "2000-3000" },
+  { id: 40, title: "WUCHANG Fallen Feathers", price: "₱2,500", image: "wff.png", genre: "Action", type: "Digital", priceRange: "2000-3000" },
+  { id: 41, title: "DOOM The Dark Ages", price: "₱2,300", image: "doom.png", genre: "Action", type: "Digital", priceRange: "2000-3000" },
+  { id: 42, title: "EA SPORTS FC", price: "₱2,400", image: "ea-sports-fc.png", genre: "Sports", type: "Digital", priceRange: "2000-3000" },
+  { id: 43, title: "Death Stranding 2", price: "₱2,900", image: "ds2tb.png", genre: "Adventure", type: "Digital", priceRange: "2000-3000" },
+  { id: 44, title: "Ghost of Yōtei", price: "₱2,600", image: "gy.png", genre: "Action", type: "Digital", priceRange: "2000-3000" },
+  { id: 45, title: "Metal Gear Solid Delta", price: "₱3,000", image: "mgsse.png", genre: "Action", type: "Digital", priceRange: "3000+" },
+  { id: 46, title: "Split Fiction", price: "₱2,200", image: "sf.png", genre: "Adventure", type: "Digital", priceRange: "2000-3000" },
+  { id: 47, title: "CarX Street", price: "₱1,800", image: "carx-street.png", genre: "Racing", type: "Digital", priceRange: "1000-2000" },
+  { id: 48, title: "Forza Horizon 5", price: "₱2,500", image: "fh5.png", genre: "Racing", type: "Digital", priceRange: "2000-3000" },
+  { id: 49, title: "Borderlands 4", price: "₱2,700", image: "borderlands4.png", genre: "Action", type: "Digital", priceRange: "2000-3000" },
+  { id: 50, title: "Clair Obscur Expedition 33", price: "₱2,300", image: "coe33.png", genre: "RPG", type: "Digital", priceRange: "2000-3000" }
 ];
 
 const AllProducts = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [isMonsterHunterModalOpen, setIsMonsterHunterModalOpen] = useState(false);
+  const [sortBy, setSortBy] = useState("");
+  const [genreFilter, setGenreFilter] = useState("");
+  const [typeFilter, setTypeFilter] = useState("");
+  const [priceFilter, setPriceFilter] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const productsPerPage = 25; // Show 25 products per page (5x5 grid)
@@ -169,10 +175,38 @@ const AllProducts = () => {
     navigate("/item-details", { state: { gameData } });
   };
 
-  // Filter products based on search term
-  const filteredProducts = allProducts.filter(product =>
-    product.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Filter products based on search term and all filters
+  const filteredProducts = allProducts.filter(product => {
+    // Search term filter
+    const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    // Genre filter
+    const matchesGenre = !genreFilter || product.genre === genreFilter;
+    
+    // Type filter
+    const matchesType = !typeFilter || product.type === typeFilter;
+    
+    // Price filter
+    const matchesPrice = !priceFilter || product.priceRange === priceFilter;
+    
+    return matchesSearch && matchesGenre && matchesType && matchesPrice;
+  }).sort((a, b) => {
+    // Apply sorting
+    if (!sortBy) return 0;
+    
+    switch (sortBy) {
+      case 'price-low-high':
+        return parseFloat(a.price.replace(/[₱,]/g, '')) - parseFloat(b.price.replace(/[₱,]/g, ''));
+      case 'price-high-low':
+        return parseFloat(b.price.replace(/[₱,]/g, '')) - parseFloat(a.price.replace(/[₱,]/g, ''));
+      case 'name-a-z':
+        return a.title.localeCompare(b.title);
+      case 'name-z-a':
+        return b.title.localeCompare(a.title);
+      default:
+        return 0;
+    }
+  });
 
   // Calculate pagination for filtered products
   const totalFilteredPages = Math.ceil(filteredProducts.length / productsPerPage);
@@ -201,10 +235,10 @@ const AllProducts = () => {
     }
   };
 
-  // Reset to page 1 when searching
+  // Reset to page 1 when searching or filtering
   React.useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm]);
+  }, [searchTerm, sortBy, genreFilter, typeFilter, priceFilter]);
 
   // Generate page numbers to display
   const getPageNumbers = () => {
@@ -325,35 +359,79 @@ const AllProducts = () => {
             className="allproducts-search-input"
           />
         </div>
-        <select className="allproducts-filter-select">
-          <option>Sort</option>
-          <option>Price: Low to High</option>
-          <option>Price: High to Low</option>
-          <option>Name: A-Z</option>
-          <option>Name: Z-A</option>
-        </select>
-        <select className="allproducts-filter-select">
-          <option>Genre</option>
-          <option>Action</option>
-          <option>Adventure</option>
-          <option>RPG</option>
-          <option>Sports</option>
-          <option>Racing</option>
-        </select>
-        <select className="allproducts-filter-select">
-          <option>Type</option>
-          <option>Digital</option>
-          <option>Physical</option>
-          <option>Deluxe</option>
-          <option>Standard</option>
-        </select>
-        <select className="allproducts-filter-select">
-          <option>Price</option>
-          <option>Under ₱1,000</option>
-          <option>₱1,000 - ₱2,000</option>
-          <option>₱2,000 - ₱3,000</option>
-          <option>Over ₱3,000</option>
-        </select>
+        
+        <div className="allproducts-filter-group">
+          <label className="allproducts-filter-label">Sort By</label>
+          <Select
+            className="allproducts-filter-select"
+            placeholder="Sort"
+            value={sortBy}
+            onChange={setSortBy}
+            allowClear
+            style={{ minWidth: 150 }}
+            options={[
+              { value: 'price-low-high', label: 'Price: Low to High' },
+              { value: 'price-high-low', label: 'Price: High to Low' },
+              { value: 'name-a-z', label: 'Name: A-Z' },
+              { value: 'name-z-a', label: 'Name: Z-A' }
+            ]}
+          />
+        </div>
+        
+        <div className="allproducts-filter-group">
+          <label className="allproducts-filter-label">Genre</label>
+          <Select
+            className="allproducts-filter-select"
+            placeholder="Genre"
+            value={genreFilter}
+            onChange={setGenreFilter}
+            allowClear
+            style={{ minWidth: 120 }}
+            options={[
+              { value: 'Action', label: 'Action' },
+              { value: 'Adventure', label: 'Adventure' },
+              { value: 'RPG', label: 'RPG' },
+              { value: 'Sports', label: 'Sports' },
+              { value: 'Racing', label: 'Racing' }
+            ]}
+          />
+        </div>
+        
+        <div className="allproducts-filter-group">
+          <label className="allproducts-filter-label">Type</label>
+          <Select
+            className="allproducts-filter-select"
+            placeholder="Type"
+            value={typeFilter}
+            onChange={setTypeFilter}
+            allowClear
+            style={{ minWidth: 120 }}
+            options={[
+              { value: 'Digital', label: 'Digital' },
+              { value: 'Physical', label: 'Physical' },
+              { value: 'Deluxe', label: 'Deluxe' },
+              { value: 'Standard', label: 'Standard' }
+            ]}
+          />
+        </div>
+        
+        <div className="allproducts-filter-group">
+          <label className="allproducts-filter-label">Price Range</label>
+          <Select
+            className="allproducts-filter-select"
+            placeholder="Price"
+            value={priceFilter}
+            onChange={setPriceFilter}
+            allowClear
+            style={{ minWidth: 150 }}
+            options={[
+              { value: 'under-1000', label: 'Under ₱1,000' },
+              { value: '1000-2000', label: '₱1,000 - ₱2,000' },
+              { value: '2000-3000', label: '₱2,000 - ₱3,000' },
+              { value: '3000+', label: 'Over ₱3,000' }
+            ]}
+          />
+        </div>
       </div>
 
       {/* Products Grid */}
