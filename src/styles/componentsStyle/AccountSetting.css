@@ -1141,3 +1141,61 @@
     gap: 20px;
   }
 }
+
+/* Sign Out Confirmation Modal */
+.sign-out-modal {
+  max-width: 500px;
+}
+
+.sign-out-content {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.sign-out-icon {
+  font-size: 3rem;
+  color: rgba(239, 68, 68, 0.8);
+  margin-bottom: 20px;
+}
+
+.sign-out-content h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.sign-out-content p {
+  font-size: 1rem;
+  color: #cbd5e1;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.sign-out-confirm-btn {
+  background: rgba(239, 68, 68, 0.9);
+  border: 1px solid rgba(239, 68, 68, 1);
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  min-height: 48px;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.sign-out-confirm-btn:hover {
+  background: rgba(239, 68, 68, 1);
+  border-color: rgba(239, 68, 68, 1);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+}

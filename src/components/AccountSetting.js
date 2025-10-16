@@ -33,6 +33,7 @@ const AccountSetting = () => {
   });
 
   const [isAddPaymentModalOpen, setIsAddPaymentModalOpen] = useState(false);
+  const [isSignOutModalOpen, setIsSignOutModalOpen] = useState(false);
   const [paymentFormData, setPaymentFormData] = useState({
     cardNumber: '',
     expiryDate: '',
@@ -64,6 +65,19 @@ const AccountSetting = () => {
 
   const handleSignOut = () => {
     navigate('/');
+  };
+
+  const handleSignOutClick = () => {
+    setIsSignOutModalOpen(true);
+  };
+
+  const handleConfirmSignOut = () => {
+    setIsSignOutModalOpen(false);
+    navigate('/');
+  };
+
+  const handleCancelSignOut = () => {
+    setIsSignOutModalOpen(false);
   };
 
   const handleAddPaymentMethod = () => {
@@ -304,7 +318,7 @@ const AccountSetting = () => {
               <li>
                 <button 
                   className="nav-link sign-out"
-                  onClick={handleSignOut}
+                  onClick={handleSignOutClick}
                 >
                   <LogoutOutlined /> Sign Out
                 </button>
@@ -325,7 +339,7 @@ const AccountSetting = () => {
                 <p className="user-email">{profileData.email}</p>
               </div>
             </div>
-            <button className="sign-out-btn" onClick={handleSignOut}>
+            <button className="sign-out-btn" onClick={handleSignOutClick}>
               <LogoutOutlined />
               Sign Out
             </button>
@@ -483,6 +497,37 @@ const AccountSetting = () => {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Sign Out Confirmation Modal */}
+      {isSignOutModalOpen && (
+        <div className="modal-overlay" onClick={handleCancelSignOut}>
+          <div className="modal-content sign-out-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2 className="modal-title">Sign Out</h2>
+              <button className="modal-close-btn" onClick={handleCancelSignOut}>
+                <CloseOutlined />
+              </button>
+            </div>
+            
+            <div className="modal-body">
+              <div className="sign-out-content">
+                <LogoutOutlined className="sign-out-icon" />
+                <h3>Are you sure you want to sign out?</h3>
+                <p>You'll need to sign in again to access your account and continue your gaming experience.</p>
+              </div>
+            </div>
+
+            <div className="modal-footer">
+              <button className="cancel-btn" onClick={handleCancelSignOut}>
+                Cancel
+              </button>
+              <button className="sign-out-confirm-btn" onClick={handleConfirmSignOut}>
+                <LogoutOutlined /> Sign Out
+              </button>
+            </div>
           </div>
         </div>
       )}
