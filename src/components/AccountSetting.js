@@ -212,7 +212,7 @@ const AccountSetting = () => {
                 <TransactionOutlined className="empty-icon" />
                 <h3>No Transactions Yet</h3>
                 <p>Your purchase history will appear here</p>
-                <button className="primary-btn">Browse Games</button>
+                <button className="primary-btn" onClick={() => navigate('/browse')}>Browse Games</button>
               </div>
             </div>
           </div>
