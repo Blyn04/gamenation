@@ -128,7 +128,6 @@ const AllProducts = () => {
   const [isMonsterHunterModalOpen, setIsMonsterHunterModalOpen] = useState(false);
   const [sortBy, setSortBy] = useState("");
   const [genreFilter, setGenreFilter] = useState("");
-  const [typeFilter, setTypeFilter] = useState("");
   const [priceFilter, setPriceFilter] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -183,13 +182,10 @@ const AllProducts = () => {
     // Genre filter
     const matchesGenre = !genreFilter || product.genre === genreFilter;
     
-    // Type filter
-    const matchesType = !typeFilter || product.type === typeFilter;
-    
     // Price filter
     const matchesPrice = !priceFilter || product.priceRange === priceFilter;
     
-    return matchesSearch && matchesGenre && matchesType && matchesPrice;
+    return matchesSearch && matchesGenre && matchesPrice;
   }).sort((a, b) => {
     // Apply sorting
     if (!sortBy) return 0;
@@ -238,7 +234,7 @@ const AllProducts = () => {
   // Reset to page 1 when searching or filtering
   React.useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm, sortBy, genreFilter, typeFilter, priceFilter]);
+  }, [searchTerm, sortBy, genreFilter, priceFilter]);
 
   // Generate page numbers to display
   const getPageNumbers = () => {
@@ -397,23 +393,6 @@ const AllProducts = () => {
           />
         </div>
         
-        <div className="allproducts-filter-group">
-          <label className="allproducts-filter-label">Type</label>
-          <Select
-            className="allproducts-filter-select"
-            placeholder="Type"
-            value={typeFilter}
-            onChange={setTypeFilter}
-            allowClear
-            style={{ minWidth: 120 }}
-            options={[
-              { value: 'Digital', label: 'Digital' },
-              { value: 'Physical', label: 'Physical' },
-              { value: 'Deluxe', label: 'Deluxe' },
-              { value: 'Standard', label: 'Standard' }
-            ]}
-          />
-        </div>
         
         <div className="allproducts-filter-group">
           <label className="allproducts-filter-label">Price Range</label>
