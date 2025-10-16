@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { EditOutlined, UserOutlined, CreditCardOutlined, TransactionOutlined, LogoutOutlined, SettingOutlined, BellOutlined, SafetyOutlined } from '@ant-design/icons';
+import { EditOutlined, UserOutlined, CreditCardOutlined, TransactionOutlined, LogoutOutlined, SettingOutlined, BellOutlined, SafetyOutlined, CloseOutlined, PlusOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import '../styles/componentsStyle/AccountSetting.css';
 
@@ -32,6 +32,18 @@ const AccountSetting = () => {
     country: profileData.country
   });
 
+  const [isAddPaymentModalOpen, setIsAddPaymentModalOpen] = useState(false);
+  const [paymentFormData, setPaymentFormData] = useState({
+    cardNumber: '',
+    expiryDate: '',
+    cvv: '',
+    cardholderName: '',
+    billingAddress: '',
+    city: '',
+    zipCode: '',
+    country: 'Philippines'
+  });
+
   const handleEdit = (field) => {
     setIsEditing(prev => ({ ...prev, [field]: true }));
   };
@@ -52,6 +64,37 @@ const AccountSetting = () => {
 
   const handleSignOut = () => {
     navigate('/');
+  };
+
+  const handleAddPaymentMethod = () => {
+    setIsAddPaymentModalOpen(true);
+  };
+
+  const handleClosePaymentModal = () => {
+    setIsAddPaymentModalOpen(false);
+    setPaymentFormData({
+      cardNumber: '',
+      expiryDate: '',
+      cvv: '',
+      cardholderName: '',
+      billingAddress: '',
+      city: '',
+      zipCode: '',
+      country: 'Philippines'
+    });
+  };
+
+  const handlePaymentFormChange = (field, value) => {
+    setPaymentFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmitPaymentMethod = (e) => {
+    e.preventDefault();
+    // Here you would typically send the payment method data to your backend
+    console.log('Payment method data:', paymentFormData);
+    // For now, just close the modal
+    handleClosePaymentModal();
+    // You could add a success notification here
   };
 
   const renderProfileField = (label, field, value, icon, isEditable = true) => (
@@ -150,7 +193,9 @@ const AccountSetting = () => {
                 <CreditCardOutlined className="empty-icon" />
                 <h3>No Payment Methods</h3>
                 <p>Add a payment method to start making purchases</p>
-                <button className="primary-btn">Add Payment Method</button>
+                <button className="primary-btn" onClick={handleAddPaymentMethod}>
+                  <PlusOutlined /> Add Payment Method
+                </button>
               </div>
             </div>
           </div>
@@ -308,6 +353,139 @@ const AccountSetting = () => {
           {renderContent()}
         </div>
       </div>
+
+      {/* Add Payment Method Modal */}
+      {isAddPaymentModalOpen && (
+        <div className="modal-overlay" onClick={handleClosePaymentModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2 className="modal-title">Add Payment Method</h2>
+              <button className="modal-close-btn" onClick={handleClosePaymentModal}>
+                <CloseOutlined />
+              </button>
+            </div>
+            
+            <form className="modal-body" onSubmit={handleSubmitPaymentMethod}>
+              <div className="form-sections-container">
+                <div className="form-section">
+                  <h3 className="form-section-title">Card Information</h3>
+                <div className="form-group">
+                  <label className="form-label">Card Number</label>
+                  <input
+                    type="text"
+                    className="form-input"
+                    placeholder="1234 5678 9012 3456"
+                    value={paymentFormData.cardNumber}
+                    onChange={(e) => handlePaymentFormChange('cardNumber', e.target.value)}
+                    maxLength="19"
+                  />
+                </div>
+                
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">Expiry Date</label>
+                    <input
+                      type="text"
+                      className="form-input"
+                      placeholder="MM/YY"
+                      value={paymentFormData.expiryDate}
+                      onChange={(e) => handlePaymentFormChange('expiryDate', e.target.value)}
+                      maxLength="5"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">CVV</label>
+                    <input
+                      type="text"
+                      className="form-input"
+                      placeholder="123"
+                      value={paymentFormData.cvv}
+                      onChange={(e) => handlePaymentFormChange('cvv', e.target.value)}
+                      maxLength="4"
+                    />
+                  </div>
+                </div>
+                
+                <div className="form-group">
+                  <label className="form-label">Cardholder Name</label>
+                  <input
+                    type="text"
+                    className="form-input"
+                    placeholder="John Doe"
+                    value={paymentFormData.cardholderName}
+                    onChange={(e) => handlePaymentFormChange('cardholderName', e.target.value)}
+                  />
+                </div>
+                </div>
+
+                <div className="form-section">
+                  <h3 className="form-section-title">Billing Address</h3>
+                <div className="form-group">
+                  <label className="form-label">Address</label>
+                  <input
+                    type="text"
+                    className="form-input"
+                    placeholder="123 Main Street"
+                    value={paymentFormData.billingAddress}
+                    onChange={(e) => handlePaymentFormChange('billingAddress', e.target.value)}
+                  />
+                </div>
+                
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">City</label>
+                    <input
+                      type="text"
+                      className="form-input"
+                      placeholder="Manila"
+                      value={paymentFormData.city}
+                      onChange={(e) => handlePaymentFormChange('city', e.target.value)}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">ZIP Code</label>
+                    <input
+                      type="text"
+                      className="form-input"
+                      placeholder="1000"
+                      value={paymentFormData.zipCode}
+                      onChange={(e) => handlePaymentFormChange('zipCode', e.target.value)}
+                    />
+                  </div>
+                </div>
+                
+                <div className="form-group">
+                  <label className="form-label">Country</label>
+                  <select
+                    className="form-select"
+                    value={paymentFormData.country}
+                    onChange={(e) => handlePaymentFormChange('country', e.target.value)}
+                  >
+                    <option value="Philippines">Philippines</option>
+                    <option value="United States">United States</option>
+                    <option value="Canada">Canada</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Japan">Japan</option>
+                    <option value="South Korea">South Korea</option>
+                    <option value="Singapore">Singapore</option>
+                  </select>
+                </div>
+                </div>
+              </div>
+
+              <div className="modal-footer">
+                <button type="button" className="cancel-btn" onClick={handleClosePaymentModal}>
+                  Cancel
+                </button>
+                <button type="submit" className="primary-btn">
+                  <CreditCardOutlined /> Add Payment Method
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
