@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import Header from "../customs/Header";
 import Footer from "../customs/Footer";
 import { SearchOutlined, MoreOutlined } from '@ant-design/icons';
+import { Select } from 'antd';
 import { useNavigate } from "react-router-dom";
+import 'antd/dist/reset.css';
+import "../styles/componentsStyle/AllProducts.css";
 
 // Import game images for library games
 import ittakes2 from '../assets/ps5Games/itt.png';
@@ -44,60 +47,87 @@ const libraryImageMap = {
 
 // Library games data
 const libraryGames = [
-  { id: 1, title: "It Takes Two", image: "itt.png" },
-  { id: 2, title: "ELDEN RING", image: "er.png" },
-  { id: 3, title: "Gran Turismo® 7", image: "gt7.png" },
-  { id: 4, title: "Tony Hawk's™ Pro Skater", image: "thps.png" },
-  { id: 5, title: "Hello Kitty Island Adventure: Deluxe Edition", image: "hellokitty.png" },
-  { id: 6, title: "DRAGON QUEST I & II HD-2D Remake", image: "dragonquest.png" },
-  { id: 7, title: "Code Violet", image: "codeviolet.png" },
-  { id: 8, title: "Tiny Cats", image: "tinycats.png" },
-  { id: 9, title: "Until Dawn", image: "untildawn.png" },
-  { id: 10, title: "SWORD ART ONLINE Fractured Daydream", image: "swordart.png" },
-  { id: 11, title: "Street Fighter™ 6 Years 1-2 Fighters Editio", image: "streetfighter.png" },
-  { id: 12, title: "Kingdom Hearts III", image: "kingdomhearts.png" },
-  { id: 13, title: "FINAL FANTASY VII REBIRTH", image: "ffvr.png" },
-  { id: 14, title: "Goosebumps: Terror in Little Creek - Frightmare Edition", image: "goosebumps.png" },
-  { id: 15, title: "THE KING OF FIGHTERS XV Ultimate Edition", image: "kingoffighters.png" },
-  { id: 16, title: "DRAGON BALL Z: KAKAROT DAIMA EDITION", image: "dragonball.png" },
+  { id: 1, title: "It Takes Two", image: "itt.png", genre: "Adventure", playTime: "15-20 hours", lastPlayed: "2 days ago" },
+  { id: 2, title: "ELDEN RING", image: "er.png", genre: "RPG", playTime: "50+ hours", lastPlayed: "1 week ago" },
+  { id: 3, title: "Gran Turismo® 7", image: "gt7.png", genre: "Racing", playTime: "30+ hours", lastPlayed: "3 days ago" },
+  { id: 4, title: "Tony Hawk's™ Pro Skater", image: "thps.png", genre: "Sports", playTime: "10-15 hours", lastPlayed: "1 day ago" },
+  { id: 5, title: "Hello Kitty Island Adventure: Deluxe Edition", image: "hellokitty.png", genre: "Adventure", playTime: "20-25 hours", lastPlayed: "4 days ago" },
+  { id: 6, title: "DRAGON QUEST I & II HD-2D Remake", image: "dragonquest.png", genre: "RPG", playTime: "40+ hours", lastPlayed: "1 week ago" },
+  { id: 7, title: "Code Violet", image: "codeviolet.png", genre: "Action", playTime: "8-12 hours", lastPlayed: "2 days ago" },
+  { id: 8, title: "Tiny Cats", image: "tinycats.png", genre: "Adventure", playTime: "5-8 hours", lastPlayed: "3 days ago" },
+  { id: 9, title: "Until Dawn", image: "untildawn.png", genre: "Adventure", playTime: "8-10 hours", lastPlayed: "5 days ago" },
+  { id: 10, title: "SWORD ART ONLINE Fractured Daydream", image: "swordart.png", genre: "RPG", playTime: "25+ hours", lastPlayed: "2 days ago" },
+  { id: 11, title: "Street Fighter™ 6 Years 1-2 Fighters Editio", image: "streetfighter.png", genre: "Action", playTime: "20+ hours", lastPlayed: "1 day ago" },
+  { id: 12, title: "Kingdom Hearts III", image: "kingdomhearts.png", genre: "RPG", playTime: "35+ hours", lastPlayed: "1 week ago" },
+  { id: 13, title: "FINAL FANTASY VII REBIRTH", image: "ffvr.png", genre: "RPG", playTime: "60+ hours", lastPlayed: "3 days ago" },
+  { id: 14, title: "Goosebumps: Terror in Little Creek - Frightmare Edition", image: "goosebumps.png", genre: "Adventure", playTime: "6-10 hours", lastPlayed: "4 days ago" },
+  { id: 15, title: "THE KING OF FIGHTERS XV Ultimate Edition", image: "kingoffighters.png", genre: "Action", playTime: "15+ hours", lastPlayed: "2 days ago" },
+  { id: 16, title: "DRAGON BALL Z: KAKAROT DAIMA EDITION", image: "dragonball.png", genre: "Action", playTime: "30+ hours", lastPlayed: "1 week ago" },
   // Add more games for pagination
-  { id: 17, title: "Cyberpunk 2077", image: "cyberpunk-2077.png" },
-  { id: 18, title: "Grand Theft Auto Online", image: "gta-online.png" },
-  { id: 19, title: "Call of Duty Black Ops 6", image: "codbo6.png" },
-  { id: 20, title: "NBA 2K26", image: "nba2k26.png" },
-  { id: 21, title: "Mortal Kombat", image: "mk.png" },
-  { id: 22, title: "Dead by Daylight", image: "dbd.png" },
-  { id: 23, title: "Phasmophobia", image: "phasmophobia.png" },
-  { id: 24, title: "Hogwarts Legacy", image: "hl.png" },
-  { id: 25, title: "ASTRO BOT", image: "ab.png" },
-  { id: 26, title: "Hitman World of Assassination", image: "hitman.png" },
-  { id: 27, title: "The Last of Us Part II", image: "thelastofus.png" },
-  { id: 28, title: "WUCHANG Fallen Feathers", image: "wff.png" },
-  { id: 29, title: "DOOM The Dark Ages", image: "doom.png" },
-  { id: 30, title: "EA SPORTS FC", image: "ea-sports-fc.png" },
-  { id: 31, title: "Death Stranding 2", image: "ds2tb.png" },
-  { id: 32, title: "Ghost of Yōtei", image: "gy.png" },
-  { id: 33, title: "Metal Gear Solid Delta", image: "mgsse.png" },
-  { id: 34, title: "Split Fiction", image: "sf.png" },
-  { id: 35, title: "CarX Street", image: "carx-street.png" },
-  { id: 36, title: "Forza Horizon 5", image: "fh5.png" },
-  { id: 37, title: "Borderlands 4", image: "borderlands4.png" },
-  { id: 38, title: "Clair Obscur Expedition 33", image: "coe33.png" },
-  { id: 39, title: "Watch Dogs: Legion", image: "watchdog.png" },
-  { id: 40, title: "Bad Cat", image: "badcat.png" }
+  { id: 17, title: "Cyberpunk 2077", image: "cyberpunk-2077.png", genre: "Action", playTime: "40+ hours", lastPlayed: "2 days ago" },
+  { id: 18, title: "Grand Theft Auto Online", image: "gta-online.png", genre: "Action", playTime: "100+ hours", lastPlayed: "1 day ago" },
+  { id: 19, title: "Call of Duty Black Ops 6", image: "codbo6.png", genre: "Action", playTime: "25+ hours", lastPlayed: "3 days ago" },
+  { id: 20, title: "NBA 2K26", image: "nba2k26.png", genre: "Sports", playTime: "30+ hours", lastPlayed: "1 day ago" },
+  { id: 21, title: "Mortal Kombat", image: "mk.png", genre: "Action", playTime: "20+ hours", lastPlayed: "2 days ago" },
+  { id: 22, title: "Dead by Daylight", image: "dbd.png", genre: "Action", playTime: "50+ hours", lastPlayed: "1 day ago" },
+  { id: 23, title: "Phasmophobia", image: "phasmophobia.png", genre: "Adventure", playTime: "15+ hours", lastPlayed: "4 days ago" },
+  { id: 24, title: "Hogwarts Legacy", image: "hl.png", genre: "RPG", playTime: "45+ hours", lastPlayed: "1 week ago" },
+  { id: 25, title: "ASTRO BOT", image: "ab.png", genre: "Adventure", playTime: "8-12 hours", lastPlayed: "3 days ago" },
+  { id: 26, title: "Hitman World of Assassination", image: "hitman.png", genre: "Action", playTime: "35+ hours", lastPlayed: "2 days ago" },
+  { id: 27, title: "The Last of Us Part II", image: "thelastofus.png", genre: "Adventure", playTime: "25+ hours", lastPlayed: "1 week ago" },
+  { id: 28, title: "WUCHANG Fallen Feathers", image: "wff.png", genre: "Action", playTime: "20+ hours", lastPlayed: "3 days ago" },
+  { id: 29, title: "DOOM The Dark Ages", image: "doom.png", genre: "Action", playTime: "15+ hours", lastPlayed: "2 days ago" },
+  { id: 30, title: "EA SPORTS FC", image: "ea-sports-fc.png", genre: "Sports", playTime: "40+ hours", lastPlayed: "1 day ago" },
+  { id: 31, title: "Death Stranding 2", image: "ds2tb.png", genre: "Adventure", playTime: "30+ hours", lastPlayed: "1 week ago" },
+  { id: 32, title: "Ghost of Yōtei", image: "gy.png", genre: "Action", playTime: "25+ hours", lastPlayed: "4 days ago" },
+  { id: 33, title: "Metal Gear Solid Delta", image: "mgsse.png", genre: "Action", playTime: "20+ hours", lastPlayed: "2 days ago" },
+  { id: 34, title: "Split Fiction", image: "sf.png", genre: "Adventure", playTime: "12+ hours", lastPlayed: "3 days ago" },
+  { id: 35, title: "CarX Street", image: "carx-street.png", genre: "Racing", playTime: "25+ hours", lastPlayed: "1 day ago" },
+  { id: 36, title: "Forza Horizon 5", image: "fh5.png", genre: "Racing", playTime: "50+ hours", lastPlayed: "2 days ago" },
+  { id: 37, title: "Borderlands 4", image: "borderlands4.png", genre: "Action", playTime: "30+ hours", lastPlayed: "1 week ago" },
+  { id: 38, title: "Clair Obscur Expedition 33", image: "coe33.png", genre: "RPG", playTime: "35+ hours", lastPlayed: "3 days ago" },
+  { id: 39, title: "Watch Dogs: Legion", image: "watchdog.png", genre: "Action", playTime: "25+ hours", lastPlayed: "1 week ago" },
+  { id: 40, title: "Bad Cat", image: "badcat.png", genre: "Adventure", playTime: "5-8 hours", lastPlayed: "2 days ago" }
 ];
 
 const Library = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("");
+  const [genreFilter, setGenreFilter] = useState("");
   const navigate = useNavigate();
   const gamesPerPage = 16; // Show 16 games per page (4x4 grid)
   const totalPages = Math.ceil(libraryGames.length / gamesPerPage);
 
-  // Filter games based on search term
-  const filteredGames = libraryGames.filter(game =>
-    game.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Filter games based on search term and filters
+  const filteredGames = libraryGames.filter(game => {
+    // Search term filter
+    const matchesSearch = game.title.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    // Genre filter
+    const matchesGenre = !genreFilter || game.genre === genreFilter;
+    
+    return matchesSearch && matchesGenre;
+  }).sort((a, b) => {
+    // Apply sorting
+    if (!sortBy) return 0;
+    
+    switch (sortBy) {
+      case 'name-a-z':
+        return a.title.localeCompare(b.title);
+      case 'name-z-a':
+        return b.title.localeCompare(a.title);
+      case 'recently-added':
+        return b.id - a.id; // Higher ID = more recent
+      case 'most-played':
+        // Sort by play time (extract numbers from playTime string)
+        const aTime = parseInt(a.playTime.match(/\d+/)?.[0] || '0');
+        const bTime = parseInt(b.playTime.match(/\d+/)?.[0] || '0');
+        return bTime - aTime;
+      default:
+        return 0;
+    }
+  });
 
   // Calculate pagination for filtered games
   const totalFilteredPages = Math.ceil(filteredGames.length / gamesPerPage);
@@ -126,10 +156,10 @@ const Library = () => {
     }
   };
 
-  // Reset to page 1 when searching
+  // Reset to page 1 when searching or filtering
   React.useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm]);
+  }, [searchTerm, sortBy, genreFilter]);
 
   // Handle game card click
   const handleGameClick = (game) => {
@@ -212,21 +242,42 @@ const Library = () => {
               />
             </div>
             <div className="flex gap-3">
-              <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-32 backdrop-blur-sm transition-all duration-300 hover:bg-white/15">
-                <option className="bg-slate-900 text-white">Sort</option>
-                <option className="bg-slate-900 text-white">Name: A-Z</option>
-                <option className="bg-slate-900 text-white">Name: Z-A</option>
-                <option className="bg-slate-900 text-white">Recently Added</option>
-                <option className="bg-slate-900 text-white">Most Played</option>
-              </select>
-              <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-32 backdrop-blur-sm transition-all duration-300 hover:bg-white/15">
-                <option className="bg-slate-900 text-white">Genre</option>
-                <option className="bg-slate-900 text-white">Action</option>
-                <option className="bg-slate-900 text-white">Adventure</option>
-                <option className="bg-slate-900 text-white">RPG</option>
-                <option className="bg-slate-900 text-white">Sports</option>
-                <option className="bg-slate-900 text-white">Racing</option>
-              </select>
+              <div className="allproducts-filter-group">
+                <label className="allproducts-filter-label">Sort By</label>
+                <Select
+                  className="allproducts-filter-select"
+                  placeholder="Sort"
+                  value={sortBy}
+                  onChange={setSortBy}
+                  allowClear
+                  style={{ minWidth: 150 }}
+                  options={[
+                    { value: 'name-a-z', label: 'Name: A-Z' },
+                    { value: 'name-z-a', label: 'Name: Z-A' },
+                    { value: 'recently-added', label: 'Recently Added' },
+                    { value: 'most-played', label: 'Most Played' }
+                  ]}
+                />
+              </div>
+              
+              <div className="allproducts-filter-group">
+                <label className="allproducts-filter-label">Genre</label>
+                <Select
+                  className="allproducts-filter-select"
+                  placeholder="Genre"
+                  value={genreFilter}
+                  onChange={setGenreFilter}
+                  allowClear
+                  style={{ minWidth: 120 }}
+                  options={[
+                    { value: 'Action', label: 'Action' },
+                    { value: 'Adventure', label: 'Adventure' },
+                    { value: 'RPG', label: 'RPG' },
+                    { value: 'Sports', label: 'Sports' },
+                    { value: 'Racing', label: 'Racing' }
+                  ]}
+                />
+              </div>
             </div>
           </div>
 

@@ -102,26 +102,90 @@
 }
 
 .library-filter-select {
-  padding: 10px 15px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
   min-width: 120px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
 }
 
-.library-filter-select:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
+/* Ant Design Select custom styling for Library */
+.library-filter-select .ant-select-selector {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(10px) !important;
+  color: white !important;
+  min-height: 40px !important;
+  padding: 4px 11px !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
-.library-filter-select option {
-  background: rgba(15, 23, 42, 0.95);
-  color: white;
+.library-filter-select .ant-select-selection-item {
+  color: white !important;
+  font-size: 14px !important;
+}
+
+.library-filter-select .ant-select-selection-placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 14px !important;
+}
+
+.library-filter-select:hover .ant-select-selector {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.library-filter-select.ant-select-focused .ant-select-selector {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(245, 158, 11, 0.5) !important;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2) !important;
+}
+
+.library-filter-select .ant-select-arrow {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Dropdown styling */
+.library-filter-select .ant-select-dropdown {
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.library-filter-select .ant-select-item {
+  color: white !important;
+  background: transparent !important;
+}
+
+.library-filter-select .ant-select-item:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.library-filter-select .ant-select-item-option-selected {
+  background: rgba(245, 158, 11, 0.2) !important;
+  color: #f59e0b !important;
+}
+
+/* Ensure dropdowns are visible and functional */
+.library-filter-select .ant-select-selection-search {
+  color: white !important;
+}
+
+.library-filter-select .ant-select-selection-placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+.library-filter-select .ant-select-arrow {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 12px !important;
+}
+
+/* Force visibility */
+.library-filter-select {
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 10 !important;
 }
 
 /* Games Grid */
