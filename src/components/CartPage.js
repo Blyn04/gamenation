@@ -196,6 +196,9 @@ const CartPage = () => {
   
   // Use cart from context instead of hardcoded data
   const cartItems = cart;
+  
+  // Debug: Log cart items to see the actual data structure
+  console.log('Cart items:', cartItems);
 
   // Cart functions using context
   const removeItem = (id) => {
@@ -204,6 +207,36 @@ const CartPage = () => {
 
   const handleQuantityChange = (id, newQuantity) => {
     updateQuantity(id, newQuantity);
+  };
+
+  // Helper function to parse price from string
+  const parsePrice = (priceString) => {
+    if (!priceString) return 0;
+    console.log('Parsing price:', priceString); // Debug log
+    
+    // Handle different price formats
+    let cleanPrice;
+    if (typeof priceString === 'number') {
+      return priceString;
+    }
+    
+    if (typeof priceString === 'string') {
+      // Remove currency symbols, commas, and any non-numeric characters except decimal point
+      cleanPrice = priceString.replace(/[₱,]/g, '').replace(/[^\d.]/g, '').trim();
+    } else {
+      return 0;
+    }
+    
+    console.log('Clean price:', cleanPrice); // Debug log
+    const parsed = parseFloat(cleanPrice);
+    console.log('Parsed price:', parsed); // Debug log
+    
+    if (isNaN(parsed) || parsed < 0) {
+      console.warn('Invalid price format:', priceString);
+      return 0;
+    }
+    
+    return parsed;
   };
 
   // Voucher functionality
@@ -304,7 +337,8 @@ const CartPage = () => {
 
   return (
     <div className="cart-page">
-      <div className="cart-container">
+      <div className="cart-main-content">
+        <div className="cart-container">
         {/* Cart Items Section */}
         <div className="cart-items-section">
           <h2 className="section-title">Cart Items</h2>
@@ -332,10 +366,10 @@ const CartPage = () => {
                     />
                   </div>
                   
-                  <div className="item-detailss">
-                    <h3 className="item-title">{item.title}</h3>
-                    <div className="item-price">{item.price}</div>
-                  </div>
+                    <div className="item-detailss">
+                      <h3 className="item-title">{item.title}</h3>
+                      <div className="item-price">{item.originalPrice || item.price}</div>
+                    </div>
                   
                   <div className="item-quantity">
                     <button 
@@ -354,7 +388,7 @@ const CartPage = () => {
                   </div>
                   
                   <div className="item-total">
-                    <div className="total-price">P {(parseFloat(item.price.replace(/[₱,]/g, '')) * item.quantity).toFixed(2)}</div>
+                    <div className="total-price">P {(item.price * item.quantity).toFixed(2)}</div>
                     <button 
                       className="remove-btn"
                       onClick={() => removeItem(item.id)}
@@ -769,6 +803,7 @@ const CartPage = () => {
           </div>
         </div>
       )}
+      </div>
       
       {/* Footer */}
       <Footer />

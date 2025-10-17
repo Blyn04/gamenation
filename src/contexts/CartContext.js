@@ -31,6 +31,24 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('gamenation-cart', JSON.stringify(cart));
   }, [cart]);
 
+  // Helper function to parse price from string
+  const parsePrice = (priceString) => {
+    if (!priceString) return 0;
+    
+    if (typeof priceString === 'number') {
+      return priceString;
+    }
+    
+    if (typeof priceString === 'string') {
+      // Remove currency symbols, commas, and any non-numeric characters except decimal point
+      const cleanPrice = priceString.replace(/[₱,]/g, '').replace(/[^\d.]/g, '').trim();
+      const parsed = parseFloat(cleanPrice);
+      return isNaN(parsed) || parsed < 0 ? 0 : parsed;
+    }
+    
+    return 0;
+  };
+
   // Add item to cart
   const addToCart = (gameData) => {
     const gameId = gameData.title; // Use title as unique identifier
@@ -52,7 +70,8 @@ export const CartProvider = ({ children }) => {
         title: gameData.title,
         subtitle: gameData.subtitle || "",
         image: gameData.image,
-        price: gameData.price,
+        price: parsePrice(gameData.price), // Convert price to number
+        originalPrice: gameData.price, // Keep original price string for display
         rating: gameData.rating,
         downloads: gameData.downloads,
         size: gameData.size,
@@ -101,7 +120,7 @@ export const CartProvider = ({ children }) => {
   // Get cart total price
   const getCartTotal = () => {
     return cart.reduce((total, item) => {
-      const price = parseFloat(item.price.replace(/[₱,]/g, '')) || 0;
+      const price = parsePrice(item.price);
       return total + (price * item.quantity);
     }, 0);
   };

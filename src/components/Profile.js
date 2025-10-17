@@ -348,44 +348,44 @@ const Profile = () => {
           </div>
           {displayWishlist.length > 0 ? (
             displayWishlist.map((game) => (
-              <div key={game.id} className="game-item">
-                <div className="game-thumbnail" onClick={() => handleGameClick(game)}>
-                  <img 
+            <div key={game.id} className="game-item">
+              <div className="game-thumbnail" onClick={() => handleGameClick(game)}>
+                <img 
                     src={imageMap[game.image] || imageMap['er.png']} 
-                    alt={game.title}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      borderRadius: '8px'
-                    }}
-                  />
-                </div>
-                <div className="game-detailsss" onClick={() => handleGameClick(game)}>
-                  <h4 className="game-titles">{game.title}</h4>
-                </div>
-                <div className="game-actions">
-                  <MoreOutlined 
-                    className="more-icon" 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleDropdownToggle(game.id, 'wishlist');
-                    }}
-                  />
-                  {activeDropdown === `wishlist-${game.id}` && (
-                    <div className="dropdown-menu">
-                      <div className="dropdown-item" onClick={() => handleDetails(game)}>
-                        <InfoCircleOutlined />
-                        <span>Details</span>
-                      </div>
-                      <div className="dropdown-item" onClick={() => handleRemoveFromWishlist(game.id)}>
-                        <DeleteOutlined />
-                        <span>Remove from Wishlist</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                  alt={game.title}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    borderRadius: '8px'
+                  }}
+                />
               </div>
+              <div className="game-detailsss" onClick={() => handleGameClick(game)}>
+                <h4 className="game-titles">{game.title}</h4>
+              </div>
+              <div className="game-actions">
+                <MoreOutlined 
+                  className="more-icon" 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDropdownToggle(game.id, 'wishlist');
+                  }}
+                />
+                {activeDropdown === `wishlist-${game.id}` && (
+                  <div className="dropdown-menu">
+                    <div className="dropdown-item" onClick={() => handleDetails(game)}>
+                      <InfoCircleOutlined />
+                      <span>Details</span>
+                    </div>
+                    <div className="dropdown-item" onClick={() => handleRemoveFromWishlist(game.id)}>
+                      <DeleteOutlined />
+                      <span>Remove from Wishlist</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
             ))
           ) : (
             <div className="empty-wishlist">
