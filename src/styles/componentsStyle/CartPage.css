@@ -331,6 +331,23 @@
   box-shadow: 0 8px 25px rgba(30, 64, 175, 0.3);
 }
 
+.buy-btn:disabled {
+  background: #e5e7eb;
+  border-color: #d1d5db;
+  color: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.buy-btn:disabled:hover {
+  background: #e5e7eb;
+  border-color: #d1d5db;
+  color: #9ca3af;
+  transform: none;
+  box-shadow: none;
+}
+
 @media (max-width: 1024px) {
   .cart-container {
     grid-template-columns: 1fr;

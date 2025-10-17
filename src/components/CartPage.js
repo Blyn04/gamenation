@@ -334,6 +334,10 @@ const CartPage = () => {
 
   // Purchase confirmation functionality
   const handleBuyNow = () => {
+    // Don't proceed if cart is empty
+    if (cartItems.length === 0) {
+      return;
+    }
     setIsConfirmModalOpen(true);
   };
 
@@ -484,8 +488,16 @@ const CartPage = () => {
             <span>P {total.toFixed(2)}</span>
           </div>
           
-          <button className="buy-btn" onClick={handleBuyNow}>
-            Buy Now
+          <button 
+            className="buy-btn" 
+            onClick={handleBuyNow}
+            disabled={cartItems.length === 0}
+            style={{
+              opacity: cartItems.length === 0 ? 0.5 : 1,
+              cursor: cartItems.length === 0 ? 'not-allowed' : 'pointer'
+            }}
+          >
+            {cartItems.length === 0 ? 'Cart is Empty' : 'Buy Now'}
           </button>
         </div>
       </div>
