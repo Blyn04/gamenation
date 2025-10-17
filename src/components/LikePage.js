@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "../styles/componentsStyle/LikePage.css";
+import "../styles/componentsStyle/AllProducts.css";
 import Header from "../customs/Header";
 import Footer from "../customs/Footer";
 import { SearchOutlined, HeartOutlined, HeartFilled } from '@ant-design/icons';
+import { Select } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { useWishlist } from "../contexts/WishlistContext";
+import 'antd/dist/reset.css';
 
 // Import game images for wishlist games
 import ittakes2 from '../assets/ps5Games/itt.png';
@@ -140,14 +143,41 @@ const LikePage = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("");
+  const [genreFilter, setGenreFilter] = useState("");
   const { wishlist, removeFromWishlist } = useWishlist();
   const gamesPerPage = 16; // Show 16 games per page (4x4 grid)
   const totalPages = Math.ceil(wishlist.length / gamesPerPage);
 
-  // Filter games based on search term
-  const filteredGames = wishlist.filter(game =>
-    game.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Filter games based on search term and filters
+  const filteredGames = wishlist.filter(game => {
+    // Search term filter
+    const matchesSearch = game.title.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    // Genre filter
+    const matchesGenre = !genreFilter || game.genre === genreFilter;
+    
+    return matchesSearch && matchesGenre;
+  }).sort((a, b) => {
+    // Apply sorting
+    if (!sortBy) return 0;
+    
+    switch (sortBy) {
+      case 'name-a-z':
+        return a.title.localeCompare(b.title);
+      case 'name-z-a':
+        return b.title.localeCompare(a.title);
+      case 'recently-added':
+        return new Date(b.addedAt) - new Date(a.addedAt); // Sort by added date
+      case 'most-wanted':
+        // Sort by rating (higher rating = more wanted)
+        const aRating = parseFloat(a.rating) || 0;
+        const bRating = parseFloat(b.rating) || 0;
+        return bRating - aRating;
+      default:
+        return 0;
+    }
+  });
 
   // Calculate pagination for filtered games
   const totalFilteredPages = Math.ceil(filteredGames.length / gamesPerPage);
@@ -201,10 +231,10 @@ const LikePage = () => {
     navigate("/item-details", { state: { gameData } });
   };
 
-  // Reset to page 1 when searching
+  // Reset to page 1 when searching or filtering
   React.useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm]);
+  }, [searchTerm, sortBy, genreFilter]);
 
   // Generate page numbers to display
   const getPageNumbers = () => {
@@ -241,8 +271,8 @@ const LikePage = () => {
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-white text-left drop-shadow-lg">Wishlist</h1>
           
           {/* Search and Filter Bar */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-8 items-start sm:items-center">
-            <div className="relative flex items-center bg-white/10 border border-white/20 rounded-xl backdrop-blur-sm transition-all duration-300 hover:bg-white/15 focus-within:bg-white/15 focus-within:border-amber-500/50 focus-within:shadow-lg focus-within:shadow-amber-500/20 min-w-64">
+          <div className="flex flex-col sm:flex-row gap-4 mb-8 items-start sm:items-center mt-8">
+            <div className="relative flex items-center bg-white/10 border border-white/20 rounded-xl backdrop-blur-sm transition-all duration-300 hover:bg-white/15 focus-within:bg-white/15 focus-within:border-amber-500/50 focus-within:shadow-lg focus-within:shadow-amber-500/20 min-w-64 mt-7">
               <SearchOutlined className="text-white/70 text-base ml-3 mr-2 pointer-events-none" />
               <input
                 type="text"
@@ -253,21 +283,42 @@ const LikePage = () => {
               />
             </div>
             <div className="flex gap-3">
-              <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-32 backdrop-blur-sm transition-all duration-300 hover:bg-white/15">
-                <option className="bg-slate-900 text-white">Sort</option>
-                <option className="bg-slate-900 text-white">Name: A-Z</option>
-                <option className="bg-slate-900 text-white">Name: Z-A</option>
-                <option className="bg-slate-900 text-white">Recently Added</option>
-                <option className="bg-slate-900 text-white">Most Wanted</option>
-              </select>
-              <select className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white text-sm cursor-pointer min-w-32 backdrop-blur-sm transition-all duration-300 hover:bg-white/15">
-                <option className="bg-slate-900 text-white">Genre</option>
-                <option className="bg-slate-900 text-white">Action</option>
-                <option className="bg-slate-900 text-white">Adventure</option>
-                <option className="bg-slate-900 text-white">RPG</option>
-                <option className="bg-slate-900 text-white">Sports</option>
-                <option className="bg-slate-900 text-white">Racing</option>
-              </select>
+              <div className="allproducts-filter-group">
+                <label className="allproducts-filter-label">Sort By</label>
+                <Select
+                  className="allproducts-filter-select"
+                  placeholder="Sort"
+                  value={sortBy}
+                  onChange={setSortBy}
+                  allowClear
+                  style={{ minWidth: 150 }}
+                  options={[
+                    { value: 'name-a-z', label: 'Name: A-Z' },
+                    { value: 'name-z-a', label: 'Name: Z-A' },
+                    { value: 'recently-added', label: 'Recently Added' },
+                    { value: 'most-wanted', label: 'Most Wanted' }
+                  ]}
+                />
+              </div>
+              
+              <div className="allproducts-filter-group">
+                <label className="allproducts-filter-label">Genre</label>
+                <Select
+                  className="allproducts-filter-select"
+                  placeholder="Genre"
+                  value={genreFilter}
+                  onChange={setGenreFilter}
+                  allowClear
+                  style={{ minWidth: 120 }}
+                  options={[
+                    { value: 'Action', label: 'Action' },
+                    { value: 'Adventure', label: 'Adventure' },
+                    { value: 'RPG', label: 'RPG' },
+                    { value: 'Sports', label: 'Sports' },
+                    { value: 'Racing', label: 'Racing' }
+                  ]}
+                />
+              </div>
             </div>
           </div>
 
