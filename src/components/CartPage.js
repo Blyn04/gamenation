@@ -199,6 +199,12 @@ const CartPage = () => {
   
   // Debug: Log cart items to see the actual data structure
   console.log('Cart items:', cartItems);
+  console.log('Cart items with price details:', cartItems.map(item => ({
+    title: item.title,
+    price: item.price,
+    priceType: typeof item.price,
+    originalPrice: item.originalPrice
+  })));
 
   // Cart functions using context
   const removeItem = (id) => {
@@ -237,6 +243,21 @@ const CartPage = () => {
     }
     
     return parsed;
+  };
+
+  // Enhanced parsePrice with better error handling
+  const safeParsePrice = (priceValue) => {
+    if (typeof priceValue === 'number' && !isNaN(priceValue)) {
+      return priceValue;
+    }
+    
+    if (typeof priceValue === 'string') {
+      const cleaned = priceValue.replace(/[₱,]/g, '').replace(/[^\d.]/g, '').trim();
+      const parsed = parseFloat(cleaned);
+      return isNaN(parsed) ? 0 : parsed;
+    }
+    
+    return 0;
   };
 
   // Voucher functionality
@@ -388,7 +409,7 @@ const CartPage = () => {
                   </div>
                   
                   <div className="item-total">
-                    <div className="total-price">P {(item.price * item.quantity).toFixed(2)}</div>
+                    <div className="total-price">P {(safeParsePrice(item.price) * item.quantity).toFixed(2)}</div>
                     <button 
                       className="remove-btn"
                       onClick={() => removeItem(item.id)}
@@ -754,7 +775,7 @@ const CartPage = () => {
                     {cartItems.map((item) => (
                       <div key={item.id} className="order-item">
                         <span className="item-name">{item.title} x{item.quantity}</span>
-                        <span className="item-price">P {(item.price * item.quantity).toFixed(2)}</span>
+                        <span className="item-price">P {(safeParsePrice(item.price) * item.quantity).toFixed(2)}</span>
                       </div>
                     ))}
                   </div>
