@@ -4,6 +4,7 @@ import Header from "../customs/Header";
 import Footer from "../customs/Footer";
 import { SearchOutlined, HeartOutlined, HeartFilled } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
+import { useWishlist } from "../contexts/WishlistContext";
 
 // Import game images for wishlist games
 import ittakes2 from '../assets/ps5Games/itt.png';
@@ -139,12 +140,12 @@ const LikePage = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [games, setGames] = useState(wishlistGames);
+  const { wishlist, removeFromWishlist } = useWishlist();
   const gamesPerPage = 16; // Show 16 games per page (4x4 grid)
-  const totalPages = Math.ceil(games.length / gamesPerPage);
+  const totalPages = Math.ceil(wishlist.length / gamesPerPage);
 
   // Filter games based on search term
-  const filteredGames = games.filter(game =>
+  const filteredGames = wishlist.filter(game =>
     game.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -177,29 +178,24 @@ const LikePage = () => {
 
   // Handle heart click (remove from wishlist)
   const handleHeartClick = (gameId) => {
-    setGames(prevGames => prevGames.filter(game => game.id !== gameId));
+    removeFromWishlist(gameId);
   };
 
   // Handle game card click
   const handleGameClick = (game) => {
-    // Generate random details for the game
-    const randomPrice = Math.floor(Math.random() * 2000) + 1000; // Price between 1000-3000
-    const randomRating = (Math.random() * 2 + 3).toFixed(1); // Rating between 3.0-5.0
-    const randomDownloads = Math.floor(Math.random() * 2000000) + 100000; // Downloads between 100k-2M
-    const randomSize = Math.floor(Math.random() * 50) + 10; // Size between 10-60GB
-    
+    // Use the game data from wishlist (which already has all the details)
     const gameData = {
       title: game.title,
-      subtitle: "",
+      subtitle: game.subtitle || "",
       image: game.image,
-      price: `₱${randomPrice.toLocaleString()}`,
-      rating: randomRating,
-      downloads: randomDownloads,
-      size: `${randomSize}GB`,
-      company: "GameNation Studios",
-      release: "2024",
-      genre: "Action",
-      description: `Experience the ultimate gaming adventure with ${game.title}. This incredible game offers stunning graphics, immersive gameplay, and hours of entertainment. Perfect for gamers of all skill levels, ${game.title} delivers an unforgettable experience that will keep you coming back for more.`
+      price: game.price,
+      rating: game.rating,
+      downloads: game.downloads,
+      size: game.size,
+      company: game.company,
+      release: game.release,
+      genre: game.genre,
+      description: game.description
     };
     
     navigate("/item-details", { state: { gameData } });
@@ -326,7 +322,7 @@ const LikePage = () => {
           )}
 
           {/* Empty wishlist message */}
-          {games.length === 0 && (
+          {wishlist.length === 0 && (
             <div className="text-center py-16 px-5 text-white/70">
               <HeartOutlined className="text-6xl text-white/30 mb-5 block" />
               <h3 className="text-2xl mb-3 text-white/80">Your wishlist is empty</h3>

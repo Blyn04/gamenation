@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/componentsStyle/ItemDetails.css";
 import Footer from "../customs/Footer";
+import { useWishlist } from "../contexts/WishlistContext";
 
 // Import all PS5 game images
 import ffvr from '../assets/ps5Games/ffvr.png';
@@ -177,6 +178,7 @@ const ItemDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
+  const { addToWishlist, removeFromWishlist, isInWishlist, wishlist } = useWishlist();
   
   // Get game data from navigation state, or use default data
   const gameData = location.state?.gameData || {
@@ -191,6 +193,23 @@ const ItemDetails = () => {
     release: "2/20/2025",
     genre: "Action",
     description: "Embark on an epic journey through the vast and untamed wilderness of Monster Hunter Wilds. As a skilled hunter, you'll face off against colossal creatures in breathtaking landscapes that stretch as far as the eye can see. Master the art of the hunt with an arsenal of weapons and armor, each crafted from the very beasts you've conquered."
+  };
+
+  // Check if current game is in wishlist
+  const isGameInWishlist = isInWishlist(gameData.title);
+
+  // Handle wishlist button click
+  const handleWishlistClick = () => {
+    if (isGameInWishlist) {
+      // Find the item in wishlist and remove it
+      const wishlistItem = wishlist.find(item => item.title === gameData.title);
+      if (wishlistItem) {
+        removeFromWishlist(wishlistItem.id);
+      }
+    } else {
+      // Add to wishlist
+      addToWishlist(gameData);
+    }
   };
   
   
@@ -207,7 +226,16 @@ const ItemDetails = () => {
           <p className="game-price">{gameData.price}</p>
           <div className="hero-actions">
             <button className="buy-btn">BUY</button>
-            <button className="wishlist-btn">♡</button>
+            <button 
+              className="wishlist-btn" 
+              onClick={handleWishlistClick}
+              style={{ 
+                backgroundColor: isGameInWishlist ? 'white' : 'transparent',
+                color: isGameInWishlist ? '#1e40af' : 'white'
+              }}
+            >
+              {isGameInWishlist ? '♥' : '♡'}
+            </button>
           </div>
         </div>
       </div>
