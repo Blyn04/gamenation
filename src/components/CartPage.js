@@ -3,6 +3,7 @@ import { DeleteOutlined, MinusOutlined, PlusOutlined, ShoppingCartOutlined, Clos
 import Footer from '../customs/Footer';
 import '../styles/componentsStyle/CartPage.css';
 import '../styles/componentsStyle/ConfirmModal.css';
+import { useCart } from '../contexts/CartContext';
 
 // Import all PS5 game images from Library and HomePage
 import ittakes2 from '../assets/ps5Games/itt.png';
@@ -176,6 +177,7 @@ const cartImageMap = {
 };
 
 const CartPage = () => {
+  const { cart, removeFromCart, updateQuantity, getCartTotal, clearCart } = useCart();
   const [isVoucherModalOpen, setIsVoucherModalOpen] = useState(false);
   const [voucherCode, setVoucherCode] = useState('');
   const [appliedVouchers, setAppliedVouchers] = useState([]);
@@ -192,68 +194,16 @@ const CartPage = () => {
   });
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      title: "Cyberpunk 2077",
-      description: "Open-world action-adventure RPG",
-      price: 59.99,
-      quantity: 1,
-      image: "cyberpunk-2077.png"
-    },
-    {
-      id: 2,
-      title: "ELDEN RING",
-      description: "Action role-playing game",
-      price: 49.99,
-      quantity: 2,
-      image: "er.png"
-    },
-    {
-      id: 3,
-      title: "Grand Theft Auto Online",
-      description: "Action-adventure game",
-      price: 69.99,
-      quantity: 1,
-      image: "gta-online.png"
-    },
-    {
-      id: 4,
-      title: "Call of Duty® Black Ops 6",
-      description: "First-person shooter",
-      price: 79.99,
-      quantity: 1,
-      image: "codbo6.png"
-    },
-    {
-      id: 5,
-      title: "NBA 2K26",
-      description: "Basketball simulation game",
-      price: 69.99,
-      quantity: 1,
-      image: "nba2k26.png"
-    },
-    {
-      id: 6,
-      title: "Gran Turismo® 7",
-      description: "Racing simulation game",
-      price: 59.99,
-      quantity: 1,
-      image: "gt7.png"
-    }
-  ]);
+  // Use cart from context instead of hardcoded data
+  const cartItems = cart;
 
-  const updateQuantity = (id, newQuantity) => {
-    if (newQuantity < 1) return;
-    setCartItems(items =>
-      items.map(item =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
+  // Cart functions using context
+  const removeItem = (id) => {
+    removeFromCart(id);
   };
 
-  const removeItem = (id) => {
-    setCartItems(items => items.filter(item => item.id !== id));
+  const handleQuantityChange = (id, newQuantity) => {
+    updateQuantity(id, newQuantity);
   };
 
   // Voucher functionality
@@ -339,7 +289,7 @@ const CartPage = () => {
     alert('Purchase successful! Thank you for your order.');
   };
 
-  const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const subtotal = getCartTotal();
   
   // Calculate total discount from applied vouchers
   const totalDiscount = appliedVouchers.reduce((total, voucher) => {
@@ -384,28 +334,27 @@ const CartPage = () => {
                   
                   <div className="item-detailss">
                     <h3 className="item-title">{item.title}</h3>
-                    <p className="item-description">{item.description}</p>
-                    <div className="item-price">P {item.price.toFixed(2)}</div>
+                    <div className="item-price">{item.price}</div>
                   </div>
                   
                   <div className="item-quantity">
                     <button 
                       className="quantity-btn"
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
                     >
                       <MinusOutlined />
                     </button>
                     <span className="quantity-display">{item.quantity}</span>
                     <button 
                       className="quantity-btn"
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
                     >
                       <PlusOutlined />
                     </button>
                   </div>
                   
                   <div className="item-total">
-                    <div className="total-price">P {(item.price * item.quantity).toFixed(2)}</div>
+                    <div className="total-price">P {(parseFloat(item.price.replace(/[₱,]/g, '')) * item.quantity).toFixed(2)}</div>
                     <button 
                       className="remove-btn"
                       onClick={() => removeItem(item.id)}

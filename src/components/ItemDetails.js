@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/componentsStyle/ItemDetails.css";
 import Footer from "../customs/Footer";
 import { useWishlist } from "../contexts/WishlistContext";
+import { useCart } from "../contexts/CartContext";
 
 // Import all PS5 game images
 import ffvr from '../assets/ps5Games/ffvr.png';
@@ -179,6 +180,7 @@ const ItemDetails = () => {
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
   const { addToWishlist, removeFromWishlist, isInWishlist, wishlist } = useWishlist();
+  const { addToCart, isInCart } = useCart();
   
   // Get game data from navigation state, or use default data
   const gameData = location.state?.gameData || {
@@ -197,6 +199,9 @@ const ItemDetails = () => {
 
   // Check if current game is in wishlist
   const isGameInWishlist = isInWishlist(gameData.title);
+  
+  // Check if current game is in cart
+  const isGameInCart = isInCart(gameData.title);
 
   // Handle wishlist button click
   const handleWishlistClick = () => {
@@ -210,6 +215,13 @@ const ItemDetails = () => {
       // Add to wishlist
       addToWishlist(gameData);
     }
+  };
+
+  // Handle buy button click
+  const handleBuyClick = () => {
+    addToCart(gameData);
+    // Optionally navigate to cart page
+    // navigate('/cart');
   };
   
   
@@ -225,7 +237,9 @@ const ItemDetails = () => {
           {gameData.subtitle && <p className="game-subtitle">{gameData.subtitle}</p>}
           <p className="game-price">{gameData.price}</p>
           <div className="hero-actions">
-            <button className="buy-btn">BUY</button>
+            <button className="buy-btn" onClick={handleBuyClick}>
+              {isGameInCart ? 'ADDED TO CART' : 'BUY'}
+            </button>
             <button 
               className="wishlist-btn" 
               onClick={handleWishlistClick}
