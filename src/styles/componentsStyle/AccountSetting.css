@@ -1255,21 +1255,24 @@
 }
 
 .status-badge.completed {
-  background: rgba(34, 197, 94, 0.2);
-  color: #22c55e;
-  border: 1px solid rgba(34, 197, 94, 0.3);
+  background: rgba(34, 197, 94, 0.8);
+  color: #ffffff;
+  border: 1px solid rgba(34, 197, 94, 0.9);
+  font-weight: 700;
 }
 
 .status-badge.pending {
-  background: rgba(245, 158, 11, 0.2);
-  color: #f59e0b;
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  background: rgba(245, 158, 11, 0.8);
+  color: #ffffff;
+  border: 1px solid rgba(245, 158, 11, 0.9);
+  font-weight: 700;
 }
 
 .status-badge.failed {
-  background: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.8);
+  color: #ffffff;
+  border: 1px solid rgba(239, 68, 68, 0.9);
+  font-weight: 700;
 }
 
 .transaction-items {
