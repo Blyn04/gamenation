@@ -1091,33 +1091,34 @@
   gap: 8px;
 }
 
-.form-group label {
-  color: #1e40af;
+.card-modal .form-group label {
+  color: #1a2b4c !important;
   font-weight: 600;
   font-size: 0.9rem;
 }
 
-.card-input {
+.card-modal .card-input {
   width: 100%;
   padding: 12px 16px;
   border: 2px solid rgba(30, 64, 175, 0.2);
   border-radius: 12px;
   font-size: 1rem;
   background: rgba(255, 255, 255, 0.8);
-  color: #1e40af;
+  color: #1a2b4c !important;
   transition: all 0.3s ease;
   box-sizing: border-box;
 }
 
-.card-input:focus {
+.card-modal .card-input:focus {
   outline: none;
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   background: white;
+  color: #1a2b4c !important;
 }
 
-.card-input::placeholder {
-  color: #94a3b8;
+.card-modal .card-input::placeholder {
+  color: #1a2b4c !important;
 }
 
 .form-row {
