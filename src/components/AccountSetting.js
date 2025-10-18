@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { EditOutlined, UserOutlined, CreditCardOutlined, TransactionOutlined, SettingOutlined, BellOutlined, SafetyOutlined, CloseOutlined, PlusOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { usePurchase } from '../contexts/PurchaseContext';
 import '../styles/componentsStyle/AccountSetting.css';
 
 const AccountSetting = () => {
   const navigate = useNavigate();
   const { user, updateUser } = useAuth();
+  const { getUserPurchaseHistory } = usePurchase();
   const [activeTab, setActiveTab] = useState('profile');
   const [profileData, setProfileData] = useState({
     name: '',
@@ -220,6 +222,7 @@ const AccountSetting = () => {
           </div>
         );
       case 'transactions':
+        const userPurchases = user ? getUserPurchaseHistory(user.id) : [];
         return (
           <div className="content-section">
             <div className="section-header">
@@ -227,12 +230,59 @@ const AccountSetting = () => {
               <p className="content-subtitle">View your purchase history and receipts</p>
             </div>
             <div className="transactions-content">
-              <div className="empty-state">
-                <TransactionOutlined className="empty-icon" />
-                <h3>No Transactions Yet</h3>
-                <p>Your purchase history will appear here</p>
-                <button className="primary-btn" onClick={() => navigate('/browse')}>Browse Games</button>
-              </div>
+              {userPurchases.length > 0 ? (
+                <div className="transactions-list">
+                  {userPurchases.map((purchase) => (
+                    <div key={purchase.id} className="transaction-item">
+                      <div className="transaction-header">
+                        <div className="transaction-info">
+                          <h4 className="transaction-id">Transaction #{purchase.id}</h4>
+                          <p className="transaction-date">
+                            {new Date(purchase.purchaseDate).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            })}
+                          </p>
+                        </div>
+                        <div className="transaction-status">
+                          <span className={`status-badge ${purchase.status}`}>
+                            {purchase.status}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="transaction-items">
+                        {purchase.items.map((item, index) => (
+                          <div key={index} className="transaction-item-detail">
+                            <div className="item-info">
+                              <h5 className="item-title">{item.title}</h5>
+                              <p className="item-quantity">Quantity: {item.quantity}</p>
+                            </div>
+                            <div className="item-price">
+                              ₱{(item.price * item.quantity).toLocaleString()}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="transaction-footer">
+                        <div className="transaction-total">
+                          <span className="total-label">Total:</span>
+                          <span className="total-amount">₱{purchase.totalAmount.toLocaleString()}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="empty-state">
+                  <TransactionOutlined className="empty-icon" />
+                  <h3>No Transactions Yet</h3>
+                  <p>Your purchase history will appear here</p>
+                  <button className="primary-btn" onClick={() => navigate('/browse')}>Browse Games</button>
+                </div>
+              )}
             </div>
           </div>
         );

@@ -484,9 +484,10 @@
 }
 
 .purchase-details h3 {
-  color: #1890ff;
+  color: #1e40af;
   margin-bottom: 2rem;
   font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .purchase-info {
@@ -497,21 +498,24 @@
 }
 
 .info-section {
-  background: #f8f9fa;
+  background: #ffffff;
   padding: 1rem;
   border-radius: 8px;
   text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .info-section h4 {
-  color: #1890ff;
+  color: #1e40af;
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .info-section p {
   margin: 0.5rem 0;
-  color: #666;
+  color: #374151;
+  font-weight: 500;
 }
 
 .games-list {
@@ -530,6 +534,16 @@
   border-bottom: none;
 }
 
+.game-item span:first-child {
+  color: #374151;
+  font-weight: 500;
+}
+
+.game-item span:last-child {
+  color: #1e40af;
+  font-weight: 600;
+}
+
 .email-notice {
   background: #e6f7ff;
   border: 1px solid #91d5ff;
@@ -539,14 +553,16 @@
 }
 
 .email-notice h4 {
-  color: #1890ff;
+  color: #1e40af;
   margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .email-notice p {
   margin: 0.5rem 0;
-  color: #666;
+  color: #374151;
   font-size: 0.9rem;
+  font-weight: 500;
 }
 
 @media (max-width: 768px) {

@@ -5,6 +5,7 @@ import "../styles/componentsStyle/Profile.css";
 import Footer from '../customs/Footer';
 import { useWishlist } from '../contexts/WishlistContext';
 import { useAuth } from '../contexts/AuthContext';
+import { usePurchase } from '../contexts/PurchaseContext';
 
 // Import game images
 import armoredcore from '../assets/ps5Games/armoredcore.png';
@@ -194,6 +195,7 @@ const Profile = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const { wishlist, removeFromWishlist } = useWishlist();
   const { user } = useAuth();
+  const { getUserPurchaseHistory } = usePurchase();
 
   const handleSettingsClick = () => {
     navigate('/account-settings');
@@ -251,11 +253,18 @@ const Profile = () => {
     navigate("/item-details", { state: { gameData } });
   };
 
-  const libraryGames = [
-    { id: 1, title: "ARMORED CORE™ VI FIRES OF RUBICON™ - Deluxe Edition", image: "armoredcore.png" },
-    { id: 2, title: "Harvest Moon: The Winds of Anthos", image: "harvestmoon.png" },
-    { id: 3, title: "Persona 5 Tactical Digital Deluxe", image: "p5.png" }
-  ];
+  // Get purchased games from purchase history
+  const userPurchases = user ? getUserPurchaseHistory(user.id) : [];
+  const purchasedGames = userPurchases.flatMap(purchase => 
+    purchase.items.map(item => ({
+      ...item,
+      purchaseDate: purchase.purchaseDate,
+      purchaseId: purchase.id
+    }))
+  );
+  
+  // Get the first 3 purchased games for display
+  const displayLibraryGames = purchasedGames.slice(0, 3);
 
   // Get the first 3 items from wishlist for display
   const displayWishlist = wishlist.slice(0, 3);
@@ -298,46 +307,52 @@ const Profile = () => {
             <h3 className="section-title">Library</h3>
             <button onClick={handleLibraryShowAll} className="show-all-link">Show All</button>
           </div>
-          {libraryGames.map((game) => (
-            <div key={game.id} className="game-item">
-              <div className="game-thumbnail" onClick={() => handleGameClick(game)}>
-                <img 
-                  src={imageMap[game.image]} 
-                  alt={game.title}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    borderRadius: '8px'
-                  }}
-                />
-              </div>
-              <div className="game-detailsss" onClick={() => handleGameClick(game)}>
-                <h4 className="game-titles">{game.title}</h4>
-              </div>
-              <div className="game-actions">
-                <MoreOutlined 
-                  className="more-icon" 
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleDropdownToggle(game.id, 'library');
-                  }}
-                />
-                {activeDropdown === `library-${game.id}` && (
-                  <div className="dropdown-menu">
-                    <div className="dropdown-item" onClick={() => handleDetails(game)}>
-                      <InfoCircleOutlined />
-                      <span>Details</span>
+          {displayLibraryGames.length > 0 ? (
+            displayLibraryGames.map((game) => (
+              <div key={`${game.purchaseId}-${game.id}`} className="game-item">
+                <div className="game-thumbnail" onClick={() => handleGameClick(game)}>
+                  <img 
+                    src={imageMap[game.image] || imageMap['er.png']} 
+                    alt={game.title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      borderRadius: '8px'
+                    }}
+                  />
+                </div>
+                <div className="game-detailsss" onClick={() => handleGameClick(game)}>
+                  <h4 className="game-titles">{game.title}</h4>
+                </div>
+                <div className="game-actions">
+                  <MoreOutlined 
+                    className="more-icon" 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDropdownToggle(`${game.purchaseId}-${game.id}`, 'library');
+                    }}
+                  />
+                  {activeDropdown === `library-${game.purchaseId}-${game.id}` && (
+                    <div className="dropdown-menu">
+                      <div className="dropdown-item" onClick={() => handleDetails(game)}>
+                        <InfoCircleOutlined />
+                        <span>Details</span>
+                      </div>
+                      <div className="dropdown-item" onClick={() => handleUninstall(`${game.purchaseId}-${game.id}`, 'library')}>
+                        <DeleteOutlined />
+                        <span>Uninstall</span>
+                      </div>
                     </div>
-                    <div className="dropdown-item" onClick={() => handleUninstall(game.id, 'library')}>
-                      <DeleteOutlined />
-                      <span>Uninstall</span>
-                    </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
+            ))
+          ) : (
+            <div className="empty-library">
+              <p>Your library is empty. Start purchasing games to see them here!</p>
             </div>
-          ))}
+          )}
         </div>
       </section>
 

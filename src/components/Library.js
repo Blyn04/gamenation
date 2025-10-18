@@ -4,10 +4,12 @@ import Footer from "../customs/Footer";
 import { SearchOutlined, MoreOutlined } from '@ant-design/icons';
 import { Select } from 'antd';
 import { useNavigate } from "react-router-dom";
+import { usePurchase } from '../contexts/PurchaseContext';
+import { useAuth } from '../contexts/AuthContext';
 import 'antd/dist/reset.css';
 import "../styles/componentsStyle/AllProducts.css";
 
-// Import game images for library games
+// Import all game images for comprehensive mapping
 import ittakes2 from '../assets/ps5Games/itt.png';
 import eldenring from '../assets/ps5Games/er.png';
 import gt7 from '../assets/ps5Games/gt7.png';
@@ -24,9 +26,79 @@ import ffvr from '../assets/ps5Games/ffvr.png';
 import goosebumps from '../assets/ps5Games/goosebumps.png';
 import kingoffighters from '../assets/ps5Games/kingoffighters.png';
 import dragonball from '../assets/ps5Games/dragonball.png';
+import badcat from '../assets/ps5Games/badcat.png';
+import octapath0 from '../assets/ps5Games/octapath0.png';
+import cyberpunk from '../assets/ps5Games/cyberpunk-2077.png';
+import gtaonline from '../assets/ps5Games/gta-online.png';
+import codbo6 from '../assets/ps5Games/codbo6.png';
+import nba2k26 from '../assets/ps5Games/nba2k26.png';
+import mk from '../assets/ps5Games/mk.png';
+import phasmophobia from '../assets/ps5Games/phasmophobia.png';
+import hl from '../assets/ps5Games/hl.png';
+import ab from '../assets/ps5Games/ab.png';
+import hitman from '../assets/ps5Games/hitman.png';
+import thelastofus from '../assets/ps5Games/thelastofus.png';
+import wff from '../assets/ps5Games/wff.png';
+import doom from '../assets/ps5Games/doom.png';
+import easportsfc from '../assets/ps5Games/ea-sports-fc.png';
+import ds2tb from '../assets/ps5Games/ds2tb.png';
+import gy from '../assets/ps5Games/gy.png';
+import mgsse from '../assets/ps5Games/mgsse.png';
+import sf from '../assets/ps5Games/sf.png';
+import carxstreet from '../assets/ps5Games/carx-street.png';
+import fh5 from '../assets/ps5Games/fh5.png';
+import borderlands4 from '../assets/ps5Games/borderlands4.png';
+import coe33 from '../assets/ps5Games/coe33.png';
+import dsKimetsu from '../assets/ps5Games/ds-kimetsu.png';
+import shf from '../assets/ps5Games/shf.png';
+import dytb from '../assets/ps5Games/dytb.png';
+import catsritual from '../assets/ps5Games/catsritual.png';
+import srcw from '../assets/ps5Games/srcw.png';
+import digimon from '../assets/ps5Games/digimon.png';
+import outerworld from '../assets/ps5Games/outerworld.png';
+import readyornot from '../assets/ps5Games/readyornot.png';
+import edenzero from '../assets/ps5Games/edenzero.png';
+import hxh from '../assets/ps5Games/hxh.png';
+import tekken8 from '../assets/ps5Games/tekken8.png';
+import atelieryumia from '../assets/ps5Games/atelieryumia.png';
+import firstberserker from '../assets/ps5Games/firstberserker.png';
+import lego from '../assets/ps5Games/lego.png';
+import lifestrange from '../assets/ps5Games/lifestrange.png';
+import metaphor from '../assets/ps5Games/metaphor.png';
+import spy from '../assets/ps5Games/spy.png';
+import armoredcore from '../assets/ps5Games/armoredcore.png';
+import ateliermarie from '../assets/ps5Games/ateliermarie.png';
+import atelierryza from '../assets/ps5Games/atelierryza.png';
+import battlefield6 from '../assets/ps5Games/battlefield6-standard.png';
+import bmw from '../assets/ps5Games/bmw.png';
+import disney from '../assets/ps5Games/disney.png';
+import disneydreamland from '../assets/ps5Games/disneydreamland.png';
+import f1 from '../assets/ps5Games/f1.png';
+import fuga from '../assets/ps5Games/fuga.png';
+import ghostwire from '../assets/ps5Games/ghostwire.png';
+import shin from '../assets/ps5Games/shin.png';
+import p3 from '../assets/ps5Games/p3.png';
+import suicide from '../assets/ps5Games/suicide.png';
+import p5 from '../assets/ps5Games/p5.png';
+import harvestmoon from '../assets/ps5Games/harvestmoon.png';
+import valkyrie from '../assets/ps5Games/valkyrie.png';
+import hotwheels from '../assets/ps5Games/hotwheels.png';
+import rugby from '../assets/ps5Games/rugby.png';
+import watchdog from '../assets/ps5Games/watchdog.png';
+import re3nemesis from '../assets/ps5Games/re3nemesis.png';
+import mhw from '../assets/ps5Games/mhw.png';
+import sh2 from '../assets/ps5Games/sh2.png';
+import wwe from '../assets/ps5Games/wwe.png';
+import ijgc from '../assets/ps5Games/ijgc.png';
+import ijones from '../assets/ps5Games/ijones.png';
+import afp from '../assets/ps5Games/afp.png';
+import sinxshadows from '../assets/ps5Games/sinx-shadows.png';
+import granblue from '../assets/ps5Games/granblue.png';
+import dbd from '../assets/ps5Games/dbd.png';
 
-// Create image mapping for library games
+// Create comprehensive image mapping for all games
 const libraryImageMap = {
+  // Original games
   'itt.png': ittakes2,
   'er.png': eldenring,
   'gt7.png': gt7,
@@ -42,7 +114,78 @@ const libraryImageMap = {
   'ffvr.png': ffvr,
   'goosebumps.png': goosebumps,
   'kingoffighters.png': kingoffighters,
-  'dragonball.png': dragonball
+  'dragonball.png': dragonball,
+  
+  // Additional games for comprehensive coverage
+  'badcat.png': badcat,
+  'octapath0.png': octapath0,
+  'cyberpunk-2077.png': cyberpunk,
+  'gta-online.png': gtaonline,
+  'codbo6.png': codbo6,
+  'nba2k26.png': nba2k26,
+  'mk.png': mk,
+  'phasmophobia.png': phasmophobia,
+  'hl.png': hl,
+  'ab.png': ab,
+  'hitman.png': hitman,
+  'thelastofus.png': thelastofus,
+  'wff.png': wff,
+  'doom.png': doom,
+  'ea-sports-fc.png': easportsfc,
+  'ds2tb.png': ds2tb,
+  'gy.png': gy,
+  'mgsse.png': mgsse,
+  'sf.png': sf,
+  'carx-street.png': carxstreet,
+  'fh5.png': fh5,
+  'borderlands4.png': borderlands4,
+  'coe33.png': coe33,
+  'ds-kimetsu.png': dsKimetsu,
+  'shf.png': shf,
+  'dytb.png': dytb,
+  'catsritual.png': catsritual,
+  'srcw.png': srcw,
+  'digimon.png': digimon,
+  'outerworld.png': outerworld,
+  'readyornot.png': readyornot,
+  'edenzero.png': edenzero,
+  'hxh.png': hxh,
+  'tekken8.png': tekken8,
+  'atelieryumia.png': atelieryumia,
+  'firstberserker.png': firstberserker,
+  'lego.png': lego,
+  'lifestrange.png': lifestrange,
+  'metaphor.png': metaphor,
+  'spy.png': spy,
+  'armoredcore.png': armoredcore,
+  'ateliermarie.png': ateliermarie,
+  'atelierryza.png': atelierryza,
+  'battlefield6-standard.png': battlefield6,
+  'bmw.png': bmw,
+  'disney.png': disney,
+  'disneydreamland.png': disneydreamland,
+  'f1.png': f1,
+  'fuga.png': fuga,
+  'ghostwire.png': ghostwire,
+  'shin.png': shin,
+  'p3.png': p3,
+  'suicide.png': suicide,
+  'p5.png': p5,
+  'harvestmoon.png': harvestmoon,
+  'valkyrie.png': valkyrie,
+  'hotwheels.png': hotwheels,
+  'rugby.png': rugby,
+  'watchdog.png': watchdog,
+  're3nemesis.png': re3nemesis,
+  'mhw.png': mhw,
+  'sh2.png': sh2,
+  'wwe.png': wwe,
+  'ijgc.png': ijgc,
+  'ijones.png': ijones,
+  'afp.png': afp,
+  'sinx-shadows.png': sinxshadows,
+  'granblue.png': granblue,
+  'dbd.png': dbd
 };
 
 // Library games data
@@ -96,11 +239,24 @@ const Library = () => {
   const [sortBy, setSortBy] = useState("");
   const [genreFilter, setGenreFilter] = useState("");
   const navigate = useNavigate();
+  const { getUserPurchaseHistory } = usePurchase();
+  const { user } = useAuth();
+  
+  // Get purchased games from purchase history
+  const userPurchases = user ? getUserPurchaseHistory(user.id) : [];
+  const purchasedGames = userPurchases.flatMap(purchase => 
+    purchase.items.map(item => ({
+      ...item,
+      purchaseDate: purchase.purchaseDate,
+      purchaseId: purchase.id
+    }))
+  );
+  
   const gamesPerPage = 16; // Show 16 games per page (4x4 grid)
-  const totalPages = Math.ceil(libraryGames.length / gamesPerPage);
+  const totalPages = Math.ceil(purchasedGames.length / gamesPerPage);
 
   // Filter games based on search term and filters
-  const filteredGames = libraryGames.filter(game => {
+  const filteredGames = purchasedGames.filter(game => {
     // Search term filter
     const matchesSearch = game.title.toLowerCase().includes(searchTerm.toLowerCase());
     
@@ -118,12 +274,10 @@ const Library = () => {
       case 'name-z-a':
         return b.title.localeCompare(a.title);
       case 'recently-added':
-        return b.id - a.id; // Higher ID = more recent
+        return new Date(b.purchaseDate) - new Date(a.purchaseDate);
       case 'most-played':
-        // Sort by play time (extract numbers from playTime string)
-        const aTime = parseInt(a.playTime.match(/\d+/)?.[0] || '0');
-        const bTime = parseInt(b.playTime.match(/\d+/)?.[0] || '0');
-        return bTime - aTime;
+        // For purchased games, we can sort by purchase date as a proxy for "most played"
+        return new Date(b.purchaseDate) - new Date(a.purchaseDate);
       default:
         return 0;
     }
@@ -163,24 +317,19 @@ const Library = () => {
 
   // Handle game card click
   const handleGameClick = (game) => {
-    // Generate random details for the game
-    const randomPrice = Math.floor(Math.random() * 2000) + 1000; // Price between 1000-3000
-    const randomRating = (Math.random() * 2 + 3).toFixed(1); // Rating between 3.0-5.0
-    const randomDownloads = Math.floor(Math.random() * 2000000) + 100000; // Downloads between 100k-2M
-    const randomSize = Math.floor(Math.random() * 50) + 10; // Size between 10-60GB
-    
+    // Use the actual game data from purchase history
     const gameData = {
       title: game.title,
-      subtitle: "",
+      subtitle: game.subtitle || "",
       image: game.image,
-      price: `₱${randomPrice.toLocaleString()}`,
-      rating: randomRating,
-      downloads: randomDownloads,
-      size: `${randomSize}GB`,
-      company: "GameNation Studios",
-      release: "2024",
-      genre: "Action",
-      description: `Experience the ultimate gaming adventure with ${game.title}. This incredible game offers stunning graphics, immersive gameplay, and hours of entertainment. Perfect for gamers of all skill levels, ${game.title} delivers an unforgettable experience that will keep you coming back for more.`
+      price: game.originalPrice || game.price,
+      rating: game.rating,
+      downloads: game.downloads,
+      size: game.size,
+      company: game.company,
+      release: game.release,
+      genre: game.genre,
+      description: game.description
     };
     
     navigate("/item-details", { state: { gameData } });
@@ -282,33 +431,51 @@ const Library = () => {
           </div>
 
           {/* Games Grid - 2 cards per row on mobile, 3 on tablet, 4 on desktop */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 mb-8">
-            {currentGames.map((game, index) => (
-              <div 
-                key={game.id} 
-                className="bg-transparent border-none p-0 text-left rounded-2xl transition-transform duration-200 cursor-pointer relative overflow-hidden animate-fade-in-up"
-                style={{ 
-                  animationDelay: `${index * 0.1}s`,
-                  animationFillMode: 'forwards'
-                }}
-                onClick={() => handleGameClick(game)}
-              >
-                <div className="w-full h-48 sm:h-52 lg:h-56 rounded-xl mb-3 overflow-hidden bg-slate-700 shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-black/40">
-                  <img 
-                    src={libraryImageMap[game.image] || libraryImageMap['er.png']} 
-                    alt={game.title}
-                    className="w-full h-full object-cover rounded-xl"
-                  />
+          {purchasedGames.length > 0 ? (
+            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 mb-8">
+              {currentGames.map((game, index) => (
+                <div 
+                  key={`${game.purchaseId}-${game.id}`} 
+                  className="bg-transparent border-none p-0 text-left rounded-2xl transition-transform duration-200 cursor-pointer relative overflow-hidden animate-fade-in-up"
+                  style={{ 
+                    animationDelay: `${index * 0.1}s`,
+                    animationFillMode: 'forwards'
+                  }}
+                  onClick={() => handleGameClick(game)}
+                >
+                  <div className="w-full h-48 sm:h-52 lg:h-56 rounded-xl mb-3 overflow-hidden bg-slate-700 shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-black/40">
+                    <img 
+                      src={libraryImageMap[game.image] || libraryImageMap['er.png']} 
+                      alt={game.title}
+                      className="w-full h-full object-cover rounded-xl"
+                    />
+                  </div>
+                  <div className="flex justify-between items-start gap-2">
+                    <h4 className="text-sm font-semibold m-0 leading-tight text-white break-words flex-1">
+                      {game.title}
+                    </h4>
+                    <MoreOutlined className="text-white/70 text-base cursor-pointer p-1 rounded transition-all duration-200 hover:text-white hover:bg-white/10 flex-shrink-0" />
+                  </div>
                 </div>
-                <div className="flex justify-between items-start gap-2">
-                  <h4 className="text-sm font-semibold m-0 leading-tight text-white break-words flex-1">
-                    {game.title}
-                  </h4>
-                  <MoreOutlined className="text-white/70 text-base cursor-pointer p-1 rounded transition-all duration-200 hover:text-white hover:bg-white/10 flex-shrink-0" />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20 text-white/70">
+              <div className="mb-6">
+                <div className="w-24 h-24 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center">
+                  <span className="text-4xl">🎮</span>
                 </div>
+                <h3 className="text-xl font-semibold mb-2">Your Library is Empty</h3>
+                <p className="text-base mb-6">Start building your game collection by purchasing games from our store.</p>
+                <button 
+                  onClick={() => navigate('/browse')}
+                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+                >
+                  Browse Games
+                </button>
               </div>
-            ))}
-          </div>
+            </div>
+          )}
 
           {/* No results message */}
           {filteredGames.length === 0 && searchTerm && (
