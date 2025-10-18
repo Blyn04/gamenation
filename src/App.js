@@ -12,9 +12,11 @@ import Library from './components/Library';
 import LikePage from './components/LikePage';
 import ScrollToTop from './components/ScrollToTop';
 import LoginModal from './customs/LoginModal';
+import ProtectedRoute from './components/ProtectedRoute';
 import { WishlistProvider } from './contexts/WishlistContext';
 import { CartProvider } from './contexts/CartContext';
 import { ModalProvider, useModal } from './contexts/ModalContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 const AppContent = () => {
   const { isLoginModalOpen, closeLoginModal } = useModal();
@@ -26,13 +28,21 @@ const AppContent = () => {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          } />
           <Route path="/browse" element={<AllProducts/>} />
           <Route path="/library" element={<Library/>} />
           <Route path="/wishlist" element={<LikePage/>} />
           <Route path="/item-details" element={<ItemDetails/>} />
           <Route path="/cart" element={<CartPage/>} />
-          <Route path="/account-settings" element={<AccountSetting/>} />
+          <Route path="/account-settings" element={
+            <ProtectedRoute>
+              <AccountSetting />
+            </ProtectedRoute>
+          } />
         </Routes>
         
         {/* Login Modal - rendered at root level */}
@@ -49,9 +59,11 @@ function App() {
   return (
     <WishlistProvider>
       <CartProvider>
-        <ModalProvider>
-          <AppContent />
-        </ModalProvider>
+        <AuthProvider>
+          <ModalProvider>
+            <AppContent />
+          </ModalProvider>
+        </AuthProvider>
       </CartProvider>
     </WishlistProvider>
   );

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/customsStyle/Header.css';
-import { UserOutlined, ShoppingCartOutlined, SearchOutlined, MenuOutlined } from '@ant-design/icons';
+import { UserOutlined, ShoppingCartOutlined, SearchOutlined, MenuOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import GN2Logo from '../assets/logo/png/GN2.png';
-import { useModal } from '../contexts/ModalContext'; 
+import { useModal } from '../contexts/ModalContext';
+import { useAuth } from '../contexts/AuthContext'; 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const { openLoginModal } = useModal();
+  const { user, isAuthenticated, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -19,7 +21,16 @@ const Header = () => {
 
   const handleProfileClick = (e) => {
     e.preventDefault();
-    openLoginModal();
+    if (isAuthenticated) {
+      navigate('/profile');
+    } else {
+      openLoginModal();
+    }
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
   };
 
   const handleSearch = (e) => {
@@ -104,12 +115,25 @@ const Header = () => {
           <li>
             <button onClick={handleProfileClick} className="profile-btn">
               {isMobile ? (
-                <span className="mobile-text">Profile</span>
+                <span className="mobile-text">
+                  {isAuthenticated ? (user?.username || 'Profile') : 'Login'}
+                </span>
               ) : (
                 <UserOutlined className="icon" />
               )}
             </button>
           </li>
+          {isAuthenticated && (
+            <li>
+              <button onClick={handleLogout} className="logout-btn">
+                {isMobile ? (
+                  <span className="mobile-text">Logout</span>
+                ) : (
+                  <LogoutOutlined className="icon" />
+                )}
+              </button>
+            </li>
+          )}
         </ul>
 
         {/* Menu trigger for mobile */}

@@ -299,6 +299,26 @@ body.modal-open {
   box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
+/* Error Messages */
+.error-message {
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.general-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 /* Success States */
 .auth-form input.success {
   border-color: #10b981;

@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { UserOutlined, LockOutlined, MailOutlined, EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import '../styles/customsStyle/LoginModal.css';
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     confirmPassword: '',
     username: ''
   });
+  const { login, signup } = useAuth();
+  const navigate = useNavigate();
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -26,29 +32,102 @@ const LoginModal = ({ isOpen, onClose }) => {
     };
   }, [isOpen]);
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Email validation
+    if (!formData.email) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
+
+    // Password validation
+    if (!formData.password) {
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+
+    // Signup specific validations
+    if (!isLogin) {
+      if (!formData.username) {
+        newErrors.username = 'Username is required';
+      } else if (formData.username.length < 3) {
+        newErrors.username = 'Username must be at least 3 characters';
+      } else if (!/^[a-zA-Z0-9_]+$/.test(formData.username)) {
+        newErrors.username = 'Username can only contain letters, numbers, and underscores';
+      }
+
+      if (!formData.confirmPassword) {
+        newErrors.confirmPassword = 'Please confirm your password';
+      } else if (formData.password !== formData.confirmPassword) {
+        newErrors.confirmPassword = 'Passwords do not match';
+      }
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isLogin) {
-      // Handle login logic
-      console.log('Login:', formData.email, formData.password);
-    } else {
-      // Handle signup logic
-      if (formData.password !== formData.confirmPassword) {
-        alert('Passwords do not match');
-        return;
-      }
-      console.log('Signup:', formData);
+    
+    if (!validateForm()) {
+      return;
     }
-    // Close modal after successful submission
-    onClose();
+
+    setIsLoading(true);
+    setErrors({});
+
+    try {
+      let result;
+      if (isLogin) {
+        result = await login(formData.email, formData.password);
+      } else {
+        result = await signup(formData.username, formData.email, formData.password);
+      }
+
+      if (result.success) {
+        // Reset form
+        setFormData({
+          email: '',
+          password: '',
+          confirmPassword: '',
+          username: ''
+        });
+        onClose();
+        
+        // Check if there's a redirect path stored
+        const redirectPath = localStorage.getItem('redirectAfterLogin');
+        if (redirectPath) {
+          localStorage.removeItem('redirectAfterLogin');
+          navigate(redirectPath);
+        }
+      } else {
+        setErrors({ general: result.error });
+      }
+    } catch (error) {
+      setErrors({ general: 'An unexpected error occurred. Please try again.' });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -76,6 +155,13 @@ const LoginModal = ({ isOpen, onClose }) => {
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
+          {/* General error message */}
+          {errors.general && (
+            <div className="error-message general-error">
+              {errors.general}
+            </div>
+          )}
+
           {!isLogin && (
             <div className="form-group">
               <label htmlFor="username">Username</label>
@@ -88,9 +174,10 @@ const LoginModal = ({ isOpen, onClose }) => {
                   value={formData.username}
                   onChange={handleInputChange}
                   placeholder="Enter your username"
-                  required={!isLogin}
+                  className={errors.username ? 'error' : ''}
                 />
               </div>
+              {errors.username && <div className="error-message">{errors.username}</div>}
             </div>
           )}
 
@@ -105,9 +192,10 @@ const LoginModal = ({ isOpen, onClose }) => {
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="Enter your email"
-                required
+                className={errors.email ? 'error' : ''}
               />
             </div>
+            {errors.email && <div className="error-message">{errors.email}</div>}
           </div>
 
           <div className="form-group">
@@ -121,7 +209,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                 value={formData.password}
                 onChange={handleInputChange}
                 placeholder="Enter your password"
-                required
+                className={errors.password ? 'error' : ''}
               />
               <button
                 type="button"
@@ -131,6 +219,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                 {showPassword ? <EyeInvisibleOutlined /> : <EyeOutlined />}
               </button>
             </div>
+            {errors.password && <div className="error-message">{errors.password}</div>}
           </div>
 
           {!isLogin && (
@@ -145,14 +234,15 @@ const LoginModal = ({ isOpen, onClose }) => {
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
                   placeholder="Confirm your password"
-                  required={!isLogin}
+                  className={errors.confirmPassword ? 'error' : ''}
                 />
               </div>
+              {errors.confirmPassword && <div className="error-message">{errors.confirmPassword}</div>}
             </div>
           )}
 
-          <button type="submit" className="submit-btn">
-            {isLogin ? 'Sign In' : 'Create Account'}
+          <button type="submit" className="submit-btn" disabled={isLoading}>
+            {isLoading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Create Account')}
           </button>
         </form>
 
