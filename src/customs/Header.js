@@ -4,7 +4,8 @@ import { UserOutlined, ShoppingCartOutlined, SearchOutlined, MenuOutlined, Logou
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import GN2Logo from '../assets/logo/png/GN2.png';
 import { useModal } from '../contexts/ModalContext';
-import { useAuth } from '../contexts/AuthContext'; 
+import { useAuth } from '../contexts/AuthContext';
+import { useCart } from '../contexts/CartContext'; 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,6 +14,7 @@ const Header = () => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const { openLoginModal } = useModal();
   const { user, isAuthenticated, logout } = useAuth();
+  const { getCartCount } = useCart();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -114,11 +116,16 @@ const Header = () => {
 
           {/* Icons/Text - responsive based on screen size */}
           <li>
-            <Link to="/cart" onClick={closeMenu}>
+            <Link to="/cart" onClick={closeMenu} className="cart-link">
               {isMobile ? (
                 <span className="mobile-text">Cart</span>
               ) : (
                 <ShoppingCartOutlined className="icon" />
+              )}
+              {getCartCount() > 0 && (
+                <span className="cart-badge">
+                  {getCartCount()}
+                </span>
               )}
             </Link>
           </li>
