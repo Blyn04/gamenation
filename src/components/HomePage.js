@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { PlayCircleOutlined, LeftOutlined, RightOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import HomeSlider from '../customs/HomeSlider';
 import Footer from '../customs/Footer';
+import LoadingButton from './LoadingButton';
+import LoadingImage from './LoadingImage';
 
 // Import all PS5 game images
 import ffvr from '../assets/ps5Games/ffvr.png';
@@ -313,6 +315,7 @@ const sportsRacing = [
 
 const GameCard = ({ game, showPlayIcon = false, showRating = false, showAddToCart = true, hideDetails = false }) => {
   const navigate = useNavigate();
+  const [isAddToCartLoading, setIsAddToCartLoading] = useState(false);
 
   const handleCardClick = () => {
     // Generate random price and details for the game
@@ -338,10 +341,16 @@ const GameCard = ({ game, showPlayIcon = false, showRating = false, showAddToCar
     navigate("/item-details", { state: { gameData } });
   };
 
-  const handleAddToCart = (e) => {
+  const handleAddToCart = async (e) => {
     e.stopPropagation(); // Prevent card click
-    // Here you would typically add the item to cart
-    console.log(`${game.title} added to cart!`);
+    setIsAddToCartLoading(true);
+    try {
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 600));
+      console.log(`${game.title} added to cart!`);
+    } finally {
+      setIsAddToCartLoading(false);
+    }
   };
 
   return (
@@ -352,7 +361,7 @@ const GameCard = ({ game, showPlayIcon = false, showRating = false, showAddToCar
     >
       <div className="thumbnail-container">
         <div className="thumbnail h-16 sm:h-20 md:h-24 lg:h-28">
-          <img 
+          <LoadingImage 
             src={imageMap[game.image]} 
             alt={game.title}
             className="w-full h-full object-cover rounded-xl"
@@ -376,12 +385,15 @@ const GameCard = ({ game, showPlayIcon = false, showRating = false, showAddToCar
         {!hideDetails && game.genre && <p className="genre text-xs sm:text-sm text-gray-300">{game.genre}</p>}
         {!hideDetails && game.price && <p className="price text-xs sm:text-sm font-semibold text-green-400">{game.price}</p>}
         {!hideDetails && showAddToCart && (
-          <button 
+          <LoadingButton 
             className="add-to-cart-btn text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2 mt-1 sm:mt-2"
             onClick={handleAddToCart}
+            loading={isAddToCartLoading}
+            loadingText="Adding..."
+            size="small"
           >
             <ShoppingCartOutlined /> Add to Cart
-          </button>
+          </LoadingButton>
         )}
       </div>
     </div>

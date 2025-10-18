@@ -6,6 +6,8 @@ import '../styles/componentsStyle/ConfirmModal.css';
 import { useCart } from '../contexts/CartContext';
 import { usePurchase } from '../contexts/PurchaseContext';
 import { useAuth } from '../contexts/AuthContext';
+import LoadingButton from './LoadingButton';
+import LoadingImage from './LoadingImage';
 
 // Import all PS5 game images from Library and HomePage
 import ittakes2 from '../assets/ps5Games/itt.png';
@@ -417,7 +419,7 @@ const CartPage = () => {
               {cartItems.map((item) => (
                 <div key={item.id} className="cart-item">
                   <div className="item-image">
-                    <img 
+                    <LoadingImage 
                       src={cartImageMap[item.image] || cartImageMap['cyberpunk-2077.png']} 
                       alt={item.title}
                       style={{
@@ -526,17 +528,17 @@ const CartPage = () => {
             <span>P {total.toFixed(2)}</span>
           </div>
           
-          <button 
+          <LoadingButton 
             className="buy-btn" 
             onClick={handleBuyNow}
-            disabled={cartItems.length === 0 || isProcessing}
-            style={{
-              opacity: cartItems.length === 0 || isProcessing ? 0.5 : 1,
-              cursor: cartItems.length === 0 || isProcessing ? 'not-allowed' : 'pointer'
-            }}
+            loading={isProcessing}
+            loadingText="Processing Purchase..."
+            disabled={cartItems.length === 0}
+            size="large"
+            variant="primary"
           >
-            {isProcessing ? 'Processing...' : (cartItems.length === 0 ? 'Cart is Empty' : 'Buy Now')}
-          </button>
+            {cartItems.length === 0 ? 'Cart is Empty' : 'Buy Now'}
+          </LoadingButton>
         </div>
       </div>
       

@@ -4,6 +4,8 @@ import "../styles/componentsStyle/ItemDetails.css";
 import Footer from "../customs/Footer";
 import { useWishlist } from "../contexts/WishlistContext";
 import { useCart } from "../contexts/CartContext";
+import LoadingButton from "./LoadingButton";
+import LoadingImage from "./LoadingImage";
 
 // Import all PS5 game images
 import ffvr from '../assets/ps5Games/ffvr.png';
@@ -179,6 +181,8 @@ const ItemDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isBuyLoading, setIsBuyLoading] = useState(false);
+  const [isWishlistLoading, setIsWishlistLoading] = useState(false);
   const { addToWishlist, removeFromWishlist, isInWishlist, wishlist } = useWishlist();
   const { addToCart, isInCart } = useCart();
   
@@ -204,24 +208,38 @@ const ItemDetails = () => {
   const isGameInCart = isInCart(gameData.title);
 
   // Handle wishlist button click
-  const handleWishlistClick = () => {
-    if (isGameInWishlist) {
-      // Find the item in wishlist and remove it
-      const wishlistItem = wishlist.find(item => item.title === gameData.title);
-      if (wishlistItem) {
-        removeFromWishlist(wishlistItem.id);
+  const handleWishlistClick = async () => {
+    setIsWishlistLoading(true);
+    try {
+      if (isGameInWishlist) {
+        // Find the item in wishlist and remove it
+        const wishlistItem = wishlist.find(item => item.title === gameData.title);
+        if (wishlistItem) {
+          removeFromWishlist(wishlistItem.id);
+        }
+      } else {
+        // Add to wishlist
+        addToWishlist(gameData);
       }
-    } else {
-      // Add to wishlist
-      addToWishlist(gameData);
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+    } finally {
+      setIsWishlistLoading(false);
     }
   };
 
   // Handle buy button click
-  const handleBuyClick = () => {
-    addToCart(gameData);
-    // Optionally navigate to cart page
-    // navigate('/cart');
+  const handleBuyClick = async () => {
+    setIsBuyLoading(true);
+    try {
+      addToCart(gameData);
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 800));
+      // Optionally navigate to cart page
+      // navigate('/cart');
+    } finally {
+      setIsBuyLoading(false);
+    }
   };
   
   
@@ -230,26 +248,38 @@ const ItemDetails = () => {
       {/* Hero Section with Game Banner */}
       <div className="hero-section">
         <div className="hero-image">
-          <img src={imageMap[gameData.image] || imageMap['mhw.png']} alt={gameData.title} />
+          <LoadingImage 
+            src={imageMap[gameData.image] || imageMap['mhw.png']} 
+            alt={gameData.title}
+            className="hero-image"
+          />
         </div>
         <div className="hero-overlay">
           <h1 className="game-title">{gameData.title}</h1>
           {gameData.subtitle && <p className="game-subtitle">{gameData.subtitle}</p>}
           <p className="game-price">{gameData.price}</p>
           <div className="hero-actions">
-            <button className="buy-btn" onClick={handleBuyClick}>
+            <LoadingButton 
+              className="buy-btn" 
+              onClick={handleBuyClick}
+              loading={isBuyLoading}
+              loadingText={isGameInCart ? 'Already Added' : 'Adding to Cart...'}
+              disabled={isGameInCart}
+            >
               {isGameInCart ? 'ADDED TO CART' : 'BUY'}
-            </button>
-            <button 
+            </LoadingButton>
+            <LoadingButton 
               className="wishlist-btn" 
               onClick={handleWishlistClick}
+              loading={isWishlistLoading}
+              loadingText={isGameInWishlist ? 'Removing...' : 'Adding...'}
               style={{ 
                 backgroundColor: isGameInWishlist ? 'white' : 'transparent',
                 color: isGameInWishlist ? '#1e40af' : 'white'
               }}
             >
               {isGameInWishlist ? '♥' : '♡'}
-            </button>
+            </LoadingButton>
           </div>
         </div>
       </div>
