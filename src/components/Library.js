@@ -238,8 +238,9 @@ const Library = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("");
   const [genreFilter, setGenreFilter] = useState("");
+  const [activeDropdown, setActiveDropdown] = useState(null);
   const navigate = useNavigate();
-  const { getUserPurchaseHistory } = usePurchase();
+  const { getUserPurchaseHistory, removeGameFromLibrary } = usePurchase();
   const { user } = useAuth();
   
   // Get purchased games from purchase history
@@ -315,6 +316,42 @@ const Library = () => {
     setCurrentPage(1);
   }, [searchTerm, sortBy, genreFilter]);
 
+  // Handle dropdown toggle
+  const handleDropdownToggle = (gameId) => {
+    setActiveDropdown(activeDropdown === gameId ? null : gameId);
+  };
+
+  // Close dropdown when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Check if click is outside the dropdown container
+      if (activeDropdown && !event.target.closest('.relative')) {
+        setActiveDropdown(null);
+      }
+    };
+
+    if (activeDropdown) {
+      // Add a small delay to prevent immediate closure
+      const timeoutId = setTimeout(() => {
+        document.addEventListener('click', handleClickOutside);
+      }, 100);
+
+      return () => {
+        clearTimeout(timeoutId);
+        document.removeEventListener('click', handleClickOutside);
+      };
+    }
+  }, [activeDropdown]);
+
+  // Handle uninstall
+  const handleUninstall = (gameTitle) => {
+    if (user) {
+      removeGameFromLibrary(user.id, gameTitle);
+      console.log(`Uninstalled ${gameTitle} from library`);
+    }
+    setActiveDropdown(null);
+  };
+
   // Handle game card click
   const handleGameClick = (game) => {
     // Use the actual game data from purchase history
@@ -360,7 +397,7 @@ const Library = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-800 via-blue-600 to-blue-800 text-white font-sans pt-20 relative">
+    <div className="min-h-screen bg-gradient-to-br from-blue-800 via-blue-600 to-blue-800 text-white font-sans pt-20 relative flex flex-col">
       {/* Background overlay */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-800/15 via-transparent to-blue-600/15"></div>
@@ -372,7 +409,7 @@ const Library = () => {
       <Header />
 
       {/* Library Section */}
-      <section className="relative z-10 px-4 sm:px-6 lg:px-8 xl:px-10 max-w-7xl mx-auto py-10">
+      <section className="relative z-10 px-4 sm:px-6 lg:px-8 xl:px-10 max-w-7xl mx-auto py-10 flex-grow">
         <div className="w-full">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-white text-left drop-shadow-lg">
             Library
@@ -380,7 +417,7 @@ const Library = () => {
           
           {/* Search and Filter Bar */}
           <div className="flex flex-col sm:flex-row gap-4 mb-8 items-start sm:items-center">
-            <div className="relative flex items-center bg-white/10 border border-white/20 rounded-xl backdrop-blur-sm transition-all duration-300 hover:bg-white/15 focus-within:bg-white/15 focus-within:border-amber-500/50 focus-within:shadow-lg focus-within:shadow-amber-500/20 min-w-64">
+            <div className="relative flex items-center bg-white/10 border border-white/20 rounded-xl backdrop-blur-sm transition-all duration-300 hover:bg-white/15 focus-within:bg-white/15 focus-within:border-amber-500/50 focus-within:shadow-lg focus-within:shadow-amber-500/20 min-w-64 mt-8">
               <SearchOutlined className="text-white/70 text-base ml-3 mr-2 pointer-events-none" />
               <input
                 type="text"
@@ -432,18 +469,20 @@ const Library = () => {
 
           {/* Games Grid - 2 cards per row on mobile, 3 on tablet, 4 on desktop */}
           {purchasedGames.length > 0 ? (
-            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 mb-8">
+            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 mb-8" style={{ overflow: 'visible' }}>
               {currentGames.map((game, index) => (
                 <div 
                   key={`${game.purchaseId}-${game.id}`} 
-                  className="bg-transparent border-none p-0 text-left rounded-2xl transition-transform duration-200 cursor-pointer relative overflow-hidden animate-fade-in-up"
+                  className="bg-transparent border-none p-0 text-left rounded-2xl transition-transform duration-200 relative overflow-visible animate-fade-in-up"
                   style={{ 
                     animationDelay: `${index * 0.1}s`,
                     animationFillMode: 'forwards'
                   }}
-                  onClick={() => handleGameClick(game)}
                 >
-                  <div className="w-full h-48 sm:h-52 lg:h-56 rounded-xl mb-3 overflow-hidden bg-slate-700 shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-black/40">
+                  <div 
+                    className="w-full h-48 sm:h-52 lg:h-56 rounded-xl mb-3 overflow-hidden bg-slate-700 shadow-lg transition-all duration-300 hover:shadow-2xl hover:shadow-black/40 cursor-pointer"
+                    onClick={() => handleGameClick(game)}
+                  >
                     <img 
                       src={libraryImageMap[game.image] || libraryImageMap['er.png']} 
                       alt={game.title}
@@ -451,10 +490,36 @@ const Library = () => {
                     />
                   </div>
                   <div className="flex justify-between items-start gap-2">
-                    <h4 className="text-sm font-semibold m-0 leading-tight text-white break-words flex-1">
+                    <h4 
+                      className="text-sm font-semibold m-0 leading-tight text-white break-words flex-1 cursor-pointer"
+                      onClick={() => handleGameClick(game)}
+                    >
                       {game.title}
                     </h4>
-                    <MoreOutlined className="text-white/70 text-base cursor-pointer p-1 rounded transition-all duration-200 hover:text-white hover:bg-white/10 flex-shrink-0" />
+                    <div className="relative">
+                      <MoreOutlined 
+                        className="text-white/70 text-base cursor-pointer p-1 rounded transition-all duration-200 hover:text-white hover:bg-white/10 flex-shrink-0" 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          handleDropdownToggle(`${game.purchaseId}-${game.id}`);
+                        }}
+                      />
+                      {activeDropdown === `${game.purchaseId}-${game.id}` && (
+                        <div className="library-dropdown absolute right-0 top-8 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-32">
+                          <div 
+                            className="px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer flex items-center gap-2"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleUninstall(game.title);
+                            }}
+                          >
+                            <span>🗑️</span>
+                            <span>Uninstall</span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}

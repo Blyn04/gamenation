@@ -5,6 +5,7 @@
   justify-content: space-around;
   padding: 40px 60px;
   flex-wrap: wrap;
+  margin-top: auto;
 }
 
 .footer-section {

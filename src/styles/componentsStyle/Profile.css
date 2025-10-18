@@ -223,6 +223,7 @@
   opacity: 0;
   transform: translateX(-20px);
   animation-fill-mode: forwards;
+  overflow: visible;
 }
 
 /* Staggered animation for profile game items */
@@ -303,6 +304,7 @@
   transition: all 0.3s ease;
   flex-shrink: 0;
   position: relative;
+  overflow: visible;
 }
 
 .game-actions:hover {

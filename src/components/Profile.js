@@ -195,7 +195,7 @@ const Profile = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const { wishlist, removeFromWishlist } = useWishlist();
   const { user } = useAuth();
-  const { getUserPurchaseHistory } = usePurchase();
+  const { getUserPurchaseHistory, removeGameFromLibrary } = usePurchase();
 
   const handleSettingsClick = () => {
     navigate('/account-settings');
@@ -215,17 +215,36 @@ const Profile = () => {
     setActiveDropdown(activeDropdown === dropdownId ? null : dropdownId);
   };
 
+  // Close dropdown when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (activeDropdown && !event.target.closest('.game-actions')) {
+        setActiveDropdown(null);
+      }
+    };
+
+    if (activeDropdown) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [activeDropdown]);
+
   // Handle dropdown actions
   const handleDetails = (game) => {
     handleGameClick(game);
     setActiveDropdown(null);
   };
 
-  const handleUninstall = (gameId, section) => {
-    // Here you would typically remove the game from the library
-    console.log(`Uninstalling game ${gameId} from ${section}`);
+  const handleUninstall = (gameTitle, section) => {
+    if (section === 'library' && user) {
+      // Remove the game from the purchase history
+      removeGameFromLibrary(user.id, gameTitle);
+      console.log(`Uninstalled ${gameTitle} from library`);
+    }
     setActiveDropdown(null);
-    // You could also update the state to remove the game from the list
   };
 
   const handleRemoveFromWishlist = (gameId) => {
@@ -339,10 +358,10 @@ const Profile = () => {
                         <InfoCircleOutlined />
                         <span>Details</span>
                       </div>
-                      <div className="dropdown-item" onClick={() => handleUninstall(`${game.purchaseId}-${game.id}`, 'library')}>
-                        <DeleteOutlined />
-                        <span>Uninstall</span>
-                      </div>
+                    <div className="dropdown-item" onClick={() => handleUninstall(game.title, 'library')}>
+                      <DeleteOutlined />
+                      <span>Uninstall</span>
+                    </div>
                     </div>
                   )}
                 </div>

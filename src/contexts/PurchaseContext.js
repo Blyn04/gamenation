@@ -78,11 +78,41 @@ export const PurchaseProvider = ({ children }) => {
     return purchaseHistory.filter(purchase => purchase.userId === userId);
   };
 
+  // Remove a specific game from purchase history
+  const removeGameFromLibrary = (userId, gameTitle) => {
+    setPurchaseHistory(prev => 
+      prev.map(purchase => {
+        if (purchase.userId === userId) {
+          // Filter out the specific game from the purchase items
+          const updatedItems = purchase.items.filter(item => item.title !== gameTitle);
+          
+          // If no items left, remove the entire purchase
+          if (updatedItems.length === 0) {
+            return null;
+          }
+          
+          // Recalculate total amount
+          const newTotalAmount = updatedItems.reduce((total, item) => {
+            return total + (item.price * item.quantity);
+          }, 0);
+          
+          return {
+            ...purchase,
+            items: updatedItems,
+            totalAmount: newTotalAmount
+          };
+        }
+        return purchase;
+      }).filter(purchase => purchase !== null) // Remove null purchases
+    );
+  };
+
   const value = {
     purchaseHistory,
     isProcessing,
     processPurchase,
-    getUserPurchaseHistory
+    getUserPurchaseHistory,
+    removeGameFromLibrary
   };
 
   return (
