@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import "../styles/componentsStyle/Profile.css";
 import Footer from '../customs/Footer';
 import { useWishlist } from '../contexts/WishlistContext';
+import { useAuth } from '../contexts/AuthContext';
 
 // Import game images
 import armoredcore from '../assets/ps5Games/armoredcore.png';
@@ -192,6 +193,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const [activeDropdown, setActiveDropdown] = useState(null);
   const { wishlist, removeFromWishlist } = useWishlist();
+  const { user } = useAuth();
 
   const handleSettingsClick = () => {
     navigate('/account-settings');
@@ -266,8 +268,8 @@ const Profile = () => {
             <UserOutlined className="avatar-icon" />
           </div>
           <div className="user-info">
-            <h2 className="username">Mikmik</h2>
-            <p className="full-name">Berlene Bernabe</p>
+            <h2 className="username">{user?.username || 'User'}</h2>
+            <p className="full-name">{user?.email || 'No email provided'}</p>
             <button className="settings-btn" onClick={handleSettingsClick}>
               <SettingOutlined /> Settings
             </button>

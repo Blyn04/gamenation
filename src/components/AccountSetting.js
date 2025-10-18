@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { EditOutlined, UserOutlined, CreditCardOutlined, TransactionOutlined, LogoutOutlined, SettingOutlined, BellOutlined, SafetyOutlined, CloseOutlined, PlusOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import '../styles/componentsStyle/AccountSetting.css';
 
 const AccountSetting = () => {
   const navigate = useNavigate();
+  const { user, updateUser, logout } = useAuth();
   const [activeTab, setActiveTab] = useState('profile');
   const [profileData, setProfileData] = useState({
-    name: 'Berlene F. Bernabe',
-    username: 'blynsu',
-    email: 'berlene.bernabe@example.com',
-    phone: '+63 912 345 6789',
+    name: '',
+    username: '',
+    email: '',
+    phone: '',
     language: 'English',
     country: 'Philippines',
     timezone: 'Asia/Manila'
@@ -34,6 +36,28 @@ const AccountSetting = () => {
 
   const [isAddPaymentModalOpen, setIsAddPaymentModalOpen] = useState(false);
   const [isSignOutModalOpen, setIsSignOutModalOpen] = useState(false);
+
+  // Initialize profile data from user context
+  useEffect(() => {
+    if (user) {
+      setProfileData({
+        name: user.name || user.username || '',
+        username: user.username || '',
+        email: user.email || '',
+        phone: user.phone || '',
+        language: user.language || 'English',
+        country: user.country || 'Philippines',
+        timezone: user.timezone || 'Asia/Manila'
+      });
+      setEditValues({
+        name: user.name || user.username || '',
+        username: user.username || '',
+        email: user.email || '',
+        phone: user.phone || '',
+        country: user.country || 'Philippines'
+      });
+    }
+  }, [user]);
   const [paymentFormData, setPaymentFormData] = useState({
     cardNumber: '',
     expiryDate: '',
@@ -50,8 +74,12 @@ const AccountSetting = () => {
   };
 
   const handleSave = (field) => {
-    setProfileData(prev => ({ ...prev, [field]: editValues[field] }));
+    const newValue = editValues[field];
+    setProfileData(prev => ({ ...prev, [field]: newValue }));
     setIsEditing(prev => ({ ...prev, [field]: false }));
+    
+    // Update user data in AuthContext
+    updateUser({ [field]: newValue });
   };
 
   const handleCancel = (field) => {
@@ -64,6 +92,7 @@ const AccountSetting = () => {
   };
 
   const handleSignOut = () => {
+    logout();
     navigate('/');
   };
 
@@ -73,6 +102,7 @@ const AccountSetting = () => {
 
   const handleConfirmSignOut = () => {
     setIsSignOutModalOpen(false);
+    logout();
     navigate('/');
   };
 
@@ -285,7 +315,7 @@ const AccountSetting = () => {
             <div className="profile-avatar">
               <UserOutlined className="avatar-icon" />
             </div>
-            <div className="username">{profileData.name}</div>
+            <div className="username">{user?.username || 'User'}</div>
           </div>
           
           <div className="account-nav">
@@ -335,8 +365,8 @@ const AccountSetting = () => {
                 <UserOutlined className="avatar-icon" />
               </div>
               <div className="user-details">
-                <h1 className="user-name">{profileData.name}</h1>
-                <p className="user-email">{profileData.email}</p>
+                <h1 className="user-name">{user?.username || 'User'}</h1>
+                <p className="user-email">{user?.email || 'No email provided'}</p>
               </div>
             </div>
             <button className="sign-out-btn" onClick={handleSignOutClick}>
