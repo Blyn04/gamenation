@@ -12,7 +12,6 @@ const AccountSetting = () => {
     name: '',
     username: '',
     email: '',
-    phone: '',
     language: 'English',
     country: 'Philippines',
     timezone: 'Asia/Manila'
@@ -22,7 +21,6 @@ const AccountSetting = () => {
     name: false,
     username: false,
     email: false,
-    phone: false,
     country: false
   });
 
@@ -30,7 +28,6 @@ const AccountSetting = () => {
     name: profileData.name,
     username: profileData.username,
     email: profileData.email,
-    phone: profileData.phone,
     country: profileData.country
   });
 
@@ -44,7 +41,6 @@ const AccountSetting = () => {
         name: user.name || user.username || '',
         username: user.username || '',
         email: user.email || '',
-        phone: user.phone || '',
         language: user.language || 'English',
         country: user.country || 'Philippines',
         timezone: user.timezone || 'Asia/Manila'
@@ -53,7 +49,6 @@ const AccountSetting = () => {
         name: user.name || user.username || '',
         username: user.username || '',
         email: user.email || '',
-        phone: user.phone || '',
         country: user.country || 'Philippines'
       });
     }
@@ -210,7 +205,6 @@ const AccountSetting = () => {
                   {renderProfileField('Full Name', 'name', profileData.name, <UserOutlined />)}
                   {renderProfileField('Username', 'username', profileData.username, <UserOutlined />)}
                   {renderProfileField('Email Address', 'email', profileData.email, <UserOutlined />)}
-                  {renderProfileField('Phone Number', 'phone', profileData.phone, <UserOutlined />)}
                 </div>
               </div>
 
