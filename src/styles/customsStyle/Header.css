@@ -133,6 +133,36 @@
   color: white;
 }
 
+/* Profile Button */
+.profile-btn {
+  background: none;
+  border: none;
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 8px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-btn:hover {
+  color: white;
+}
+
+.profile-btn .icon {
+  font-size: 1.25rem;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.profile-btn:hover .icon {
+  color: inherit;
+}
+
 /* BURGER icon styling */
 .menu-trigger {
   display: none;

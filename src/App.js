@@ -11,29 +11,47 @@ import AccountSetting from './components/AccountSetting';
 import Library from './components/Library';
 import LikePage from './components/LikePage';
 import ScrollToTop from './components/ScrollToTop';
+import LoginModal from './customs/LoginModal';
 import { WishlistProvider } from './contexts/WishlistContext';
 import { CartProvider } from './contexts/CartContext';
+import { ModalProvider, useModal } from './contexts/ModalContext';
+
+const AppContent = () => {
+  const { isLoginModalOpen, closeLoginModal } = useModal();
+  
+  return (
+    <Router>
+      <div className="App">
+        <ScrollToTop />
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/browse" element={<AllProducts/>} />
+          <Route path="/library" element={<Library/>} />
+          <Route path="/wishlist" element={<LikePage/>} />
+          <Route path="/item-details" element={<ItemDetails/>} />
+          <Route path="/cart" element={<CartPage/>} />
+          <Route path="/account-settings" element={<AccountSetting/>} />
+        </Routes>
+        
+        {/* Login Modal - rendered at root level */}
+        <LoginModal 
+          isOpen={isLoginModalOpen} 
+          onClose={closeLoginModal} 
+        />
+      </div>
+    </Router>
+  );
+};
 
 function App() {
   return (
     <WishlistProvider>
       <CartProvider>
-        <Router>
-          <div className="App">
-            <ScrollToTop />
-            <Header />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/browse" element={<AllProducts/>} />
-              <Route path="/library" element={<Library/>} />
-              <Route path="/wishlist" element={<LikePage/>} />
-              <Route path="/item-details" element={<ItemDetails/>} />
-              <Route path="/cart" element={<CartPage/>} />
-              <Route path="/account-settings" element={<AccountSetting/>} />
-            </Routes>
-          </div>
-        </Router>
+        <ModalProvider>
+          <AppContent />
+        </ModalProvider>
       </CartProvider>
     </WishlistProvider>
   );

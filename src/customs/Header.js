@@ -2,18 +2,25 @@ import React, { useState, useEffect } from 'react';
 import '../styles/customsStyle/Header.css';
 import { UserOutlined, ShoppingCartOutlined, SearchOutlined, MenuOutlined } from '@ant-design/icons';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import GN2Logo from '../assets/logo/png/GN2.png'; 
+import GN2Logo from '../assets/logo/png/GN2.png';
+import { useModal } from '../contexts/ModalContext'; 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const { openLoginModal } = useModal();
   const location = useLocation();
   const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   
   const closeMenu = () => setIsMenuOpen(false);
+
+  const handleProfileClick = (e) => {
+    e.preventDefault();
+    openLoginModal();
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -95,13 +102,13 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link to="/profile" onClick={closeMenu}>
+            <button onClick={handleProfileClick} className="profile-btn">
               {isMobile ? (
                 <span className="mobile-text">Profile</span>
               ) : (
                 <UserOutlined className="icon" />
               )}
-            </Link>
+            </button>
           </li>
         </ul>
 
