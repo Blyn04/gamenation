@@ -261,16 +261,13 @@ const LikePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-800 via-blue-600 to-blue-800 text-white font-['Inter'] pt-20 relative">
-      {/* Header */}
+    <div className="min-h-screen bg-gradient-to-br from-blue-800 via-blue-600 to-blue-800 text-white font-['Inter'] pt-20 relative flex flex-col">
       <Header />
 
-      {/* Wishlist Section */}
-      <section className="relative z-10 px-4 sm:px-6 lg:px-8 xl:px-10 max-w-7xl mx-auto py-10">
+      <section className="relative z-10 px-4 sm:px-6 lg:px-8 xl:px-10 max-w-7xl mx-auto py-10 flex-grow">
         <div className="w-full">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-white text-left drop-shadow-lg">Wishlist</h1>
           
-          {/* Search and Filter Bar */}
           <div className="flex flex-col sm:flex-row gap-4 mb-8 items-start sm:items-center mt-8">
             <div className="relative flex items-center bg-white/10 border border-white/20 rounded-xl backdrop-blur-sm transition-all duration-300 hover:bg-white/15 focus-within:bg-white/15 focus-within:border-amber-500/50 focus-within:shadow-lg focus-within:shadow-amber-500/20 min-w-64 mt-7">
               <SearchOutlined className="text-white/70 text-base ml-3 mr-2 pointer-events-none" />

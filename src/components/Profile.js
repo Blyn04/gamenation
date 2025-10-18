@@ -319,7 +319,6 @@ const Profile = () => {
         </div>
       </div>
 
-      {/* Library Section */}
       <section className="games-section">
         <div className="game-list">
           <div className="section-header">
@@ -375,7 +374,6 @@ const Profile = () => {
         </div>
       </section>
 
-      {/* Wishlist Section */}
       <section className="games-section">
         <div className="game-list">
           <div className="section-header">
@@ -431,7 +429,6 @@ const Profile = () => {
         </div>
       </section>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

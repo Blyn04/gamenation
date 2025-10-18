@@ -218,10 +218,8 @@ const ItemDetails = () => {
           removeFromWishlist(wishlistItem.id);
         }
       } else {
-        // Add to wishlist
         addToWishlist(gameData);
       }
-      // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 500));
     } finally {
       setIsWishlistLoading(false);
@@ -233,10 +231,7 @@ const ItemDetails = () => {
     setIsBuyLoading(true);
     try {
       addToCart(gameData);
-      // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 800));
-      // Optionally navigate to cart page
-      // navigate('/cart');
     } finally {
       setIsBuyLoading(false);
     }
@@ -245,7 +240,6 @@ const ItemDetails = () => {
   
   return (
     <div className="item-details">
-      {/* Hero Section with Game Banner */}
       <div className="hero-section">
         <div className="hero-image">
           <LoadingImage 
@@ -284,7 +278,6 @@ const ItemDetails = () => {
         </div>
       </div>
 
-      {/* Game Details Section */}
       <div className={`game-details ${isExpanded ? 'expanded' : ''}`}>
         <div className="game-metadata">
           <div className="metadata-left">
@@ -336,7 +329,6 @@ const ItemDetails = () => {
         </div>
       </div>
 
-      {/* Discover More Games Section */}
       <div className="discover-section">
         <h2 className="discover-title">DISCOVER MORE GAMES</h2>
         <div className="games-grid">
@@ -475,7 +467,6 @@ const ItemDetails = () => {
         </div>
       </div>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

@@ -262,14 +262,10 @@ const AllProducts = () => {
 
   return (
     <div className="allproducts-container">
-      {/* Header */}
       <Header />
-
-      {/* Featured Section */}
       <section className="allproducts-featured-section">
         <div className="allproducts-featured-hero-banner">
           <div className="allproducts-hero-game-scene">
-            {/* Large hero banner with game scene background */}
             <div className="allproducts-hero-background">
               <img 
                 src={imageMap['mhw.png']} 
@@ -281,8 +277,6 @@ const AllProducts = () => {
                 }}
               />
             </div>
-            
-            {/* Video player overlay in bottom-left */}
           
           </div>
         </div>
@@ -343,7 +337,6 @@ const AllProducts = () => {
             </div>
       </section>
 
-      {/* Filters and Search */}
       <div className="allproducts-filters">
         <div className="allproducts-search-container">
           <SearchOutlined className="allproducts-search-icon" />
@@ -413,7 +406,6 @@ const AllProducts = () => {
         </div>
       </div>
 
-      {/* Products Grid */}
       <div className="allproducts-product-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5 px-4 sm:px-10 max-w-7xl mx-auto z-10 mb-8">
         {currentProducts.map((product) => (
           <div 
@@ -446,14 +438,12 @@ const AllProducts = () => {
         ))}
       </div>
 
-      {/* No results message */}
       {filteredProducts.length === 0 && searchTerm && (
         <div className="allproducts-no-results text-center py-10 text-white/70 text-base max-w-7xl mx-auto z-10">
           <p>No games found matching "{searchTerm}"</p>
         </div>
       )}
 
-      {/* Pagination */}
       {filteredProducts.length > 0 && (
         <div className="flex flex-wrap justify-center items-center gap-2 mx-auto z-10 my-8">
           <button 
@@ -520,7 +510,6 @@ const AllProducts = () => {
         </div>
       )}
 
-      {/* Monster Hunter Video Modal */}
       {isMonsterHunterModalOpen && (
         <div className="video-modal-overlay" onClick={handleCloseMonsterHunterModal}>
           <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -546,7 +535,6 @@ const AllProducts = () => {
         </div>
       )}
 
-      {/* Footer */}
       <Footer />
     </div>
   );

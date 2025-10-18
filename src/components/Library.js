@@ -398,24 +398,20 @@ const Library = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-800 via-blue-600 to-blue-800 text-white font-sans pt-20 relative flex flex-col">
-      {/* Background overlay */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-800/15 via-transparent to-blue-600/15"></div>
         <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-blue-600/15 via-transparent to-blue-800/15"></div>
         <div className="absolute top-1/2 left-1/2 w-full h-full bg-gradient-to-r from-blue-800/10 via-transparent to-blue-600/10 transform -translate-x-1/2 -translate-y-1/2"></div>
       </div>
 
-      {/* Header */}
       <Header />
 
-      {/* Library Section */}
       <section className="relative z-10 px-4 sm:px-6 lg:px-8 xl:px-10 max-w-7xl mx-auto py-10 flex-grow">
         <div className="w-full">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-white text-left drop-shadow-lg">
             Library
           </h1>
           
-          {/* Search and Filter Bar */}
           <div className="flex flex-col sm:flex-row gap-4 mb-8 items-start sm:items-center">
             <div className="relative flex items-center bg-white/10 border border-white/20 rounded-xl backdrop-blur-sm transition-all duration-300 hover:bg-white/15 focus-within:bg-white/15 focus-within:border-amber-500/50 focus-within:shadow-lg focus-within:shadow-amber-500/20 min-w-64 mt-8">
               <SearchOutlined className="text-white/70 text-base ml-3 mr-2 pointer-events-none" />

@@ -404,7 +404,6 @@ const CartPage = () => {
     <div className="cart-page">
       <div className="cart-main-content">
         <div className="cart-container">
-        {/* Cart Items Section */}
         <div className="cart-items-section">
           <h2 className="section-title">Cart Items</h2>
           
@@ -466,7 +465,6 @@ const CartPage = () => {
             </div>
           )}
           
-          {/* Action Buttons */}
           <div className="cart-actions">
             <button 
               className="action-btn"
@@ -485,7 +483,6 @@ const CartPage = () => {
           </div>
         </div>
         
-        {/* Order Summary */}
         <div className="order-summary">
           <h3 className="summary-title">Order Summary</h3>
           
@@ -542,7 +539,6 @@ const CartPage = () => {
         </div>
       </div>
       
-      {/* Voucher Modal */}
       {isVoucherModalOpen && (
         <div className="modal-overlay" onClick={() => setIsVoucherModalOpen(false)}>
           <div className="voucher-modal" onClick={(e) => e.stopPropagation()}>
@@ -617,7 +613,6 @@ const CartPage = () => {
         </div>
       )}
       
-      {/* Payment Method Modal */}
       {isPaymentModalOpen && (
         <div className="modal-overlay" onClick={() => setIsPaymentModalOpen(false)}>
           <div className="payment-modal" onClick={(e) => e.stopPropagation()}>
@@ -706,7 +701,6 @@ const CartPage = () => {
         </div>
       )}
       
-      {/* Card Input Modal */}
       {isCardModalOpen && (
         <div className="modal-overlay" onClick={() => setIsCardModalOpen(false)}>
           <div className="card-modal" onClick={(e) => e.stopPropagation()}>
@@ -802,7 +796,6 @@ const CartPage = () => {
         </div>
       )}
       
-      {/* Purchase Confirmation Modal */}
       {isConfirmModalOpen && (
         <div className="modal-overlay" onClick={() => setIsConfirmModalOpen(false)}>
           <div className="confirm-modal" onClick={(e) => e.stopPropagation()}>
@@ -878,7 +871,6 @@ const CartPage = () => {
       )}
       </div>
       
-      {/* Purchase Details Modal */}
       {purchaseDetails && (
         <div className="purchase-overlay" onClick={() => setPurchaseDetails(null)}>
           <div className="purchase-modal-container" onClick={(e) => e.stopPropagation()}>
@@ -934,7 +926,6 @@ const CartPage = () => {
         </div>
       )}
 
-      {/* Footer */}
       <Footer />
     </div>
   );

@@ -1,4 +1,3 @@
-/* Loading Image Styles */
 .loading-image-container {
   position: relative;
   width: 100%;
@@ -56,7 +55,6 @@
   100% { background-position: 200% 0; }
 }
 
-/* Game card specific loading */
 .game-card .loading-image-container {
   border-radius: 12px;
   overflow: hidden;
@@ -66,12 +64,10 @@
   border-radius: 8px;
 }
 
-/* Hero section loading */
 .hero-image .loading-image-container {
   border-radius: 16px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .image-skeleton,
   .image-error {

@@ -1,4 +1,3 @@
-/* Loading Button Styles */
 .loading-button {
   position: relative;
   display: inline-flex;
@@ -50,7 +49,6 @@
   white-space: nowrap;
 }
 
-/* Size variants */
 .loading-button.small {
   padding: 6px 12px;
   font-size: 12px;
@@ -66,7 +64,6 @@
   font-size: 16px;
 }
 
-/* Variant styles */
 .loading-button.primary {
   background: #3b82f6;
   color: white;
@@ -114,7 +111,6 @@
   background: #dc2626;
 }
 
-/* Game-specific button styles */
 .buy-btn.loading-button {
   background: linear-gradient(135deg, #3b82f6, #1d4ed8);
   color: white;
@@ -159,7 +155,6 @@
   transform: translateY(-1px);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .loading-button.small {
     padding: 4px 8px;

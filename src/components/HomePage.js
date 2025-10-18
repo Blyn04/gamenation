@@ -318,11 +318,10 @@ const GameCard = ({ game, showPlayIcon = false, showRating = false, showAddToCar
   const [isAddToCartLoading, setIsAddToCartLoading] = useState(false);
 
   const handleCardClick = () => {
-    // Generate random price and details for the game
-    const randomPrice = Math.floor(Math.random() * 2000) + 1000; // Price between 1000-3000
-    const randomRating = (Math.random() * 2 + 3).toFixed(1); // Rating between 3.0-5.0
-    const randomDownloads = Math.floor(Math.random() * 2000000) + 100000; // Downloads between 100k-2M
-    const randomSize = Math.floor(Math.random() * 50) + 10; // Size between 10-60GB
+    const randomPrice = Math.floor(Math.random() * 2000) + 1000;
+    const randomRating = (Math.random() * 2 + 3).toFixed(1);
+    const randomDownloads = Math.floor(Math.random() * 2000000) + 100000;
+    const randomSize = Math.floor(Math.random() * 50) + 10;
     
     const gameData = {
       title: game.title,
@@ -342,10 +341,9 @@ const GameCard = ({ game, showPlayIcon = false, showRating = false, showAddToCar
   };
 
   const handleAddToCart = async (e) => {
-    e.stopPropagation(); // Prevent card click
+    e.stopPropagation();
     setIsAddToCartLoading(true);
     try {
-      // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 600));
       console.log(`${game.title} added to cart!`);
     } finally {
@@ -486,10 +484,8 @@ const HomePage = () => {
 
   return (
     <div className="homepage">
-      {/* Main Hero/Slider Section */}
       <HomeSlider />
 
-      {/* Most Popular Section */}
       <section className={`game-section popular-games-section ${isPopularExpanded ? 'expanded' : ''} sm:px-4 md:px-6 lg:px-8`}>
         <h2 className="section-title text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">Popular Games</h2>
         <div className={`game-grid popular-games-grid ${isPopularExpanded ? 'expanded' : ''} !grid-cols-2 sm:!grid-cols-3 md:!grid-cols-4 lg:!grid-cols-5 !gap-2 sm:!gap-3 md:!gap-4 lg:!gap-5`}>
@@ -505,11 +501,9 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Featured Video Section */}
       <section className="featured-section sm:px-4 md:px-6 lg:px-8">
         <div className="featured-hero-banner h-48 sm:h-64 md:h-80 lg:h-96 xl:h-[500px]">
           <div className="hero-game-scene">
-            {/* Large hero banner with game scene background */}
             <div className="hero-background">
               <img 
                 src={imageMap['er.png']} 
@@ -517,8 +511,6 @@ const HomePage = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            
-            {/* Video player overlay in bottom-left */}
           
           </div>
         </div>
@@ -579,7 +571,6 @@ const HomePage = () => {
             </div>
       </section>
 
-      {/* Discounts and Sales Section */}
       <section className={`game-section1 ${isDiscountExpanded ? 'expanded' : ''} sm:px-4 md:px-6 lg:px-8`}>
         <h2 className="section-title text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">Discounts and Sales</h2>
         <div className={`game-grid discount-games-grid ${isDiscountExpanded ? 'expanded' : ''} !grid-cols-2 sm:!grid-cols-3 md:!grid-cols-4 lg:!grid-cols-5 !gap-2 sm:!gap-3 md:!gap-4 lg:!gap-5`}>
@@ -594,7 +585,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Horizontal Carousel Section */}
       <section className="carousel-section sm:px-4 md:px-6 lg:px-8">
         {/* <div className="carousel-tabs">
           <button 
@@ -674,7 +664,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Categorized Games Section */}
       <section className="categorized-section sm:px-4 md:px-6 lg:px-8">
         <div className="category-tabs flex flex-row gap-2 sm:gap-4">
           <button 
@@ -704,7 +693,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Video Modal */}
       {isVideoModalOpen && selectedVideo && (
         <div className="video-modal-overlay" onClick={handleCloseVideoModal}>
           <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -730,7 +718,6 @@ const HomePage = () => {
         </div>
       )}
 
-      {/* ELDEN RING Video Modal */}
       {isEldenRingModalOpen && (
         <div className="video-modal-overlay" onClick={handleCloseEldenRingModal}>
           <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -756,7 +743,6 @@ const HomePage = () => {
         </div>
       )}
 
-      {/* Footer */}
       <Footer />
     </div>
   );
