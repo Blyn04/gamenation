@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { EditOutlined, UserOutlined, CreditCardOutlined, TransactionOutlined, LogoutOutlined, SettingOutlined, BellOutlined, SafetyOutlined, CloseOutlined, PlusOutlined } from '@ant-design/icons';
+import { EditOutlined, UserOutlined, CreditCardOutlined, TransactionOutlined, SettingOutlined, BellOutlined, SafetyOutlined, CloseOutlined, PlusOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import '../styles/componentsStyle/AccountSetting.css';
 
 const AccountSetting = () => {
   const navigate = useNavigate();
-  const { user, updateUser, logout } = useAuth();
+  const { user, updateUser } = useAuth();
   const [activeTab, setActiveTab] = useState('profile');
   const [profileData, setProfileData] = useState({
     name: '',
@@ -32,7 +32,6 @@ const AccountSetting = () => {
   });
 
   const [isAddPaymentModalOpen, setIsAddPaymentModalOpen] = useState(false);
-  const [isSignOutModalOpen, setIsSignOutModalOpen] = useState(false);
 
   // Initialize profile data from user context
   useEffect(() => {
@@ -86,24 +85,6 @@ const AccountSetting = () => {
     setEditValues(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSignOut = () => {
-    logout();
-    navigate('/');
-  };
-
-  const handleSignOutClick = () => {
-    setIsSignOutModalOpen(true);
-  };
-
-  const handleConfirmSignOut = () => {
-    setIsSignOutModalOpen(false);
-    logout();
-    navigate('/');
-  };
-
-  const handleCancelSignOut = () => {
-    setIsSignOutModalOpen(false);
-  };
 
   const handleAddPaymentMethod = () => {
     setIsAddPaymentModalOpen(true);
@@ -339,14 +320,6 @@ const AccountSetting = () => {
                   <TransactionOutlined /> Transactions
                 </button>
               </li>
-              <li>
-                <button 
-                  className="nav-link sign-out"
-                  onClick={handleSignOutClick}
-                >
-                  <LogoutOutlined /> Sign Out
-                </button>
-              </li>
             </ul>
           </div>
         </div>
@@ -363,10 +336,6 @@ const AccountSetting = () => {
                 <p className="user-email">{user?.email || 'No email provided'}</p>
               </div>
             </div>
-            <button className="sign-out-btn" onClick={handleSignOutClick}>
-              <LogoutOutlined />
-              Sign Out
-            </button>
           </div>
         </div>
 
@@ -525,36 +494,6 @@ const AccountSetting = () => {
         </div>
       )}
 
-      {/* Sign Out Confirmation Modal */}
-      {isSignOutModalOpen && (
-        <div className="modal-overlay" onClick={handleCancelSignOut}>
-          <div className="modal-content sign-out-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h2 className="modal-title">Sign Out</h2>
-              <button className="modal-close-btn" onClick={handleCancelSignOut}>
-                <CloseOutlined />
-              </button>
-            </div>
-            
-            <div className="modal-body">
-              <div className="sign-out-content">
-                <LogoutOutlined className="sign-out-icon" />
-                <h3>Are you sure you want to sign out?</h3>
-                <p>You'll need to sign in again to access your account and continue your gaming experience.</p>
-              </div>
-            </div>
-
-            <div className="modal-footer">
-              <button className="cancel-btn" onClick={handleCancelSignOut}>
-                Cancel
-              </button>
-              <button className="sign-out-confirm-btn" onClick={handleConfirmSignOut}>
-                <LogoutOutlined /> Sign Out
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

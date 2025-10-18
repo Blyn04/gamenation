@@ -10,6 +10,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const { openLoginModal } = useModal();
   const { user, isAuthenticated, logout } = useAuth();
   const location = useLocation();
@@ -28,9 +29,18 @@ const Header = () => {
     }
   };
 
-  const handleLogout = () => {
+  const handleLogoutClick = () => {
+    setIsLogoutModalOpen(true);
+  };
+
+  const handleConfirmLogout = () => {
+    setIsLogoutModalOpen(false);
     logout();
     navigate('/');
+  };
+
+  const handleCancelLogout = () => {
+    setIsLogoutModalOpen(false);
   };
 
   const handleSearch = (e) => {
@@ -125,7 +135,7 @@ const Header = () => {
           </li>
           {isAuthenticated && (
             <li>
-              <button onClick={handleLogout} className="logout-btn">
+              <button onClick={handleLogoutClick} className="logout-btn">
                 {isMobile ? (
                   <span className="mobile-text">Logout</span>
                 ) : (
@@ -141,6 +151,35 @@ const Header = () => {
           <MenuOutlined className="burger-icon" />
         </div>
       </nav>
+
+      {/* Logout Confirmation Modal */}
+      {isLogoutModalOpen && (
+        <div className="modal-overlay" onClick={handleCancelLogout}>
+          <div className="modal-content logout-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Sign Out</h2>
+              <button className="close-btn" onClick={handleCancelLogout}>×</button>
+            </div>
+            
+            <div className="modal-body">
+              <div className="logout-content">
+                <LogoutOutlined className="logout-icon" />
+                <h3>Are you sure you want to sign out?</h3>
+                <p>You'll need to sign in again to access your account and continue your gaming experience.</p>
+              </div>
+            </div>
+
+            <div className="modal-footer">
+              <button className="cancel-btn" onClick={handleCancelLogout}>
+                Cancel
+              </button>
+              <button className="confirm-logout-btn" onClick={handleConfirmLogout}>
+                <LogoutOutlined /> Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

@@ -328,3 +328,30 @@ body.modal-open {
 .auth-form input.success:focus {
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
+
+/* Modal Body and Footer */
+.modal-body {
+  padding: 0;
+}
+
+.modal-footer {
+  padding: 20px 30px 30px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.modal-footer button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
