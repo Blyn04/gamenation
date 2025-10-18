@@ -23,11 +23,11 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   }, []);
 
-  const login = async (email, password) => {
+  const login = async (username, password) => {
     try {
       // Get users from localStorage
       const users = JSON.parse(localStorage.getItem('gamenation_users') || '[]');
-      const foundUser = users.find(u => u.email === email && u.password === password);
+      const foundUser = users.find(u => u.username === username && u.password === password);
       
       if (foundUser) {
         const userData = { ...foundUser };
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('gamenation_user', JSON.stringify(userData));
         return { success: true, user: userData };
       } else {
-        return { success: false, error: 'Invalid email or password' };
+        return { success: false, error: 'Invalid username or password' };
       }
     } catch (error) {
       return { success: false, error: 'Login failed. Please try again.' };

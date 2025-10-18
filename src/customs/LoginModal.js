@@ -10,10 +10,10 @@ const LoginModal = ({ isOpen, onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: '',
     confirmPassword: '',
-    username: ''
+    email: ''
   });
   const { login, signup } = useAuth();
   const navigate = useNavigate();
@@ -35,11 +35,13 @@ const LoginModal = ({ isOpen, onClose }) => {
   const validateForm = () => {
     const newErrors = {};
 
-    // Email validation
-    if (!formData.email) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
+    // Username validation (required for both login and signup)
+    if (!formData.username) {
+      newErrors.username = 'Username is required';
+    } else if (formData.username.length < 3) {
+      newErrors.username = 'Username must be at least 3 characters';
+    } else if (!/^[a-zA-Z0-9_]+$/.test(formData.username)) {
+      newErrors.username = 'Username can only contain letters, numbers, and underscores';
     }
 
     // Password validation
@@ -51,12 +53,11 @@ const LoginModal = ({ isOpen, onClose }) => {
 
     // Signup specific validations
     if (!isLogin) {
-      if (!formData.username) {
-        newErrors.username = 'Username is required';
-      } else if (formData.username.length < 3) {
-        newErrors.username = 'Username must be at least 3 characters';
-      } else if (!/^[a-zA-Z0-9_]+$/.test(formData.username)) {
-        newErrors.username = 'Username can only contain letters, numbers, and underscores';
+      // Email validation (only for signup)
+      if (!formData.email) {
+        newErrors.email = 'Email is required';
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        newErrors.email = 'Please enter a valid email';
       }
 
       if (!formData.confirmPassword) {
@@ -99,7 +100,7 @@ const LoginModal = ({ isOpen, onClose }) => {
     try {
       let result;
       if (isLogin) {
-        result = await login(formData.email, formData.password);
+        result = await login(formData.username, formData.password);
       } else {
         result = await signup(formData.username, formData.email, formData.password);
       }
@@ -107,10 +108,10 @@ const LoginModal = ({ isOpen, onClose }) => {
       if (result.success) {
         // Reset form
         setFormData({
-          email: '',
+          username: '',
           password: '',
           confirmPassword: '',
-          username: ''
+          email: ''
         });
         onClose();
         
@@ -162,41 +163,41 @@ const LoginModal = ({ isOpen, onClose }) => {
             </div>
           )}
 
-          {!isLogin && (
-            <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <div className="input-container">
-                <UserOutlined className="input-icon" />
-                <input
-                  type="text"
-                  id="username"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleInputChange}
-                  placeholder="Enter your username"
-                  className={errors.username ? 'error' : ''}
-                />
-              </div>
-              {errors.username && <div className="error-message">{errors.username}</div>}
-            </div>
-          )}
-
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="username">Username</label>
             <div className="input-container">
-              <MailOutlined className="input-icon" />
+              <UserOutlined className="input-icon" />
               <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
+                type="text"
+                id="username"
+                name="username"
+                value={formData.username}
                 onChange={handleInputChange}
-                placeholder="Enter your email"
-                className={errors.email ? 'error' : ''}
+                placeholder="Enter your username"
+                className={errors.username ? 'error' : ''}
               />
             </div>
-            {errors.email && <div className="error-message">{errors.email}</div>}
+            {errors.username && <div className="error-message">{errors.username}</div>}
           </div>
+
+          {!isLogin && (
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <div className="input-container">
+                <MailOutlined className="input-icon" />
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Enter your email"
+                  className={errors.email ? 'error' : ''}
+                />
+              </div>
+              {errors.email && <div className="error-message">{errors.email}</div>}
+          </div>
+          )}
 
           <div className="form-group">
             <label htmlFor="password">Password</label>
