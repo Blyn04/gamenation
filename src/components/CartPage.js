@@ -4,6 +4,8 @@ import Footer from '../customs/Footer';
 import '../styles/componentsStyle/CartPage.css';
 import '../styles/componentsStyle/ConfirmModal.css';
 import { useCart } from '../contexts/CartContext';
+import { usePurchase } from '../contexts/PurchaseContext';
+import { useAuth } from '../contexts/AuthContext';
 
 // Import all PS5 game images from Library and HomePage
 import ittakes2 from '../assets/ps5Games/itt.png';
@@ -178,6 +180,8 @@ const cartImageMap = {
 
 const CartPage = () => {
   const { cart, removeFromCart, updateQuantity, getCartTotal, clearCart } = useCart();
+  const { processPurchase, isProcessing } = usePurchase();
+  const { isAuthenticated, user } = useAuth();
   const [isVoucherModalOpen, setIsVoucherModalOpen] = useState(false);
   const [voucherCode, setVoucherCode] = useState('');
   const [appliedVouchers, setAppliedVouchers] = useState([]);
@@ -193,6 +197,7 @@ const CartPage = () => {
     cardholderName: ''
   });
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [purchaseDetails, setPurchaseDetails] = useState(null);
   
   // Use cart from context instead of hardcoded data
   const cartItems = cart;
@@ -341,10 +346,43 @@ const CartPage = () => {
     setIsConfirmModalOpen(true);
   };
 
-  const handleConfirmPurchase = () => {
+  const handleConfirmPurchase = async () => {
+    if (!isAuthenticated) {
+      alert('Please log in to complete your purchase');
+      return;
+    }
+
     setIsConfirmModalOpen(false);
-    // Here you would typically process the payment and redirect to success page
-    alert('Purchase successful! Thank you for your order.');
+    
+    try {
+      // Process the purchase with email notification
+      const result = await processPurchase(cartItems, getCartTotal());
+      
+      if (result.success) {
+        // Store purchase details for display
+        setPurchaseDetails({
+          userName: user?.username || 'User',
+          userEmail: user?.email || '',
+          totalAmount: getCartTotal(),
+          games: cartItems,
+          purchaseDate: new Date().toLocaleDateString()
+        });
+        
+        // Clear the cart after successful purchase
+        clearCart();
+        
+        // Show success message
+        alert(`Purchase completed successfully!\n\n${result.message}`);
+        
+        // You could add navigation to a success page here
+        // navigate('/purchase-success');
+      } else {
+        alert(`Purchase failed: ${result.error}`);
+      }
+    } catch (error) {
+      console.error('Purchase error:', error);
+      alert('An error occurred during purchase. Please try again.');
+    }
   };
 
   const subtotal = getCartTotal();
@@ -491,13 +529,13 @@ const CartPage = () => {
           <button 
             className="buy-btn" 
             onClick={handleBuyNow}
-            disabled={cartItems.length === 0}
+            disabled={cartItems.length === 0 || isProcessing}
             style={{
-              opacity: cartItems.length === 0 ? 0.5 : 1,
-              cursor: cartItems.length === 0 ? 'not-allowed' : 'pointer'
+              opacity: cartItems.length === 0 || isProcessing ? 0.5 : 1,
+              cursor: cartItems.length === 0 || isProcessing ? 'not-allowed' : 'pointer'
             }}
           >
-            {cartItems.length === 0 ? 'Cart is Empty' : 'Buy Now'}
+            {isProcessing ? 'Processing...' : (cartItems.length === 0 ? 'Cart is Empty' : 'Buy Now')}
           </button>
         </div>
       </div>
@@ -838,6 +876,62 @@ const CartPage = () => {
       )}
       </div>
       
+      {/* Purchase Details Modal */}
+      {purchaseDetails && (
+        <div className="modal-overlay" onClick={() => setPurchaseDetails(null)}>
+          <div className="modal-content purchase-details-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>🎮 Purchase Confirmation</h2>
+              <button className="close-btn" onClick={() => setPurchaseDetails(null)}>×</button>
+            </div>
+            
+            <div className="modal-body">
+              <div className="purchase-details">
+                <div className="success-icon">
+                  <CheckCircleOutlined />
+                </div>
+                
+                <h3>Thank you for your purchase, {purchaseDetails.userName}!</h3>
+                
+                <div className="purchase-info">
+                  <div className="info-section">
+                    <h4>📋 Purchase Details</h4>
+                    <p><strong>Date:</strong> {purchaseDetails.purchaseDate}</p>
+                    <p><strong>Total:</strong> ${purchaseDetails.totalAmount}</p>
+                    <p><strong>User:</strong> {purchaseDetails.userEmail}</p>
+                  </div>
+                  
+                  <div className="info-section">
+                    <h4>🎯 Purchased Games</h4>
+                    <div className="games-list">
+                      {purchaseDetails.games.map((game, index) => (
+                        <div key={index} className="game-item">
+                          <span>{index + 1}. {game.title}</span>
+                          <span>${game.price}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="email-notice">
+                  <h4>📧 Email Notification</h4>
+                  <p>Purchase details have been logged to the console and an email notification has been prepared.</p>
+                  <p><strong>Email FROM:</strong> nulsnumoa@gmail.com</p>
+                  <p><strong>Email TO:</strong> {purchaseDetails.userEmail}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="modal-footer">
+              <button className="primary-btn" onClick={() => setPurchaseDetails(null)}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Footer */}
       <Footer />
     </div>

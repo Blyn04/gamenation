@@ -17,6 +17,7 @@ import { WishlistProvider } from './contexts/WishlistContext';
 import { CartProvider } from './contexts/CartContext';
 import { ModalProvider, useModal } from './contexts/ModalContext';
 import { AuthProvider } from './contexts/AuthContext';
+import { PurchaseProvider } from './contexts/PurchaseContext';
 
 const AppContent = () => {
   const { isLoginModalOpen, closeLoginModal } = useModal();
@@ -60,9 +61,11 @@ function App() {
     <WishlistProvider>
       <CartProvider>
         <AuthProvider>
-          <ModalProvider>
-            <AppContent />
-          </ModalProvider>
+          <PurchaseProvider>
+            <ModalProvider>
+              <AppContent />
+            </ModalProvider>
+          </PurchaseProvider>
         </AuthProvider>
       </CartProvider>
     </WishlistProvider>

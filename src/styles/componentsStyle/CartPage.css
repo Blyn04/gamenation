@@ -361,6 +361,90 @@
   }
 }
 
+/* Purchase Details Modal */
+.purchase-details-modal {
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.purchase-details {
+  text-align: center;
+}
+
+.success-icon {
+  font-size: 4rem;
+  color: #52c41a;
+  margin-bottom: 1rem;
+}
+
+.purchase-details h3 {
+  color: #1890ff;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.purchase-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.info-section {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.info-section h4 {
+  color: #1890ff;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.info-section p {
+  margin: 0.5rem 0;
+  color: #666;
+}
+
+.games-list {
+  margin-top: 0.5rem;
+}
+
+.game-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.game-item:last-child {
+  border-bottom: none;
+}
+
+.email-notice {
+  background: #e6f7ff;
+  border: 1px solid #91d5ff;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: left;
+}
+
+.email-notice h4 {
+  color: #1890ff;
+  margin-bottom: 0.5rem;
+}
+
+.email-notice p {
+  margin: 0.5rem 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 768px) {
   .cart-page {
     padding: 80px 0 0 0;
