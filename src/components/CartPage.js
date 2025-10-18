@@ -878,14 +878,14 @@ const CartPage = () => {
       
       {/* Purchase Details Modal */}
       {purchaseDetails && (
-        <div className="modal-overlay" onClick={() => setPurchaseDetails(null)}>
-          <div className="modal-content purchase-details-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
+        <div className="purchase-overlay" onClick={() => setPurchaseDetails(null)}>
+          <div className="purchase-modal-container" onClick={(e) => e.stopPropagation()}>
+            <div className="purchase-header-section">
               <h2>🎮 Purchase Confirmation</h2>
-              <button className="close-btn" onClick={() => setPurchaseDetails(null)}>×</button>
+              <button className="purchase-exit-btn" onClick={() => setPurchaseDetails(null)}>×</button>
             </div>
             
-            <div className="modal-body">
+            <div className="purchase-content-section">
               <div className="purchase-details">
                 <div className="success-icon">
                   <CheckCircleOutlined />
@@ -923,8 +923,8 @@ const CartPage = () => {
               </div>
             </div>
 
-            <div className="modal-footer">
-              <button className="primary-btn" onClick={() => setPurchaseDetails(null)}>
+            <div className="purchase-footer-section">
+              <button className="purchase-done-btn" onClick={() => setPurchaseDetails(null)}>
                 Close
               </button>
             </div>

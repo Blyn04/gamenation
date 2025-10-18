@@ -148,11 +148,11 @@ const LoginModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
+    <div className="auth-modal-overlay" onClick={onClose}>
+      <div className="auth-modal-container" onClick={(e) => e.stopPropagation()}>
+        <div className="auth-modal-header">
           <h2>{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
-          <button className="close-btn" onClick={onClose}>×</button>
+          <button className="auth-close-btn" onClick={onClose}>×</button>
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
@@ -247,7 +247,7 @@ const LoginModal = ({ isOpen, onClose }) => {
           </button>
         </form>
 
-        <div className="modal-footer">
+        <div className="auth-modal-footer">
           <p>
             {isLogin ? "Don't have an account? " : "Already have an account? "}
             <button className="switch-mode-btn" onClick={switchMode}>
