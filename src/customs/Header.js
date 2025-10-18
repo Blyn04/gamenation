@@ -154,7 +154,7 @@ const Header = () => {
 
       {/* Logout Confirmation Modal */}
       {isLogoutModalOpen && (
-        <div className="modal-overlay" onClick={handleCancelLogout}>
+        <div className="logout-modal-overlay" onClick={handleCancelLogout}>
           <div className="modal-content logout-modal" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Sign Out</h2>
