@@ -289,32 +289,32 @@ const Profile = () => {
   const displayWishlist = wishlist.slice(0, 3);
 
   return (
-    <div className="profile-page">
-      <div className="profile-card">
-        <div className="profile-left">
-          <div className="avatar">
-            <UserOutlined className="avatar-icon" />
+    <div className="profile-page min-h-screen bg-gray-50">
+      <div className="profile-card bg-white rounded-lg shadow-md p-6 mb-6">
+        <div className="profile-left flex items-center space-x-4">
+          <div className="avatar w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center">
+            <UserOutlined className="avatar-icon text-white text-2xl" />
           </div>
-          <div className="user-info">
-            <h2 className="username">{user?.username || 'User'}</h2>
-            <p className="full-name">{user?.email || 'No email provided'}</p>
-            <button className="settings-btn" onClick={handleSettingsClick}>
-              <SettingOutlined /> Settings
+          <div className="user-info flex-1">
+            <h2 className="username text-2xl font-bold text-gray-800 mb-1">{user?.username || 'User'}</h2>
+            <p className="full-name text-gray-600 mb-3">{user?.email || 'No email provided'}</p>
+            <button className="settings-btn bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors flex items-center space-x-2" onClick={handleSettingsClick}>
+              <SettingOutlined /> <span>Settings</span>
             </button>
           </div>
         </div>
-        <div className="stats-box">
-          <div className="stat-item">
-            <span className="stat-label">Games Downloaded</span>
-            <span className="stat-value">10</span>
+        <div className="stats-box flex flex-col space-y-4 mt-6 pt-6 border-t border-gray-200">
+          <div className="stat-item flex justify-between items-center">
+            <span className="stat-label text-sm text-gray-600">Games Downloaded</span>
+            <span className="stat-value text-2xl font-bold text-blue-600">10</span>
           </div>
-          <div className="stat-item">
-            <span className="stat-label">Vouchers</span>
-            <span className="stat-value">09</span>
+          <div className="stat-item flex justify-between items-center">
+            <span className="stat-label text-sm text-gray-600">Vouchers</span>
+            <span className="stat-value text-2xl font-bold text-green-600">09</span>
           </div>
-          <div className="stat-item">
-            <span className="stat-label">Points</span>
-            <span className="stat-value">12</span>
+          <div className="stat-item flex justify-between items-center">
+            <span className="stat-label text-sm text-gray-600">Points</span>
+            <span className="stat-value text-2xl font-bold text-purple-600">12</span>
           </div>
         </div>
       </div>
