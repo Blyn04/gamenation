@@ -272,7 +272,6 @@ const Profile = () => {
     navigate("/item-details", { state: { gameData } });
   };
 
-  // Get purchased games from purchase history
   const userPurchases = user ? getUserPurchaseHistory(user.id) : [];
   const purchasedGames = userPurchases.flatMap(purchase => 
     purchase.items.map(item => ({
@@ -282,10 +281,8 @@ const Profile = () => {
     }))
   );
   
-  // Get the first 3 purchased games for display
   const displayLibraryGames = purchasedGames.slice(0, 3);
 
-  // Get the first 3 items from wishlist for display
   const displayWishlist = wishlist.slice(0, 3);
 
   return (

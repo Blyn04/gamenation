@@ -401,23 +401,23 @@ const CartPage = () => {
   const total = subtotal - totalDiscount;
 
   return (
-    <div className="cart-page">
-      <div className="cart-main-content">
-        <div className="cart-container">
-        <div className="cart-items-section">
-          <h2 className="section-title">Cart Items</h2>
+    <div className="cart-page min-h-screen bg-gray-50">
+      <div className="cart-main-content container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="cart-container flex flex-col lg:flex-row gap-8 !mx-0 lg:!mx-auto max-w-7xl">
+        <div className="cart-items-section flex-1 bg-white rounded-lg shadow-md p-6">
+          <h2 className="section-title text-2xl font-bold text-gray-800 mb-6">Cart Items</h2>
           
           {cartItems.length === 0 ? (
-            <div className="empty-cart">
-              <ShoppingCartOutlined className="empty-cart-icon" />
-              <h3>Your cart is empty</h3>
-              <p>Add some games to get started!</p>
+            <div className="empty-cart text-center py-12">
+              <ShoppingCartOutlined className="empty-cart-icon text-6xl text-gray-400 mb-4" />
+              <h3 className="text-xl font-semibold text-gray-600 mb-2">Your cart is empty</h3>
+              <p className="text-gray-500">Add some games to get started!</p>
             </div>
           ) : (
-            <div className="cart-items">
+            <div className="cart-items space-y-4">
               {cartItems.map((item) => (
-                <div key={item.id} className="cart-item">
-                  <div className="item-image">
+                <div key={item.id} className="cart-item flex items-center gap-4 p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+                  <div className="item-image w-20 h-20 flex-shrink-0">
                     <LoadingImage 
                       src={cartImageMap[item.image] || cartImageMap['cyberpunk-2077.png']} 
                       alt={item.title}
@@ -430,31 +430,31 @@ const CartPage = () => {
                     />
                   </div>
                   
-                    <div className="item-detailss">
-                      <h3 className="item-title">{item.title}</h3>
-                      <div className="item-price">{item.originalPrice || item.price}</div>
+                    <div className="item-detailss flex-1">
+                      <h3 className="item-title text-lg font-semibold text-gray-800 mb-1">{item.title}</h3>
+                      <div className="item-price text-gray-600 font-medium">{item.originalPrice || item.price}</div>
                     </div>
                   
-                  <div className="item-quantity">
+                  <div className="item-quantity flex items-center gap-2">
                     <button 
-                      className="quantity-btn"
+                      className="quantity-btn w-8 h-8 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
                       onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
                     >
                       <MinusOutlined />
                     </button>
-                    <span className="quantity-display">{item.quantity}</span>
+                    <span className="quantity-display w-8 text-center font-medium">{item.quantity}</span>
                     <button 
-                      className="quantity-btn"
+                      className="quantity-btn w-8 h-8 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
                       onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
                     >
                       <PlusOutlined />
                     </button>
                   </div>
                   
-                  <div className="item-total">
-                    <div className="total-price">P {(safeParsePrice(item.price) * item.quantity).toFixed(2)}</div>
+                  <div className="item-total flex flex-col items-end gap-2">
+                    <div className="total-price text-lg font-bold text-gray-800">P {(safeParsePrice(item.price) * item.quantity).toFixed(2)}</div>
                     <button 
-                      className="remove-btn"
+                      className="remove-btn w-8 h-8 flex items-center justify-center bg-red-100 hover:bg-red-200 text-red-600 rounded-full transition-colors"
                       onClick={() => removeItem(item.id)}
                     >
                       <DeleteOutlined />
@@ -465,68 +465,68 @@ const CartPage = () => {
             </div>
           )}
           
-          <div className="cart-actions">
+          <div className="cart-actions flex gap-4 mt-6">
             <button 
-              className="action-btn"
+              className="action-btn flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
               onClick={() => setIsVoucherModalOpen(true)}
             >
-              <GiftOutlined style={{ marginRight: '8px' }} />
+              <GiftOutlined />
               Add Vouchers
             </button>
             <button 
-              className="action-btn"
+              className="action-btn flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
               onClick={() => setIsPaymentModalOpen(true)}
             >
-              <CreditCardOutlined style={{ marginRight: '8px' }} />
+              <CreditCardOutlined />
               Change Payment Method
             </button>
           </div>
         </div>
         
-        <div className="order-summary">
-          <h3 className="summary-title">Order Summary</h3>
+        <div className="order-summary bg-white rounded-lg shadow-md p-6 lg:w-80">
+          <h3 className="summary-title text-xl font-bold text-gray-800 mb-4">Order Summary</h3>
           
-          <div className="summary-item">
-            <span>Subtotal:</span>
-            <span>P {subtotal.toFixed(2)}</span>
+          <div className="summary-item flex justify-between py-2">
+            <span className="text-gray-600">Subtotal:</span>
+            <span className="font-medium">P {subtotal.toFixed(2)}</span>
           </div>
           
           {appliedVouchers.length > 0 && (
-            <div className="applied-vouchers">
+            <div className="applied-vouchers space-y-2">
               {appliedVouchers.map((voucher, index) => (
-                <div key={index} className="voucher-item">
-                  <span className="voucher-code">{voucher.code}</span>
-                  <span className="voucher-discount">
+                <div key={index} className="voucher-item flex items-center justify-between bg-green-50 p-2 rounded-lg">
+                  <span className="voucher-code text-sm font-medium text-green-700">{voucher.code}</span>
+                  <span className="voucher-discount text-sm font-medium text-green-700">
                     -P {voucher.type === 'percentage' 
                       ? (subtotal * voucher.discount / 100).toFixed(2)
                       : voucher.discount.toFixed(2)
                     }
                   </span>
                   <button 
-                    className="remove-voucher-btn"
+                    className="remove-voucher-btn w-6 h-6 flex items-center justify-center bg-red-100 hover:bg-red-200 text-red-600 rounded-full transition-colors"
                     onClick={() => removeVoucher(voucher.code)}
                   >
-                    <CloseOutlined />
+                    <CloseOutlined className="text-xs" />
                   </button>
                 </div>
               ))}
             </div>
           )}
           
-          <div className="summary-item">
-            <span>Discount:</span>
-            <span>-P {totalDiscount.toFixed(2)}</span>
+          <div className="summary-item flex justify-between py-2">
+            <span className="text-gray-600">Discount:</span>
+            <span className="font-medium text-green-600">-P {totalDiscount.toFixed(2)}</span>
           </div>
           
-          <div className="summary-divider"></div>
+          <div className="summary-divider border-t border-gray-200 my-4"></div>
           
-          <div className="summary-item total">
-            <span>Total:</span>
-            <span>P {total.toFixed(2)}</span>
+          <div className="summary-item total flex justify-between py-2">
+            <span className="text-lg font-bold text-gray-800">Total:</span>
+            <span className="text-lg font-bold text-gray-800">P {total.toFixed(2)}</span>
           </div>
           
           <LoadingButton 
-            className="buy-btn" 
+            className="buy-btn w-full mt-6 py-3 px-6 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors" 
             onClick={handleBuyNow}
             loading={isProcessing}
             loadingText="Processing Purchase..."
