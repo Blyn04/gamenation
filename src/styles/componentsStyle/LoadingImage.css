@@ -60,13 +60,13 @@
   overflow: hidden;
 }
 
-.thumbnail .loading-image-container {
+/* .thumbnail .loading-image-container {
   border-radius: 8px;
 }
 
 .hero-image .loading-image-container {
   border-radius: 16px;
-}
+} */
 
 @media (max-width: 768px) {
   .image-skeleton,
