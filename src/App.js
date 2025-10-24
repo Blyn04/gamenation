@@ -29,21 +29,48 @@ const AppContent = () => {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/profile" element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          } />
-          <Route path="/browse" element={<AllProducts/>} />
-          <Route path="/library" element={<Library/>} />
-          <Route path="/wishlist" element={<LikePage/>} />
-          <Route path="/item-details" element={<ItemDetails/>} />
-          <Route path="/cart" element={<CartPage/>} />
-          <Route path="/account-settings" element={
-            <ProtectedRoute>
-              <AccountSetting />
-            </ProtectedRoute>
-          } />
+
+          {/* Protected routes */}
+          <Route 
+            path="/profile" 
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            } 
+          />
+          
+          <Route path="/browse" element={<AllProducts />} />
+
+          <Route 
+            path="/library" 
+            element={
+              <ProtectedRoute>
+                <Library />
+              </ProtectedRoute>
+            } 
+          />
+
+          <Route path="/wishlist" element={<LikePage />} />
+          <Route path="/item-details" element={<ItemDetails />} />
+
+          <Route 
+            path="/cart" 
+            element={
+              <ProtectedRoute>
+                <CartPage />
+              </ProtectedRoute>
+            } 
+          />
+
+          <Route 
+            path="/account-settings" 
+            element={
+              <ProtectedRoute>
+                <AccountSetting />
+              </ProtectedRoute>
+            } 
+          />
         </Routes>
         
         {/* Login Modal - rendered at root level */}
