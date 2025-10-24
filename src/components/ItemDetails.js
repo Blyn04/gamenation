@@ -348,6 +348,7 @@ const ItemDetails = () => {
                 genre: "RPG",
                 description: "Experience the next chapter in the legendary Final Fantasy VII saga. Join Cloud and his allies in an epic adventure through stunning landscapes and intense battles."
               };
+              window.scrollTo({ top: 0, behavior: "smooth" });
               navigate("/item-details", { state: { gameData } });
             }}
           >
@@ -370,6 +371,7 @@ const ItemDetails = () => {
                 genre: "RPG",
                 description: "Embark on eight unique journeys in this beautifully crafted HD-2D RPG. Each character has their own story to tell and abilities to master."
               };
+              window.scrollTo({ top: 0, behavior: "smooth" });
               navigate("/item-details", { state: { gameData } });
             }}
           >
@@ -392,6 +394,7 @@ const ItemDetails = () => {
                 genre: "RPG",
                 description: "Join Ryza and her friends in a magical adventure filled with alchemy, exploration, and heartwarming stories in this enchanting RPG."
               };
+              window.scrollTo({ top: 0, behavior: "smooth" });
               navigate("/item-details", { state: { gameData } });
             }}
           >
@@ -414,6 +417,7 @@ const ItemDetails = () => {
                 genre: "Action RPG",
                 description: "Enter the dark future of Night City in this immersive open-world RPG. Customize your character and make choices that shape your destiny."
               };
+              window.scrollTo({ top: 0, behavior: "smooth" });
               navigate("/item-details", { state: { gameData } });
             }}
           >
@@ -436,6 +440,7 @@ const ItemDetails = () => {
                 genre: "Action RPG",
                 description: "From the creators of Dark Souls comes an epic fantasy adventure. Explore the vast Lands Between and become the Elden Lord."
               };
+              window.scrollTo({ top: 0, behavior: "smooth" });
               navigate("/item-details", { state: { gameData } });
             }}
           >
@@ -458,6 +463,7 @@ const ItemDetails = () => {
                 genre: "Fighting",
                 description: "The King of Iron Fist Tournament returns! Experience the most intense fighting game with stunning graphics and deep combat mechanics."
               };
+              window.scrollTo({ top: 0, behavior: "smooth" });
               navigate("/item-details", { state: { gameData } });
             }}
           >
